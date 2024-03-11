@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Profitabilitaet.ViewModels
+namespace Profitabilitaet.Projekte.ViewModels
 {
-    internal class MitarbeiterViewModel
+    internal class ProjekteViewModel
     {
     }
 }

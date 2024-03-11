@@ -13,16 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Profitabilitaet.Views
+namespace Profitabilitaet.Mitarbeiter.Views;
+
+/// <summary>
+/// Interaktionslogik für MainView.xaml
+/// </summary>
+public partial class MainView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public MainView()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

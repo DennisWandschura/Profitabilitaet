@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Profitabilitaet.ViewModels
+namespace Profitabilitaet.Common.ViewModels
 {
-    internal class ProjekteViewModel
+    internal class MainView
     {
     }
 }

@@ -13,16 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Profitabilitaet.Views
+namespace Profitabilitaet.Mitarbeiter.Views;
+
+/// <summary>
+/// Interaktionslogik für MitarbeiterCreateView.xaml
+/// </summary>
+public partial class CreateMitarbeiter : UserControl
 {
-    /// <summary>
-    /// Interaktionslogik für Projekte.xaml
-    /// </summary>
-    public partial class ProjekteView : UserControl
+    public CreateMitarbeiter()
     {
-        public ProjekteView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

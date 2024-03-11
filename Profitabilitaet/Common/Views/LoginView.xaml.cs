@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Profitabilitaet.Views
+namespace Profitabilitaet.Common.Views
 {
     /// <summary>
-    /// Interaktionslogik für MitarbeiterDisplayView.xaml
+    /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class MitarbeiterDisplayView : UserControl
+    public partial class LoginView : UserControl
     {
-        public MitarbeiterDisplayView()
+        public LoginView()
         {
             InitializeComponent();
         }
