@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace Profitabilitaet.src{
     public class Nutzer{
         private List<Rolle> rollen;
-        public String vorname { get; private set; }
-        public String nachname { get; private set; }
-        public int plz { get; private set; }
-        public String ort { get; private set; }
+        public String vorname { get; }
+        public String nachname { get; }
+        public int plz { get; }
+        public String ort { get; }
+        public int id {get; }
 
         public Nutzer(List<Rolle> rollen, String vorname, String nachname, int plz, String ort) {
             this.rollen = rollen;
@@ -18,6 +19,16 @@ namespace Profitabilitaet.src{
             this.nachname = nachname;
             this.plz = plz;
             this.ort = ort;
+            this.id = -1;
+        }
+
+        public Nutzer(List<Rolle> rollen, String vorname, String nachname, int plz, String ort, int id) {
+            this.rollen = rollen;
+            this.vorname = vorname;
+            this.nachname = nachname;
+            this.plz = plz;
+            this.ort = ort;
+            this.id = id;
         }
 
         public Nutzer() {

@@ -12,15 +12,22 @@ namespace Profitabilitaet.src
         public Nutzer leiter { get; }
 
         private List<Nutzer> mitarbeiter;
+        public int id {get; }
 
-        public Projekt(string name, string description, Nutzer leiter)
-        {
+        public Projekt(string name, string description, Nutzer leiter){
             this.name = name;
             this.description = description;
             this.leiter = leiter;
             this.mitarbeiter = new List<Nutzer>();
+            this.id = -1;
         }
 
-
+        public Projekt(string name, string description, Nutzer leiter, int id){
+            this.name = name;
+            this.description = description;
+            this.leiter = leiter;
+            this.mitarbeiter = new List<Nutzer>();
+            this.id = id;
+        }
     }
 }
