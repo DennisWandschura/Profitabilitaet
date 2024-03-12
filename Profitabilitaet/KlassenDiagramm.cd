@@ -1,45 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Profitabilitaet.src.Nutzer">
-    <Position X="8.5" Y="0.5" Width="2.75" />
-    <TypeIdentifier>
-      <HashCode>gAACEAAAAAAAAAAAAAAAACAAAABAAABiAAAAAgAAABA=</HashCode>
-      <FileName>src\Nutzer.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Profitabilitaet.src.Projekt">
+  <Class Name="Profitabilitaet.Common.Models.Projekt">
     <Position X="2.25" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAgAABAEAEAAAQAQAAAEBAAAAAAgAABAAA=</HashCode>
-      <FileName>src\Projekt.cs</FileName>
+      <HashCode>AAACAAAAAAAgAAFAEAEAAAQAQAAAEBAAAAAAgAABAAA=</HashCode>
+      <FileName>Common\Models\Projekt.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Profitabilitaet.BuchungArbeitszeit">
+  <Class Name="Profitabilitaet.Common.Models.BuchungArbeitszeit">
     <Position X="5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACACQAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
-      <FileName>Buchung.cs</FileName>
+      <FileName>Common\Models\Buchung.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Profitabilitaet.Abteilung">
+  <Class Name="Profitabilitaet.Common.Models.Abteilung">
     <Position X="6.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAgBA=</HashCode>
-      <FileName>Abteilung.cs</FileName>
+      <FileName>Common\Models\Abteilung.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="Profitabilitaet.src.Rolle">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="Profitabilitaet.Common.Models.Nutzer">
+    <Position X="8.5" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAIAAAAAA=</HashCode>
-      <FileName>src\Rolle.cs</FileName>
+      <HashCode>gAACEAAAAAAAAAAAAAAAACAAAABAAABiAAAAAgAAABA=</HashCode>
+      <FileName>Common\Models\Nutzer.cs</FileName>
     </TypeIdentifier>
-  </Enum>
-  <Enum Name="Profitabilitaet.Geschlecht">
+  </Class>
+  <Enum Name="Profitabilitaet.Common.Models.Geschlecht">
     <Position X="0.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABAAAAQAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Geschlecht.cs</FileName>
+      <FileName>Common\Models\Geschlecht.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Profitabilitaet.Common.Models.Rolle">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAIAAAAAA=</HashCode>
+      <FileName>Common\Models\Rolle.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9.75" />
