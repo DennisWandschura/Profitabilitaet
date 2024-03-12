@@ -7,52 +7,17 @@ using System.Threading.Tasks;
 namespace Profitabilitaet.Common.Models
 {
     public class Nutzer {
-        private Rolle rolle { get; }
-        private String Vorname { get; }
-        private String Nachname { get; }
-        private int Plz { get; }
-        private String Ort { get; }
-        private int Id { get; }
-
-        private int Strasse
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        private int Hausnummer
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        private Geschlecht Geschlecht
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        private String Telefonnummer
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        private DateOnly Einstellungsdatum
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public int Id { get; }
+        public Rolle Rolle { get; }
+        public String Vorname { get; }
+        public String Nachname { get; }
+        public int Plz { get; }
+        public String Ort { get; }
+        public string Strasse { get; }
+        public int Hausnummer { get; }
+        public Geschlecht Geschlecht { get; }
+        public String Telefonnummer { get; }
+        public DateOnly Einstellungsdatum { get; }
 
         public Boolean HatRolle(Rolle rolle)
         {

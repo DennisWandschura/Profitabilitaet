@@ -11,65 +11,23 @@ namespace Profitabilitaet.Common.Models
 {
     public class Projekt
     {
-        private String Name { get; }
-        private String Description { get; }
-        private Nutzer Leiter { get; }
-        private int Id { get; }
+        public int Id { get; }
+        public string Name { get; }
+        public string Description { get; }
+        public Nutzer Leiter { get; }
+        public decimal Auftragswert { get; }
+        public decimal AngezahlterBetrag { get; }
+        public DateOnly Beginn { get; }
+        public DateOnly Ende { get; }
+        public bool IstStorniert { get; private set; }
+        public List<BuchungArbeitszeit> Buchungen { get; }
 
-        private Decimal Auftragswert
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        private Decimal AngezahlterBetrag
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        private DateOnly Beginn
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        private DateOnly Ende
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        private Boolean IstStorniert
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        private List<BuchungArbeitszeit> buchungen
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Boolean Buchen(Nutzer mitarbeiter, int woche, int jahr, int stunden)
+        public bool Buchen(Nutzer mitarbeiter, int woche, int jahr, int stunden)
         {
             return false;
         }
 
-        public Boolean Stornieren()
+        public bool Stornieren()
         {
             if (IstStorniert)
             {
