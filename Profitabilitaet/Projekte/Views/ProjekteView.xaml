@@ -14,31 +14,24 @@
             <ListViewItem Content="Projekt A"/>
             <ListViewItem Content="Projekt B"/>
         </ListView>
-        <StackPanel>
+        <StackPanel Margin="4">
             <TextBlock FontSize="20" Text="Projekt A" HorizontalAlignment="Center"/>
-            <TextBlock Text="Projektinformationen"/>
+            <TextBlock Text="Bezeichnung"/>
+            <TextBlock Text="Projektleiter: Mitarbeiter A"/>
+            <TextBlock Text="Auftragswert: EUR 1000,00"/>
+            <TextBlock Text="AngezahlterBetrag: EUR 500,00"/>
+            <TextBlock Text="Beginn: 01.01.24"/>
+            <TextBlock Text="Ende: 01.02.24"/>
+          
+            <CheckBox Content="Ist Stoniert:"/>
 
-            <StackPanel Orientation="Horizontal" Margin="4">
-                <StackPanel Margin="4">
-                    <TextBlock Text="Teilnehmende Mitarbeiter"/>
-                    <ListView>
-                        <ListViewItem Content="Mitarbeiter A"/>
-                        <ListViewItem Content="Mitarbeiter B"/>
-                    </ListView>
-                </StackPanel>
-
-                <StackPanel>
-                    <Button Content="&lt;&lt; Hinzufügen" Margin="2"/>
-                    <Button Content="Entfernen >>" Margin="2"/>
-                </StackPanel>
-
-                <StackPanel Margin="4">
-                    <TextBlock Text="Freie Mitarbeiter"/>
-                    <ListView>
-                        <ListViewItem Content="Mitarbeiter C"/>
-                        <ListViewItem Content="Mitarbeiter D"/>
-                    </ListView>
-                </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Buchungen"/>
+                <ListView>
+                    <ListViewItem Content="Mitarbeiter C, 01, 2024, 20"/>
+                    <ListViewItem Content="Mitarbeiter D, 01, 2024, 40"/>
+                </ListView>
+                <Button Content="Neue Buchung"/>
             </StackPanel>
 
 
