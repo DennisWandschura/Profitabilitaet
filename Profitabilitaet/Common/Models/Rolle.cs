@@ -1,8 +1,7 @@
-﻿namespace Profitabilitaet.src{
-    public enum Rolle
+﻿namespace Profitabilitaet.Common.Models;
+public enum Rolle
     {
         BASIS_NUTZER,
         ABTEILUNGSLEITER,
         ADMIN
     }
-}

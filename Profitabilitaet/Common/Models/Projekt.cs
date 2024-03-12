@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic;
 
-namespace Profitabilitaet.src
+namespace Profitabilitaet.Common.Models
 {
     public class Projekt
     {

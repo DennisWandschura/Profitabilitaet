@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Profitabilitaet.Common.Models;
 
-public class Mitarbeiter
+public class BuchungArbeitszeit
 {
-    public string Name
+    private Nutzer Mitarbeiter
     {
         get => default;
         set
@@ -15,7 +15,7 @@ public class Mitarbeiter
         }
     }
 
-    public string Anschrift
+    private Projekt Projekt
     {
         get => default;
         set
@@ -23,7 +23,7 @@ public class Mitarbeiter
         }
     }
 
-    public string Telefonnummer
+    private int Anteil
     {
         get => default;
         set
@@ -31,7 +31,7 @@ public class Mitarbeiter
         }
     }
 
-    public Geschlecht Geschlecht
+    private int Woche
     {
         get => default;
         set
@@ -39,23 +39,7 @@ public class Mitarbeiter
         }
     }
 
-    public DateOnly Einstellungsdatum
-    {
-        get => default;
-        set
-        {
-        }
-    }
-
-    public MitarbeiterNummer Mitarbeiternummer
-    {
-        get => default;
-        set
-        {
-        }
-    }
-
-    public Abteilung Abteilung
+    private int Jahr
     {
         get => default;
         set
