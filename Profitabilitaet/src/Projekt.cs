@@ -55,5 +55,18 @@ namespace Profitabilitaet.src
             {
             }
         }
+
+        private List<BuchungArbeitszeit> buchungen
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Boolean Buchen(Nutzer mitarbeiter, int woche, int jahr, int stunden)
+        {
+            return false;
+        }
     }
 }

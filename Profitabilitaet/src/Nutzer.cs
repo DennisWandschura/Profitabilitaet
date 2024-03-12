@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Profitabilitaet.src{
-    public class Nutzer{
+    public class Nutzer {
+        private Rolle rolle { get; }
         private String Vorname { get; }
         private String Nachname { get; }
         private int Plz { get; }
@@ -50,6 +51,11 @@ namespace Profitabilitaet.src{
             set
             {
             }
+        }
+
+        public Boolean HatRolle(Rolle rolle)
+        {
+            return false;
         }
     }
 }
