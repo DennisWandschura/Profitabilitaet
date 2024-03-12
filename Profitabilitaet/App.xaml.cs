@@ -35,6 +35,7 @@ public partial class App : Application
 
         // Viewmodels
         services.AddTransient<Mitarbeiter.ViewModels.MainView>();
+        services.AddTransient<Common.ViewModels.LoginView>();
 
         return services.BuildServiceProvider();
     }
