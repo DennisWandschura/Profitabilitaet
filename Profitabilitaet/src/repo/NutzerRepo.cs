@@ -15,7 +15,7 @@ namespace Profitabilitaet.src.repo{
         }
 
         public int getMaxID(){
-
+            return 0;//TODO
         }
 
         public Nutzer GetNutzerByID(int id){

@@ -5,7 +5,7 @@ using System.Printing.Interop;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Profitabilitaet.src{
+namespace Profitabilitaet.src.repo{
     public class DB{
         private static DB instanz = null;
 

@@ -12,7 +12,7 @@ namespace Profitabilitaet.src.repo{
         }
 
         public int getMaxID(){
-            
+            return 0;//TODO
         }
 
         public Projekt GetProjektByID(int id){

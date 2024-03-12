@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Profitabilitaet.Models.Mitarbeiter">
-    <Position X="5.25" Y="1.5" Width="2.5" />
+  <Class Name="Profitabilitaet.src.Nutzer">
+    <Position X="8.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAAAAAAAAACQAAAAAABBCIAAAAAAAAAA=</HashCode>
-      <FileName>Models\Mitarbeiter.cs</FileName>
+      <HashCode>EEAAAAQAAgAAAAACBAAAAAAAACBAAAICAAAAQAAAAgA=</HashCode>
+      <FileName>src\Nutzer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Profitabilitaet.Models.Abteilung">
-    <Position X="2.25" Y="4.5" Width="1.5" />
+  <Class Name="Profitabilitaet.src.Projekt">
+    <Position X="4.75" Y="2" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAABA=</HashCode>
-      <FileName>Models\Abteilung.cs</FileName>
+      <HashCode>AAAAAAAAAAAEAAAAIAAAAAAAAAAEAEAAAAAAAAAAAgA=</HashCode>
+      <FileName>src\Projekt.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="Profitabilitaet.Models.Geschlecht" Collapsed="true">
-    <Position X="2" Y="1.5" Width="1.5" />
+  <Enum Name="Profitabilitaet.src.Rolle">
+    <Position X="1.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAABAAAAAI=</HashCode>
-      <FileName>Models\Geschlecht.cs</FileName>
+      <HashCode>BAAAAAAAAAAAAAAAAABAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\Rolle.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9.75" />
