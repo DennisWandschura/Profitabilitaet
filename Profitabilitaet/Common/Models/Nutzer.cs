@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace Profitabilitaet.Common.Models;
 
 public class Nutzer {
-    public int Id { get; }
-    public Rolle Rolle { get; }
-    public string Vorname { get; }
-    public string Nachname { get; }
+    public int Id { get; set; }
+    public Rolle Rolle { get; set; }
+    public string Vorname { get; set; }
+    public string Nachname { get; set; }
     public int Plz { get; }
     public string Ort { get; }
     public string Strasse { get; }

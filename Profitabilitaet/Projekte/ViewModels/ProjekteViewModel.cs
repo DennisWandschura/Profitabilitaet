@@ -1,4 +1,5 @@
-﻿using Profitabilitaet.Common.Models;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using Profitabilitaet.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,9 @@ namespace Profitabilitaet.Projekte.ViewModels
         public DateOnly Ende { get; } = new DateOnly(2024, 02, 01);
         public bool IstStorniert { get; set; } = false;
         public List<BuchungArbeitszeit> Buchungen { get; } = new();
+
+        public ProjekteViewModel()
+        {
+        }
     }
 }

@@ -4,13 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Profitabilitaet.Common.Views"
+             xmlns:vm="clr-namespace:Profitabilitaet.Common.ViewModels"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance {x:Type vm:LoginView} }"
              d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Margin="2" Text="Name:"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="2" Text="Passwort:"/>
+
+        <TextBox Grid.Column="1" Grid.Row="0" Margin="2" Text="{Binding Login}"/>
+        <ContentPresenter  Grid.Column="1" Grid.Row="1" Margin="2" Content="{Binding PasswordBox}"/>
+
+        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,2" Padding="10,0" 
+                Content="Login" Command="{Binding LoginCommand}"/>
     
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="Name"/>
-        <TextBlock Text="Passwort"/>
-        <Button Content="Login"/>
-    </StackPanel>
+    </Grid>
     
 </UserControl>
