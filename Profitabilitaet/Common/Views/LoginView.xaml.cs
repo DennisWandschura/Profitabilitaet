@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Profitabilitaet.Common.Views
+namespace Profitabilitaet.Common.Views;
+
+/// <summary>
+/// Interaction logic for LoginView.xaml
+/// </summary>
+public partial class LoginView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for LoginView.xaml
-    /// </summary>
-    public partial class LoginView : UserControl
+    public LoginView()
     {
-        public LoginView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        DataContext = App.Current.Services.GetService<ViewModels.LoginView>();
     }
 }

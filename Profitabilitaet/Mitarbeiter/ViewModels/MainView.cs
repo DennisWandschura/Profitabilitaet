@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using Profitabilitaet.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,4 +18,11 @@ internal class MainView
         "Mitarbeiter D",
         "Mitarbeiter E",
     };
+
+    private LoggedInUser _loggedInUser;
+
+    public MainView(LoggedInUser loggedInUser)
+    {
+        _loggedInUser = loggedInUser;
+    }
 }
