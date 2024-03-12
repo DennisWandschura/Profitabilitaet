@@ -12,18 +12,17 @@ namespace Profitabilitaet.src.repo{
         private DB(){}
 
         public static DB get(){
-            if ((instanz == null){
+            if (instanz == null){
                 instanz = new DB();
             }
             return instanz;
         }
-    }
+        public List<Nutzer> loadAllNutzer(){
+            return new List<Nutzer>();
+        }
 
-    public List<Nutzer> loadAllNutzer(){
-        
-    }
-
-    public List<Projekt> getAllProjekte(){
-
+        public List<Projekt> getAllProjekte(){
+            return new List<Projekt>();
+        }
     }
 }

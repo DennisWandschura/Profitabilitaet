@@ -23,7 +23,7 @@ namespace Profitabilitaet.src.repo{
                 throw new Exception("ID is not valid!");
             }
             foreach (var item in nutzerliste){
-                if (item.id == id){
+                if (item.Id == id){
                     return item;
                 }
             }

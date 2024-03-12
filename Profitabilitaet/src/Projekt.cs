@@ -1,33 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic;
 
 namespace Profitabilitaet.src
 {
-    public class Projekt{
-        public String name { get; }
-        public String description { get; }
-        public Nutzer leiter { get; }
+    public class Projekt
+    {
+        private String Name { get; }
+        private String Description { get; }
+        private Nutzer Leiter { get; }
+        private int Id { get; }
 
-        private List<Nutzer> mitarbeiter;
-        public int id {get; }
-
-        public Projekt(string name, string description, Nutzer leiter){
-            this.name = name;
-            this.description = description;
-            this.leiter = leiter;
-            this.mitarbeiter = new List<Nutzer>();
-            this.id = -1;
+        private Decimal Auftragswert
+        {
+            get => default;
+            set
+            {
+            }
         }
 
-        public Projekt(string name, string description, Nutzer leiter, int id){
-            this.name = name;
-            this.description = description;
-            this.leiter = leiter;
-            this.mitarbeiter = new List<Nutzer>();
-            this.id = id;
+        private Decimal AngezahlterBetrag
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        private DateOnly Beginn
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        private DateOnly Ende
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        private Boolean IstStorniert
+        {
+            get => default;
+            set
+            {
+            }
         }
     }
 }

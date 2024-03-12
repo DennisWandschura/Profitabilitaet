@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Profitabilitaet.src{
-    public class Nutzer{
-        private String Vorname { get; }
-        private String Nachname { get; }
-        private int Plz { get; }
-        private String Ort { get; }
-        private int Id { get; }
-
-        private int Strasse
+namespace Profitabilitaet
+{
+    public class BuchungArbeitszeit
+    {
+        private Nutzer Mitarbeiter
         {
             get => default;
             set
@@ -20,7 +15,7 @@ namespace Profitabilitaet.src{
             }
         }
 
-        private int Hausnummer
+        private Profitabilitaet.src.Projekt Projekt
         {
             get => default;
             set
@@ -28,7 +23,7 @@ namespace Profitabilitaet.src{
             }
         }
 
-        private Geschlecht Geschlecht
+        private int Anteil
         {
             get => default;
             set
@@ -36,7 +31,7 @@ namespace Profitabilitaet.src{
             }
         }
 
-        private String Telefonnummer
+        private int Woche
         {
             get => default;
             set
@@ -44,7 +39,7 @@ namespace Profitabilitaet.src{
             }
         }
 
-        private DateOnly Einstellungsdatum
+        private int Jahr
         {
             get => default;
             set
