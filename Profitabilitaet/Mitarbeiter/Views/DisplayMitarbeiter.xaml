@@ -6,17 +6,49 @@
              xmlns:local="clr-namespace:Profitabilitaet.Mitarbeiter.Views"
              xmlns:vm="clr-namespace:Profitabilitaet.Mitarbeiter.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
     <UserControl.DataContext>
         <vm:DisplayMitarbeiter/>
     </UserControl.DataContext>
-    <StackPanel>
-        <TextBlock Text="Ausgewählter Mitarbeiter" HorizontalAlignment="Center"/>
-        <TextBlock Text="Nachname:"/>
-        <TextBlock Text="Vorname:"/>
-        <TextBlock Text="Strasse:"/>
-        <TextBlock Text="Hausnummer:"/>
-        <TextBlock Text="PLZ:"/>
-        <TextBlock Text="Ort:"/>
-    </StackPanel>
+    <Border BorderThickness="1" BorderBrush="Black" Margin="2">
+        <Grid Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Nachname:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Vorname:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Geschlecht:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="Strasse:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="Hausnummer:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="5" Text="PLZ:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="6" Text="Ort:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="7" Text="Telefonnummer:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="8" Text="Einstellungsdatum:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="9" Text="Rolle:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Nachname}"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Vorname}"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Geschlecht}"/>
+            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Strasse}"/>
+            <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Hausnummer}"/>
+            <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Plz}"/>
+            <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Ort}"/>
+            <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding Telefonnummer}"/>
+            <TextBlock Grid.Column="1" Grid.Row="8" Text="{Binding Einstellungsdatum}"/>
+            <TextBlock Grid.Column="1" Grid.Row="9" Text="{Binding Rolle}"/>
+        </Grid>
+    </Border>
 </UserControl>

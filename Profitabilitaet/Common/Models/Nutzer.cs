@@ -4,59 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Profitabilitaet.Common.Models
-{
-    public class Nutzer {
-        private Rolle rolle { get; }
-        private String Vorname { get; }
-        private String Nachname { get; }
-        private int Plz { get; }
-        private String Ort { get; }
-        private int Id { get; }
+namespace Profitabilitaet.Common.Models;
 
-        private String Strasse
-        {
-            get => default;
-            set
-            {
-            }
-        }
+public class Nutzer {
+    public int Id { get; }
+    public Rolle Rolle { get; }
+    public string Vorname { get; }
+    public string Nachname { get; }
+    public int Plz { get; }
+    public string Ort { get; }
+    public string Strasse { get; }
+    public int Hausnummer { get; }
+    public Geschlecht Geschlecht { get; }
+    public string Telefonnummer { get; }
+    public DateOnly Einstellungsdatum { get; }
 
-        private int Hausnummer
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        private Geschlecht Geschlecht
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        private String Telefonnummer
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        private DateOnly Einstellungsdatum
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Boolean HatRolle(Rolle Rolle)
-        {
-            return false;
-        }
+    public bool HatRolle(Rolle rolle)
+    {
+        return false;
     }
 }

@@ -7,7 +7,7 @@ namespace Profitabilitaet.Common.Models;
 
 public enum Geschlecht
 {
-    MAENNLICH,
-    WEIBLICH,
-    DIVERS
+    Maennlich,
+    Weiblich,
+    Divers
 }

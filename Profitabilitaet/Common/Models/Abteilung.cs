@@ -7,8 +7,8 @@ namespace Profitabilitaet.Common.Models;
 
 public class Abteilung
 {
-    private String Bezeichnung;
-    private Nutzer Leiter;
-    private Decimal Etat;
-    private int Id;
+    public int Id { get; }
+    public string Bezeichnung { get; }
+    public Nutzer Leiter { get; }
+    public decimal Etat { get; }
 }

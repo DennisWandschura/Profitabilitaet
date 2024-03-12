@@ -5,36 +5,84 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:Profitabilitaet.Projekte.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
     <UserControl.DataContext>
         <vm:ProjekteViewModel/>
     </UserControl.DataContext>
     <DockPanel>
-        <ListView DockPanel.Dock="Left" ScrollViewer.VerticalScrollBarVisibility="Visible">
-            <ListViewItem Content="Projekt A"/>
-            <ListViewItem Content="Projekt B"/>
-        </ListView>
-        <StackPanel Margin="4">
-            <TextBlock FontSize="20" Text="Projekt A" HorizontalAlignment="Center"/>
-            <TextBlock Text="Bezeichnung"/>
-            <TextBlock Text="Projektleiter: Mitarbeiter A"/>
-            <TextBlock Text="Auftragswert: EUR 1000,00"/>
-            <TextBlock Text="AngezahlterBetrag: EUR 500,00"/>
-            <TextBlock Text="Beginn: 01.01.24"/>
-            <TextBlock Text="Ende: 01.02.24"/>
-          
-            <CheckBox Content="Ist Stoniert:"/>
+        <Border BorderThickness="1" BorderBrush="Black" Margin="2">
+            <ListView DockPanel.Dock="Left" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListViewItem Content="Projekt A"/>
+                <ListViewItem Content="Projekt B"/>
+            </ListView>
+        </Border>
 
-            <StackPanel>
-                <TextBlock Text="Buchungen"/>
-                <ListView>
-                    <ListViewItem Content="Mitarbeiter C, 01, 2024, 20"/>
-                    <ListViewItem Content="Mitarbeiter D, 01, 2024, 40"/>
-                </ListView>
-                <Button Content="Neue Buchung"/>
-            </StackPanel>
+        <Border BorderThickness="1" BorderBrush="Black" Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" FontSize="20" Text="{Binding Name}" HorizontalAlignment="Center"/>
 
+                <Grid Margin="4" Grid.Row="1" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-        </StackPanel>
+                    <Border BorderThickness="1" BorderBrush="Black" Margin="2" Grid.Row="0">
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Column="0" Grid.Row="0" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Bezeichnung:"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Projektleiter:"/>
+                            <TextBlock Grid.Column="0" Grid.Row="2" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Auftragswert:"/>
+                            <TextBlock Grid.Column="0" Grid.Row="3" Margin="0,0,4,0" HorizontalAlignment="Right" Text="AngezahlterBetrag:"/>
+                            <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Beginn:"/>
+                            <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Ende:"/>
+                            <TextBlock Grid.Column="0" Grid.Row="6" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Ist Storniert:"/>
+
+                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Description}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Leiter}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Auftragswert}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding AngezahlterBetrag}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Beginn}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Ende}"/>
+                            <CheckBox Grid.Column="1" Grid.Row="6" IsChecked="{Binding IstStorniert}"/>
+                        </Grid>
+                    </Border>
+
+                    <Border BorderThickness="1" BorderBrush="Black" Margin="2" Grid.Row="1">
+                        <Grid Margin="2,10,2,2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Buchungen:" Grid.Row="0"/>
+                            <ListView Grid.Row="1">
+                                <ListViewItem Content="Mitarbeiter C, 01, 2024, 20"/>
+                                <ListViewItem Content="Mitarbeiter D, 01, 2024, 40"/>
+                            </ListView>
+                            <Button Content="Neue Buchung" Grid.Row="2" HorizontalAlignment="Left" Margin="4"/>
+                        </Grid>
+                    </Border>
+
+                </Grid>
+            </Grid>
+        </Border>
     </DockPanel>
 </UserControl>

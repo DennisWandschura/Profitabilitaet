@@ -7,43 +7,9 @@ namespace Profitabilitaet.Common.Models;
 
 public class BuchungArbeitszeit
 {
-    private Nutzer Mitarbeiter
-    {
-        get => default;
-        set
-        {
-        }
-    }
-
-    private Projekt Projekt
-    {
-        get => default;
-        set
-        {
-        }
-    }
-
-    private int Anteil
-    {
-        get => default;
-        set
-        {
-        }
-    }
-
-    private int Woche
-    {
-        get => default;
-        set
-        {
-        }
-    }
-
-    private int Jahr
-    {
-        get => default;
-        set
-        {
-        }
-    }
+    public Nutzer Mitarbeiter { get; }
+    public Projekt Projekt { get; }
+    public int Anteil { get; }
+    public int Woche { get; }
+    public int Jahr { get; }
 }

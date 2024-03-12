@@ -13,56 +13,19 @@
     </UserControl.DataContext>
     <DockPanel>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-           
-            <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="0">
-                <ListViewItem Content="Mitarbeiter A"/>
-                <ListViewItem Content="Mitarbeiter B"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-                <ListViewItem Content="Mitarbeiter C"/>
-                <ListViewItem Content="Mitarbeiter D"/>
-            </ListView>
-            <Button Content="Neuer Mitarbeiter" Grid.Row="1" Margin="4"/>
-        </Grid>
+        <Border BorderThickness="1" BorderBrush="Black" Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <local:DisplayMitarbeiter Margin="4"/>
+                <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="0" ItemsSource="{Binding Mitarbeiter}"/>
+                <Button Content="Neuer Mitarbeiter" Grid.Row="1" Margin="4"/>
+            </Grid>
+        </Border>
+
+        <local:DisplayMitarbeiter/>
 
     </DockPanel>
 </UserControl>
