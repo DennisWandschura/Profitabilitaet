@@ -1,20 +1,14 @@
-﻿namespace Profitabilitaet.Common.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Profitabilitaet.Common.Models;
 
 public class Abteilung
 {
-    public Mitarbeiter Leiter
-    {
-        get => default;
-        set
-        {
-        }
-    }
-
-    public string Bezeichnung
-    {
-        get => default;
-        set
-        {
-        }
-    }
+    private String Bezeichnung;
+    private Nutzer Leiter;
+    private Decimal Etat;
+    private int Id;
 }

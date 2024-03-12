@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Profitabilitaet.src{
+namespace Profitabilitaet.Common.Models
+{
     public class Nutzer {
         private Rolle rolle { get; }
         private String Vorname { get; }
