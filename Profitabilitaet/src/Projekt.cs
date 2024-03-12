@@ -68,5 +68,18 @@ namespace Profitabilitaet.src
         {
             return false;
         }
+
+        public Boolean Stornieren()
+        {
+            if (IstStorniert)
+            {
+                return false;
+            }
+            else
+            {
+                IstStorniert = true;
+                return true;
+            }
+        }
     }
 }
