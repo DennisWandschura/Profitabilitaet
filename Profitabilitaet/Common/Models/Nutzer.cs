@@ -14,7 +14,7 @@ namespace Profitabilitaet.Common.Models
         private String Ort { get; }
         private int Id { get; }
 
-        private int Strasse
+        private String Strasse
         {
             get => default;
             set
@@ -54,7 +54,7 @@ namespace Profitabilitaet.Common.Models
             }
         }
 
-        public Boolean HatRolle(Rolle rolle)
+        public Boolean HatRolle(Rolle Rolle)
         {
             return false;
         }

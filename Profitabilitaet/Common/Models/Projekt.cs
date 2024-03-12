@@ -56,7 +56,7 @@ namespace Profitabilitaet.Common.Models
             }
         }
 
-        private List<BuchungArbeitszeit> buchungen
+        private List<BuchungArbeitszeit> Buchungen
         {
             get => default;
             set
