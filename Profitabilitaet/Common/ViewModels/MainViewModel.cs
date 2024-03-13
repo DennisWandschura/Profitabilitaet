@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Profitabilitaet.Common.ViewModels
 {
-    internal class MainView
+    internal class MainViewModel
     {
     }
 }

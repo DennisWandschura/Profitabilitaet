@@ -6,11 +6,14 @@
              xmlns:local="clr-namespace:Profitabilitaet.Common.Views"
              xmlns:vm="clr-namespace:Profitabilitaet.Common.ViewModels"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance {x:Type vm:LoginView} }"
+             FontSize="18"
+             d:DataContext="{d:DesignInstance {x:Type vm:LoginViewModel} }"
              d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
 
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -21,13 +24,13 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Margin="2" Text="Name:"/>
-        <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="2" Text="Passwort:"/>
+        <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,10,10,10" Text="Benutzer"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Margin="0,10,10,10" Text="Passwort"/>
 
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="2" Text="{Binding Login}"/>
-        <ContentPresenter  Grid.Column="1" Grid.Row="1" Margin="2" Content="{Binding PasswordBox}"/>
+        <TextBox Grid.Column="2" Grid.Row="0" Margin="0,10" Text="{Binding BenutzerName}" MinWidth="200"/>
+        <ContentPresenter  Grid.Column="2" Grid.Row="1" Margin="0,10" Content="{Binding PasswordBox}" MinWidth="200"/>
 
-        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,2" Padding="10,0" 
+        <Button Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,10" Padding="20,0" 
                 Content="Login" Command="{Binding LoginCommand}"/>
     
     </Grid>

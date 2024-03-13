@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Profitabilitaet.Common.Models;
 using System;
@@ -10,12 +11,14 @@ using System.Windows.Controls;
 
 namespace Profitabilitaet.Common.ViewModels;
 
-internal partial class MainWindow : ObservableObject
+internal partial class ShellViewModel : ObservableObject
 {
     [ObservableProperty]
     private UserControl _currentView = new Views.LoginView();
 
-    public MainWindow()
+    public Action? CloseAction { get; set; }
+
+    public ShellViewModel()
     {
         WeakReferenceMessenger.Default.Register<LoggedInUserChangedMessage>(this, OnLoggedInUserChangedMessage);
     }
@@ -23,5 +26,11 @@ internal partial class MainWindow : ObservableObject
     private void OnLoggedInUserChangedMessage(object recipient, LoggedInUserChangedMessage message)
     {
         CurrentView = new Views.MainView();
+    }
+
+    [RelayCommand]
+    private void Close()
+    {
+        CloseAction?.Invoke();
     }
 }

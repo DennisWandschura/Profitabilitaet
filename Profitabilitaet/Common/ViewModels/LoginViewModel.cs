@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.Options;
 using Profitabilitaet.Common.Models;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,13 @@ using System.Windows.Controls;
 
 namespace Profitabilitaet.Common.ViewModels
 {
-    internal partial class LoginView : ObservableObject
+    internal partial class LoginViewModel : ObservableObject
     {
-        public string Login { get; set; } = string.Empty;
+        public string BenutzerName { get; set; } = string.Empty;
         public PasswordBox PasswordBox { get; set; } = new();
         private readonly LoggedInUser _loggedInUser;
 
-        public LoginView(LoggedInUser loggedInUser)
+        public LoginViewModel(LoggedInUser loggedInUser, IOptions<DatabaseSettings> options)
         {
             _loggedInUser = loggedInUser;
             PasswordBox.PasswordChar = '*';
