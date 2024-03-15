@@ -13,8 +13,8 @@ CREATE TABLE nutzer(
 	Geschlecht VARCHAR(16),
 	Telefonnummer VARCHAR(64),
 	Einstellungsdatum date,
-	Loginname VARCHAR(255),
-	Passwort VARCHAR(255),
+	Loginname VARCHAR(255) NOT NULL,
+	Passwort VARCHAR(255) NOT NULL,
 	UNIQUE(Id),
 	PRIMARY KEY(Id)
 
