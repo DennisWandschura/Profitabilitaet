@@ -36,6 +36,11 @@ namespace Profitabilitaet.Library.Database
             return _nutzer.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
         }
 
+        public Task<Nutzer?> GetNutzer(string loginName, string passwort, CancellationToken cancellationToken)
+        {
+            return _nutzer.Where(x => x.Loginname == loginName && x.Passwort == passwort).FirstOrDefaultAsync(cancellationToken);
+        }
+
         public Task<Projekt?> GetProjekt(int id, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();

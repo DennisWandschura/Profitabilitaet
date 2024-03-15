@@ -18,11 +18,11 @@
 CREATE TABLE abteilung(
 	Id int NOT NULL AUTO_INCREMENT,
 	Bezeichnung VARCHAR(255) NOT NULL,
-	Leiter int NOT NULL,
+	LeiterId int NOT NULL,
 	Etat decimal(16,2) NOT NULL,
 	UNIQUE(Id),
 	PRIMARY KEY(Id),
-	FOREIGN KEY(Leiter) REFERENCES nutzer(Id)
+	FOREIGN KEY(LeiterId) REFERENCES nutzer(Id)
 );
 CREATE TABLE projekt(
 	Id int NOT NULL AUTO_INCREMENT,

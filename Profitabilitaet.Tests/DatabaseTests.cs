@@ -30,6 +30,16 @@ namespace Profitabilitaet.Tests
         }
 
         [Fact]
+        public async void GetNutzerLoginTest()
+        {
+            string loginName = "admin";
+            string passwort = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918";
+            var connection = new Profitabilitaet.Library.Database.Connection(_settings);
+            var nutzer = await connection.GetNutzer(loginName, passwort, CancellationToken.None);
+            nutzer.Should().NotBeNull();
+        }
+
+        [Fact]
         public async void GetAbteilungenTest()
         {
             var connection = new Profitabilitaet.Library.Database.Connection(_settings);

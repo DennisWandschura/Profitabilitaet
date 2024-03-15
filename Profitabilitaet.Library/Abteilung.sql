@@ -1,4 +1,4 @@
-﻿INSERT INTO abteilung(Bezeichnung,Etat,Leiter)
+﻿INSERT INTO abteilung(Bezeichnung,Etat,LeiterId)
 VALUES
 ("Kindergarten",1550,105),
 ("Personalwesen",3000,710),

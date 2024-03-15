@@ -6,7 +6,9 @@ using Profitabilitaet.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -17,25 +19,57 @@ namespace Profitabilitaet.Common.ViewModels
         public string BenutzerName { get; set; } = string.Empty;
         public PasswordBox PasswordBox { get; set; } = new();
         private readonly LoggedInUser _loggedInUser;
+        private readonly Library.Config.DatabaseSettings _databaseSettings;
+        [ObservableProperty]
+        private bool _canLogin = true;
+        [ObservableProperty]
+        private string _loginStatusText = string.Empty;
 
-        public LoginViewModel(LoggedInUser loggedInUser, IOptions<DatabaseSettings> options)
+        public LoginViewModel(LoggedInUser loggedInUser, IOptions<Library.Config.DatabaseSettings> databaseSettings)
         {
             _loggedInUser = loggedInUser;
             PasswordBox.PasswordChar = '*';
+            _databaseSettings = databaseSettings.Value;
         }
 
         [RelayCommand]
-        public void OnLogin()
+        public async Task OnLogin()
         {
-            var password = PasswordBox.Password;
-            Nutzer nutzer = new Nutzer
-            {
-                Rolle = Rolle.ADMIN,
-                Vorname = "Tom",
-                Nachname = "Schneider"
-            };
+            CanLogin = false;
+            LoginStatusText = "Einloggen...";
+            var password = Sha256String(PasswordBox.Password);
 
-            WeakReferenceMessenger.Default.Send(new LoggedInUserChangedMessage(nutzer));
+            try
+            {
+                var dbConnection = new Library.Database.Connection(_databaseSettings);
+                var dbNutzer = await dbConnection.GetNutzer(BenutzerName, password, CancellationToken.None);
+                if (dbNutzer is not null)
+                {
+                    WeakReferenceMessenger.Default.Send(new LoggedInUserChangedMessage(new Profitabilitaet.Common.Models.Nutzer(dbNutzer)));
+                }
+                else
+                {
+                    LoginStatusText = "Unbekannter Benutzer";
+                }
+            }
+            catch (Exception ex)
+            {
+                LoginStatusText = "Fehler";
+            }
+
+            CanLogin = true;
+        }
+
+        static string Sha256String(string randomString)
+        {
+            using var crypt = SHA256.Create();
+            var hash = new System.Text.StringBuilder();
+            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(randomString));
+            foreach (byte theByte in crypto)
+            {
+                hash.Append(theByte.ToString("x2"));
+            }
+            return hash.ToString();
         }
     }
 }
