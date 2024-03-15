@@ -2,26 +2,33 @@
 	
 );
 CREATE TABLE nutzer(
-	Id int,
-	Rolle string,
-	Vorname string,
-	Nachname string,
+	Id int NOT NULL,
+	Rolle VARCHAR(8),
+	Vorname VARCHAR(255),
+	Nachname VARCHAR(255),
 	Plz int,
-	Ort string,
-	Strasse string,
+	Ort VARCHAR(255),
+	Strasse VARCHAR(255),
 	Hausnummer int,
-	Geschlecht string,
-	Telefonnummer string,
-	Einstellungsdatum date
+	Geschlecht VARCHAR(16),
+	Telefonnummer VARCHAR(64),
+	Einstellungsdatum date,
+	Loginname VARCHAR(255),
+	Passwort VARCHAR(255),
+	UNIQUE(Id),
+	PRIMARY KEY(Id)
+
 );
 CREATE TABLE projekt(
-	Id int,
-	Name string,
-	Description string,
-	Leiter id,
+	Id int NOT NULL,
+	Name VARCHAR(255),
+	Description VARCHAR(255),
+	Leiter int,
 	Auftragswert decimal(65,2),
 	AngezahlterBetrag decimal(65,2),
 	Beginn date,
 	Ende date,
-	IstStorniert boolean
+	IstStorniert BOOLEAN,
+	UNIQUE(Id),
+	PRIMARY KEY(Id)
 );

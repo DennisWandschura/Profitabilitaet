@@ -19,4 +19,6 @@ public class Nutzer
     public string Geschlecht { get; set; }
     public string Telefonnummer { get; set; }
     public DateOnly Einstellungsdatum { get; set; }
+    public string Loginname { get; set; }
+    public string Passwort { get; set; }
 }

@@ -9,15 +9,9 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Profitabilitaet.Library.Database
 {
-    public class Test1
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-
     public class Connection : DbContext, IConnection
     {
-        public DbSet<Test1> benutzer { get; set; }
+        public DbSet<Nutzer> nutzer { get; set; }
 
         private DatabaseSettings _settings;
 
@@ -28,7 +22,7 @@ namespace Profitabilitaet.Library.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL($"server={_settings.Address}:{_settings.Port};database={_settings.Database};user={_settings.User};password={_settings.Password}");
+            optionsBuilder.UseMySQL($"server={_settings.Address};Port={_settings.Port};database={_settings.Database};user={_settings.User};password={_settings.Password}");
         }
 
         public Task<IEnumerable<Nutzer>> GetNutzer()

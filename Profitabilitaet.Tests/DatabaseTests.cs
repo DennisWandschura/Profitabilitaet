@@ -9,15 +9,15 @@ namespace Profitabilitaet.Tests
         {
             var settings = new Profitabilitaet.Library.Config.DatabaseSettings
             {
-                Address = "localhos",
+                Address = "localhost",
                 Port = 3306,
                 User = "Profitabilitaet",
                 Password = "Gruppe1",
-                Database = "Test" 
+                Database = "Profitabilitaet"
             };
 
             var connection = new Profitabilitaet.Library.Database.Connection(settings);
-            connection.benutzer.Count().Should().Be(0);
+            connection.nutzer.Count().Should().Be(0);
         }
     }
 }
