@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Profitabilitaet.Library.Database
+namespace Profitabilitaet.Library.Config
 {
-    public class Settings
+    public class DatabaseSettings
     {
         public const string Name = "DatabaseSettings";
 
