@@ -1,0 +1,24 @@
+MNr;Name;Vorname;Strasse;PLZ;Ort;Telefon;Geschlecht;eingestellt;Abteilung;Abteilungsetat;AbteilungsleitungName;AbteilungsleitungVorname
+100;Meier;Inge;Amselweg 11;53101;Bonn;0228/124578;w;1995-01-01;Projektabwicklung;20000.00;Preuß;Karl
+101;Schneider;Ute;Hauptstr. 17;50012;Köln;0221/215211;w;1999-01-04;Projektabwicklung;20000.00;Preuß;Karl
+105;Berg;Karin;Am Funkturm 156;65203;Wiesbaden;0611/928792;w;1995-09-01;Kindergarten;1550.00;Berg;Karin
+108;Wasser;Ute;Weststr. 20;52074;Aachen;0241/875554;w;2005-12-01;Projektabwicklung;20000.00;Preuß;Karl
+200;Huber;Sepp;Bodenseestr. 123;81243;München;089/8744397;m;1996-02-01;Projektabwicklung;20000.00;Preuß;Karl
+207;Schmitz;Hans;Siegburger Str. 51;50679;Köln;0221/814447;m;2006-05-01;Projektabwicklung;20000.00;Preuß;Karl
+209;Schmidt;Jürgen;Osdorfer Weg 7;22607;Hamburg;040/899899;m;1996-05-01;Rechnungswesen;4000.00;Kammer;Ulrike
+611;Kammer;Ulrike;Hauptstr. 171;52146;Würselen;02405/712217;w;1998-06-01;Rechnungswesen;4000.00;Kammer;Ulrike
+700;Meyer;Kurth;Jollystr. 99;76137;Karlsruhe;0721/9812124;m;1996-09-15;Projektabwicklung;20000.00;Preuß;Karl
+701;Huber;Anke;Gabelsberger Str. 70;86199;Augsburg;0821/98666;w;2006-12-01;Projektabwicklung;20000.00;Preuß;Karl
+710;Schmidt;Beate;Klosterstr. 1;40211;Düsseldorf;0211/363636;w;1997-04-04;Personalwesen;3000.00;Schmidt;Beate
+711;Bauer;Klaus;Spielhagenstr. 113;30107;Hannover;0511/833883;m;2007-04-01;Projektabwicklung;20000.00;Preuß;Karl
+777;Schmied;Olga;Ahralle 77;53474;Bad Neuenahr-Ahrweiler;02641/909090;w;1986-09-17;Projektabwicklung;20000.00;Preuß;Karl
+788;Schnitt;Hannelore;Im Roßberg 123;53505;Altenahr;02643/996633;w;2015-06-18;Personalwesen;3000.00;Schmidt;Beate
+800;Maier;Anton;Tiroler Weg 32;79111;Freiburg;0761/443444;m;1997-06-01;Projektabwicklung;20000.00;Preuß;Karl
+802;Meier;Doris;Hauptstr.32;98528;Suhl;03681/440044;w;1998-01-01;Projektabwicklung;20000.00;Preuß;Karl
+803;Schmidt;Barbara;Rößlerstr. 33;9120;Chemnitz;0371/525212;w;1998-01-01;Rechnungswesen;4000.00;Kammer;Ulrike
+804;Muller;Hildegard;Altleubnitz 21;1219;Dresden;0351/788285;w;2008-05-15;Projektabwicklung;20000.00;Preuß;Karl
+805;Schmitt;Klaus;Vogelsanger Str.77;50666;Köln;0221/561112;m;1998-06-01;Projektabwicklung;20000.00;Preuß;Karl
+806;Lausen;Werner;Münstereifeler Str. 22;53879;Euskirchen;02251/868657;m;1999-01-01;Projektabwicklung;20000.00;Preuß;Karl
+807;Görner;Heidrun;Waldstr. 97;51145;Köln-Porz;02203/912778;w;2008-06-01;Projektabwicklung;20000.00;Preuß;Karl
+809;Preuß;Karl;Peter-Paul-Str. 67;52249;Eschweiler;02403/151515;m;1998-06-01;Projektabwicklung;20000.00;Preuß;Karl
+810;Müller;Bärbel;Levenstr. 88;50259;Pulheim;02238/980021;w;1998-06-01;Rechnungswesen;4000.00;Kammer;Ulrike
