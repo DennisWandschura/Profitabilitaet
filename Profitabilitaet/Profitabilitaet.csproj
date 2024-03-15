@@ -33,4 +33,8 @@
     <Folder Include="Projekte\Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Profitabilitaet.Library\Profitabilitaet.Library.csproj" />
+  </ItemGroup>
+
 </Project>

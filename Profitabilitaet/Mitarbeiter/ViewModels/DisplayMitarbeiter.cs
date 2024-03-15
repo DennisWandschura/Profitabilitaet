@@ -15,8 +15,8 @@ internal class DisplayMitarbeiter
     public int Hausnummer { get; } = 10;
     public int Plz { get; } = 60529;
     public string Ort { get; } = "Frankfurt";
-    public Geschlecht Geschlecht { get; } = Geschlecht.Maennlich;
+    public Library.Database.Geschlecht Geschlecht { get; } = Library.Database.Geschlecht.Maennlich;
     public string Telefonnummer { get; } = "069/12345";
     public DateOnly Einstellungsdatum { get; } = new DateOnly(2024, 01, 01);
-    public Rolle Rolle { get; } = Rolle.NUTZER;
+    public Library.Database.Rolle Rolle { get; } = Library.Database.Rolle.NUTZER;
 }
