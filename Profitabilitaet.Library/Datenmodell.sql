@@ -1,8 +1,5 @@
-﻿CREATE TABLE abteilung(
-	Id int NOT NULL
-);
-CREATE TABLE nutzer(
-	Id int NOT NULL,
+﻿CREATE TABLE nutzer(
+	Id int NOT NULL AUTO_INCREMENT,
 	Rolle VARCHAR(8) NOT NULL,
 	Vorname VARCHAR(255) NOT NULL,
 	Nachname VARCHAR(255) NOT NULL,
@@ -18,8 +15,17 @@ CREATE TABLE nutzer(
 	UNIQUE(Id),
 	PRIMARY KEY(Id)
 );
+CREATE TABLE abteilung(
+	Id int NOT NULL AUTO_INCREMENT,
+	Bezeichnung VARCHAR(255) NOT NULL,
+	Leiter int NOT NULL,
+	Etat decimal(16,2) NOT NULL,
+	UNIQUE(Id),
+	PRIMARY KEY(Id),
+	FOREIGN KEY(Leiter) REFERENCES nutzer(Id)
+);
 CREATE TABLE projekt(
-	Id int NOT NULL,
+	Id int NOT NULL AUTO_INCREMENT,
 	Name VARCHAR(255) NOT NULL,
 	Bezeichnung VARCHAR(255),
 	Leiter int,

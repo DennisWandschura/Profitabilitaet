@@ -28,5 +28,35 @@ namespace Profitabilitaet.Tests
             var nutzer = await connection.GetNutzer(100, CancellationToken.None);
             nutzer.Should().NotBeNull();
         }
+
+        [Fact]
+        public async void GetAbteilungenTest()
+        {
+            var connection = new Profitabilitaet.Library.Database.Connection(_settings);
+            var abteilungen = await connection.GetAbteilungen(CancellationToken.None);
+            abteilungen.Count.Should().BeGreaterThan(0);
+        }
+
+        [Fact]
+        public async void GetAbteilungTest()
+        {
+            var connection = new Profitabilitaet.Library.Database.Connection(_settings);
+            var abteilung = await connection.GetAbteilung(1, CancellationToken.None);
+            abteilung.Should().NotBeNull();
+        }
+
+        [Theory]
+        [InlineData(1, 105)]
+        public async void AbteilungLeiterTest(int abteilungsId, int leiterId)
+        {
+            var connection = new Profitabilitaet.Library.Database.Connection(_settings);
+
+            var nutzer = await connection.GetNutzer(leiterId, CancellationToken.None);
+            nutzer.Should().NotBeNull();
+
+            var abteilung = await connection.GetAbteilung(abteilungsId, CancellationToken.None);
+            abteilung.Should().NotBeNull();
+            abteilung.LeiterId.Should().Be(leiterId);
+        }
     }
 }

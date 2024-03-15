@@ -13,4 +13,7 @@ internal interface IConnection
 
     public Task<IReadOnlyList<Projekt>> GetProjekte(CancellationToken cancellationToken);
     public Task<Projekt?> GetProjekt(int id, CancellationToken cancellationToken);
+
+    public Task<IReadOnlyList<Abteilung>> GetAbteilungen(CancellationToken cancellationToken);
+    public Task<Abteilung?> GetAbteilung(int id, CancellationToken cancellationToken);
 }

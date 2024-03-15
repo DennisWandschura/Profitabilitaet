@@ -12,6 +12,7 @@ namespace Profitabilitaet.Library.Database
     public class Connection : DbContext, IConnection
     {
         private DbSet<Nutzer> _nutzer { get; set; }
+        private DbSet<Abteilung> _abteilungen{ get; set; }
 
         private DatabaseSettings _settings;
 
@@ -32,7 +33,7 @@ namespace Profitabilitaet.Library.Database
 
         public Task<Nutzer?> GetNutzer(int id, CancellationToken cancellationToken)
         {
-            return _nutzer.Where(x => x.Id == id).Select(x => x).FirstOrDefaultAsync(cancellationToken);
+            return _nutzer.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
         }
 
         public Task<Projekt?> GetProjekt(int id, CancellationToken cancellationToken)
@@ -43,6 +44,16 @@ namespace Profitabilitaet.Library.Database
         public Task<IReadOnlyList<Projekt>> GetProjekte(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+        }
+
+        public Task<IReadOnlyList<Abteilung>> GetAbteilungen(CancellationToken cancellationToken)
+        {
+            return _abteilungen.ToReadOnlyListAsync();
+        }
+
+        public Task<Abteilung?> GetAbteilung(int id, CancellationToken cancellationToken)
+        {
+            return _abteilungen.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
         }
     }
 }
