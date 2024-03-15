@@ -14,18 +14,19 @@ namespace Profitabilitaet.Tests
         };
 
         [Fact]
-        public void ConnectionTest()
+        public async void GetAlleNutzerTest()
         {
             var connection = new Profitabilitaet.Library.Database.Connection(_settings);
-          
+            var nutzer = await connection.GetNutzer(CancellationToken.None);
+            nutzer.Count.Should().BeGreaterThan(0);
         }
 
         [Fact]
         public async void GetNutzerTest()
         {
             var connection = new Profitabilitaet.Library.Database.Connection(_settings);
-            var nutzer = await connection.GetNutzer(CancellationToken.None);
-            nutzer.Count.Should().BeGreaterThan(0);
+            var nutzer = await connection.GetNutzer(100, CancellationToken.None);
+            nutzer.Should().NotBeNull();
         }
     }
 }
