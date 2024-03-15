@@ -1,7 +1,7 @@
 ﻿namespace Profitabilitaet.Common.Models;
 public enum Rolle
     {
-        NUTZER,
+        BASIS_NUTZER,
         ABTEILUNGSLEITER,
         ADMIN
     }
