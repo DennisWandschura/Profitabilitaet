@@ -10,10 +10,10 @@ public class Projekt
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public string Description { get; set; }
+    public string Bezeichnung { get; set; }
     public Nutzer? Leiter { get; set; }
-    public decimal Auftragswert { get; set; }
-    public decimal AngezahlterBetrag { get; set; }
+    public decimal? Auftragswert { get; set; }
+    public decimal? AngezahlterBetrag { get; set; }
     public DateOnly Beginn { get; set; }
     public DateOnly Ende { get; set; }
     public bool IstStorniert { get; set; }

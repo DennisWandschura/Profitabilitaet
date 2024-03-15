@@ -12,7 +12,7 @@ public class Projekt
 {
     public int Id { get; }
     public string Name { get; }
-    public string Description { get; }
+    public string Bezeichnung { get; }
     public Nutzer? Leiter { get; }
     public decimal Auftragswert { get; }
     public decimal AngezahlterBetrag { get; }

@@ -18,5 +18,5 @@ internal class DisplayMitarbeiter
     public Geschlecht Geschlecht { get; } = Geschlecht.Maennlich;
     public string Telefonnummer { get; } = "069/12345";
     public DateOnly Einstellungsdatum { get; } = new DateOnly(2024, 01, 01);
-    public Rolle Rolle { get; } = Rolle.BASIS_NUTZER;
+    public Rolle Rolle { get; } = Rolle.NUTZER;
 }

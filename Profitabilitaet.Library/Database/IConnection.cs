@@ -8,9 +8,9 @@ namespace Profitabilitaet.Library.Database;
 
 internal interface IConnection
 {
-    public Task<IEnumerable<Nutzer>> GetNutzer();
-    public Task<Nutzer> GetNutzer(int id);
+    public Task<IReadOnlyList<Nutzer>> GetNutzer(CancellationToken cancellationToken);
+    public Task<Nutzer?> GetNutzer(int id, CancellationToken cancellationToken);
 
-    public Task<IEnumerable<Projekt>> GetProjekte();
-    public Task<Projekt> GetProjekt(int id);
+    public Task<IReadOnlyList<Projekt>> GetProjekte(CancellationToken cancellationToken);
+    public Task<Projekt?> GetProjekt(int id, CancellationToken cancellationToken);
 }

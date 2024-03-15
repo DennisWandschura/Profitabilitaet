@@ -11,7 +11,7 @@ namespace Profitabilitaet.Library.Database
 {
     public class Connection : DbContext, IConnection
     {
-        public DbSet<Nutzer> nutzer { get; set; }
+        private DbSet<Nutzer> _nutzer { get; set; }
 
         private DatabaseSettings _settings;
 
@@ -25,22 +25,22 @@ namespace Profitabilitaet.Library.Database
             optionsBuilder.UseMySQL($"server={_settings.Address};Port={_settings.Port};database={_settings.Database};user={_settings.User};password={_settings.Password}");
         }
 
-        public Task<IEnumerable<Nutzer>> GetNutzer()
+        public Task<IReadOnlyList<Nutzer>> GetNutzer(CancellationToken cancellationToken)
+        {
+            return _nutzer.ToReadOnlyListAsync(cancellationToken);
+        }
+
+        public Task<Nutzer?> GetNutzer(int id, CancellationToken cancellationToken)
+        {
+            return _nutzer.Where(x => x.Id == id).Select(x => x).FirstOrDefaultAsync(cancellationToken);
+        }
+
+        public Task<Projekt?> GetProjekt(int id, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Nutzer> GetNutzer(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Projekt> GetProjekt(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Projekt>> GetProjekte()
+        public Task<IReadOnlyList<Projekt>> GetProjekte(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

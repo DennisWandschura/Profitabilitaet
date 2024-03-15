@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Profitabilitaet.Library.Database;
 
+[Table("nutzer")]
 public class Nutzer
 {
     public int Id { get; set; }
@@ -18,7 +20,7 @@ public class Nutzer
     public int Hausnummer { get; set; }
     public string Geschlecht { get; set; }
     public string Telefonnummer { get; set; }
-    public DateOnly Einstellungsdatum { get; set; }
+    public DateTime Einstellungsdatum { get; set; }
     public string Loginname { get; set; }
     public string Passwort { get; set; }
 }
