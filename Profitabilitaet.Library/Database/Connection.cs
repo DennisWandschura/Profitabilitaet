@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Profitabilitaet.Library.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +9,26 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Profitabilitaet.Library.Database
 {
+    public class Test1
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
     public class Connection : DbContext, IConnection
     {
-        private Settings _settings;
+        public DbSet<Test1> benutzer { get; set; }
 
-        public Connection(Settings settings)
+        private DatabaseSettings _settings;
+
+        public Connection(DatabaseSettings settings)
         {
             _settings = settings;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL($"server=localhost;database=library;user=user;password=password");
+            optionsBuilder.UseMySQL($"server={_settings.Address}:{_settings.Port};database={_settings.Database};user={_settings.User};password={_settings.Password}");
         }
 
         public Task<IEnumerable<Nutzer>> GetNutzer()
