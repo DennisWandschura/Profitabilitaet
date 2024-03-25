@@ -12,7 +12,7 @@ namespace Profitabilitaet.Projekte.ViewModels
     {
         public string Name { get; } = "Projekt A";
         public string Description { get; } = "Eine tolle Beschreibung des Projekts.";
-        public Nutzer? Leiter { get; } = null;
+        public Database.Nutzer? Leiter { get; } = null;
         public decimal Auftragswert { get; } = 1500.0M;
         public decimal AngezahlterBetrag { get; } = 500.95M;
         public DateOnly Beginn { get; } = new DateOnly(2024, 01, 01);

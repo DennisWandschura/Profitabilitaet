@@ -25,7 +25,13 @@ namespace Profitabilitaet.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL($"server={_settings.Address};Port={_settings.Port};database={_settings.Database};user={_settings.User};password={_settings.Password}");
+            optionsBuilder.UseSqlite($"Data Source={_settings.Database}");
+        }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            new NutzerEntityTypeConfiguration().Configure(modelBuilder.Entity<Nutzer>());
+            new AbteilungEntityTypeConfiguration().Configure(modelBuilder.Entity<Abteilung>());
         }
 
         public Task<IReadOnlyList<Nutzer>> GetNutzer(CancellationToken cancellationToken)
@@ -33,7 +39,7 @@ namespace Profitabilitaet.Database
             return _nutzer.ToReadOnlyListAsync(cancellationToken);
         }
 
-        public Task<Nutzer?> GetNutzer(int id, CancellationToken cancellationToken)
+        public Task<Nutzer?> GetNutzer(NutzerId id, CancellationToken cancellationToken)
         {
             return _nutzer.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
         }
@@ -58,9 +64,11 @@ namespace Profitabilitaet.Database
             return _abteilungen.ToReadOnlyListAsync();
         }
 
-        public Task<Abteilung?> GetAbteilung(int id, CancellationToken cancellationToken)
+        public Task<Abteilung?> GetAbteilung(AbteilungsId id, CancellationToken cancellationToken)
         {
-            return _abteilungen.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
+            return _abteilungen.Where(x => x.Id == id)
+                .Include(x => x.Leiter)
+                .FirstOrDefaultAsync(cancellationToken);
         }
     }
 }

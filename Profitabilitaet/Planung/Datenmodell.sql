@@ -3,7 +3,7 @@
 	Rolle VARCHAR(8) NOT NULL,
 	Vorname VARCHAR(255) NOT NULL,
 	Nachname VARCHAR(255) NOT NULL,
-	Plz int,
+	Plz VARCHAR(8),
 	Ort VARCHAR(255),
 	Strasse VARCHAR(255),
 	Hausnummer int,

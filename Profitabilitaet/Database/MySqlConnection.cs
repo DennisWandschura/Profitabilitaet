@@ -33,7 +33,7 @@ namespace Profitabilitaet.Database
             return _nutzer.ToReadOnlyListAsync(cancellationToken);
         }
 
-        public Task<Nutzer?> GetNutzer(int id, CancellationToken cancellationToken)
+        public Task<Nutzer?> GetNutzer(NutzerId id, CancellationToken cancellationToken)
         {
             return _nutzer.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
         }
@@ -58,7 +58,7 @@ namespace Profitabilitaet.Database
             return _abteilungen.ToReadOnlyListAsync();
         }
 
-        public Task<Abteilung?> GetAbteilung(int id, CancellationToken cancellationToken)
+        public Task<Abteilung?> GetAbteilung(AbteilungsId id, CancellationToken cancellationToken)
         {
             return _abteilungen.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
         }

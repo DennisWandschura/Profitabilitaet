@@ -45,7 +45,7 @@ namespace Profitabilitaet.Common.ViewModels
                 var dbNutzer = await dbConnection.GetNutzer(BenutzerName, password, CancellationToken.None);
                 if (dbNutzer is not null)
                 {
-                    WeakReferenceMessenger.Default.Send(new LoggedInUserChangedMessage(new Profitabilitaet.Common.Models.Nutzer(dbNutzer)));
+                    WeakReferenceMessenger.Default.Send(new LoggedInUserChangedMessage(dbNutzer));
                 }
                 else
                 {

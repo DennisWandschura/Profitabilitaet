@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Profitabilitaet.Common.Models;
 
-public class LoggedInUserChangedMessage : ValueChangedMessage<Profitabilitaet.Common.Models.Nutzer>
+public class LoggedInUserChangedMessage : ValueChangedMessage<Database.Nutzer>
 {
-    public LoggedInUserChangedMessage(Profitabilitaet.Common.Models.Nutzer user) : base(user)
+    public LoggedInUserChangedMessage(Database.Nutzer user) : base(user)
     {
     }
 }

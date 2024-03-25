@@ -1,8 +1,9 @@
 using FluentAssertions;
+using Profitabilitaet.Database;
 
 namespace Profitabilitaet.Tests
 {
-    public class DatabaseTests
+    public class MySqlConnectionTests
     {
         private readonly Profitabilitaet.Config.DatabaseSettings _settings = new Profitabilitaet.Config.DatabaseSettings
         {
@@ -25,7 +26,7 @@ namespace Profitabilitaet.Tests
         public async void GetNutzerTest()
         {
             var connection = new Profitabilitaet.Database.MySqlConnection(_settings);
-            var nutzer = await connection.GetNutzer(100, CancellationToken.None);
+            var nutzer = await connection.GetNutzer(new NutzerId(100), CancellationToken.None);
             nutzer.Should().NotBeNull();
         }
 
@@ -50,8 +51,9 @@ namespace Profitabilitaet.Tests
         [Fact]
         public async void GetAbteilungTest()
         {
+            var abteilungsId = new AbteilungsId(1);
             var connection = new Profitabilitaet.Database.MySqlConnection(_settings);
-            var abteilung = await connection.GetAbteilung(1, CancellationToken.None);
+            var abteilung = await connection.GetAbteilung(abteilungsId, CancellationToken.None);
             abteilung.Should().NotBeNull();
         }
 
@@ -59,14 +61,15 @@ namespace Profitabilitaet.Tests
         [InlineData(1, 105)]
         public async void AbteilungLeiterTest(int abteilungsId, int leiterId)
         {
-            var connection = new Profitabilitaet.Database.MySqlConnection(_settings);
-
-            var nutzer = await connection.GetNutzer(leiterId, CancellationToken.None);
-            nutzer.Should().NotBeNull();
-
-            var abteilung = await connection.GetAbteilung(abteilungsId, CancellationToken.None);
-            abteilung.Should().NotBeNull();
-            abteilung.LeiterId.Should().Be(leiterId);
+            Assert.Fail();
+            // var connection = new Profitabilitaet.Database.MySqlConnection(_settings);
+            //
+            // var nutzer = await connection.GetNutzer(leiterId, CancellationToken.None);
+            // nutzer.Should().NotBeNull();
+            //
+            // var abteilung = await connection.GetAbteilung(abteilungsId, CancellationToken.None);
+            // abteilung.Should().NotBeNull();
+            // abteilung.LeiterId.Should().Be(leiterId);
         }
     }
 }
