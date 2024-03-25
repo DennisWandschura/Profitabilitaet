@@ -1,22 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Profitabilitaet.Library.Config;
+using Profitabilitaet.Config;
+using Profitabilitaet.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace Profitabilitaet.Library.Database
+namespace Profitabilitaet.Database
 {
-    public class Connection : DbContext, IConnection
+    public class MySqlConnection : DbContext, IConnection
     {
         private DbSet<Nutzer> _nutzer { get; set; }
-        private DbSet<Abteilung> _abteilungen{ get; set; }
+        private DbSet<Abteilung> _abteilungen { get; set; }
 
         private DatabaseSettings _settings;
 
-        public Connection(DatabaseSettings settings)
+        public MySqlConnection(DatabaseSettings settings)
         {
             _settings = settings;
         }

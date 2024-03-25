@@ -48,7 +48,7 @@ public partial class App : Application
 
         var services = new ServiceCollection();
 
-        services.Configure<Library.Config.DatabaseSettings>(configuration.GetSection(Library.Config.DatabaseSettings.Name));
+        services.Configure<Config.DatabaseSettings>(configuration.GetSection(Config.DatabaseSettings.Name));
 
         // Services
         services.AddSingleton<LoggedInUser>();

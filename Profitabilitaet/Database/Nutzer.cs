@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Profitabilitaet.Library.Database;
+namespace Profitabilitaet.Database;
 
 [Table("nutzer")]
 public class Nutzer

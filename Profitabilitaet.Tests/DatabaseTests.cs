@@ -4,7 +4,7 @@ namespace Profitabilitaet.Tests
 {
     public class DatabaseTests
     {
-        private readonly Profitabilitaet.Library.Config.DatabaseSettings _settings = new Profitabilitaet.Library.Config.DatabaseSettings
+        private readonly Profitabilitaet.Config.DatabaseSettings _settings = new Profitabilitaet.Config.DatabaseSettings
         {
             Address = "localhost",
             Port = 3310,
@@ -16,7 +16,7 @@ namespace Profitabilitaet.Tests
         [Fact]
         public async void GetAlleNutzerTest()
         {
-            var connection = new Profitabilitaet.Library.Database.Connection(_settings);
+            var connection = new Profitabilitaet.Database.MySqlConnection(_settings);
             var nutzer = await connection.GetNutzer(CancellationToken.None);
             nutzer.Count.Should().BeGreaterThan(0);
         }
@@ -24,7 +24,7 @@ namespace Profitabilitaet.Tests
         [Fact]
         public async void GetNutzerTest()
         {
-            var connection = new Profitabilitaet.Library.Database.Connection(_settings);
+            var connection = new Profitabilitaet.Database.MySqlConnection(_settings);
             var nutzer = await connection.GetNutzer(100, CancellationToken.None);
             nutzer.Should().NotBeNull();
         }
@@ -34,7 +34,7 @@ namespace Profitabilitaet.Tests
         {
             string loginName = "admin";
             string passwort = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918";
-            var connection = new Profitabilitaet.Library.Database.Connection(_settings);
+            var connection = new Profitabilitaet.Database.MySqlConnection(_settings);
             var nutzer = await connection.GetNutzer(loginName, passwort, CancellationToken.None);
             nutzer.Should().NotBeNull();
         }
@@ -42,7 +42,7 @@ namespace Profitabilitaet.Tests
         [Fact]
         public async void GetAbteilungenTest()
         {
-            var connection = new Profitabilitaet.Library.Database.Connection(_settings);
+            var connection = new Profitabilitaet.Database.MySqlConnection(_settings);
             var abteilungen = await connection.GetAbteilungen(CancellationToken.None);
             abteilungen.Count.Should().BeGreaterThan(0);
         }
@@ -50,7 +50,7 @@ namespace Profitabilitaet.Tests
         [Fact]
         public async void GetAbteilungTest()
         {
-            var connection = new Profitabilitaet.Library.Database.Connection(_settings);
+            var connection = new Profitabilitaet.Database.MySqlConnection(_settings);
             var abteilung = await connection.GetAbteilung(1, CancellationToken.None);
             abteilung.Should().NotBeNull();
         }
@@ -59,7 +59,7 @@ namespace Profitabilitaet.Tests
         [InlineData(1, 105)]
         public async void AbteilungLeiterTest(int abteilungsId, int leiterId)
         {
-            var connection = new Profitabilitaet.Library.Database.Connection(_settings);
+            var connection = new Profitabilitaet.Database.MySqlConnection(_settings);
 
             var nutzer = await connection.GetNutzer(leiterId, CancellationToken.None);
             nutzer.Should().NotBeNull();

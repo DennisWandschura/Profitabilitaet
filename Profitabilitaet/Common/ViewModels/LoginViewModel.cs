@@ -19,13 +19,13 @@ namespace Profitabilitaet.Common.ViewModels
         public string BenutzerName { get; set; } = string.Empty;
         public PasswordBox PasswordBox { get; set; } = new();
         private readonly LoggedInUser _loggedInUser;
-        private readonly Library.Config.DatabaseSettings _databaseSettings;
+        private readonly Config.DatabaseSettings _databaseSettings;
         [ObservableProperty]
         private bool _canLogin = true;
         [ObservableProperty]
         private string _loginStatusText = string.Empty;
 
-        public LoginViewModel(LoggedInUser loggedInUser, IOptions<Library.Config.DatabaseSettings> databaseSettings)
+        public LoginViewModel(LoggedInUser loggedInUser, IOptions<Config.DatabaseSettings> databaseSettings)
         {
             _loggedInUser = loggedInUser;
             PasswordBox.PasswordChar = '*';
@@ -41,7 +41,7 @@ namespace Profitabilitaet.Common.ViewModels
 
             try
             {
-                var dbConnection = new Library.Database.Connection(_databaseSettings);
+                var dbConnection = new Database.MySqlConnection(_databaseSettings);
                 var dbNutzer = await dbConnection.GetNutzer(BenutzerName, password, CancellationToken.None);
                 if (dbNutzer is not null)
                 {
