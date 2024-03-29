@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Profitabilitaet.Database;
+namespace ProfitabilitaetBackend.Connection;
 
 public class NutzerEntityTypeConfiguration : IEntityTypeConfiguration<Nutzer>
 {
@@ -12,7 +11,7 @@ public class NutzerEntityTypeConfiguration : IEntityTypeConfiguration<Nutzer>
             .HasKey(x => x.Id);
                 
         modelBuilder.Property(x => x.Id)
-            .HasConversion(x => x.Id, x => new NutzerId(x))
+            .HasConversion(x => x.Value, x => new NutzerId(x))
             .IsRequired();
 
         modelBuilder.Property(x => x.Rolle)

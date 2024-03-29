@@ -1,4 +1,4 @@
-﻿namespace Profitabilitaet.Config
+﻿namespace ProfitabilitaetBackend.Config
 {
     public class DatabaseSettings
     {

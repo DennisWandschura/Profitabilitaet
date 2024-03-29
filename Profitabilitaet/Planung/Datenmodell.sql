@@ -28,12 +28,13 @@ CREATE TABLE projekt(
 	Id int NOT NULL AUTO_INCREMENT,
 	Name VARCHAR(255) NOT NULL,
 	Bezeichnung VARCHAR(255),
-	Leiter int,
+	LeiterId int,
 	Auftragswert decimal(16,2),
 	AngezahlterBetrag decimal(16,2),
 	Beginn date NOT NULL,
 	Ende date NOT NULL,
 	IstStorniert BOOLEAN NOT NULL,
 	UNIQUE(Id),
-	PRIMARY KEY(Id)
+	PRIMARY KEY(Id),
+    FOREIGN KEY(LeiterId) REFERENCES nutzer(Id)
 );

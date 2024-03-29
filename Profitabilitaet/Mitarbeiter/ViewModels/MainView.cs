@@ -1,10 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using Profitabilitaet.Common.Models;
-using System;
+﻿using Profitabilitaet.Common.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Profitabilitaet.Mitarbeiter.ViewModels;
 

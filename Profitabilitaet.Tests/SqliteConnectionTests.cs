@@ -1,17 +1,19 @@
 using FluentAssertions;
-using Profitabilitaet.Database;
+using ProfitabilitaetBackend;
+using ProfitabilitaetBackend.Config;
+using ProfitabilitaetBackend.Connection;
 
 namespace Profitabilitaet.Tests
 {
     public class SqliteConnectionTests
     {
-        private readonly Profitabilitaet.Config.DatabaseSettings _settings = new Profitabilitaet.Config.DatabaseSettings
+        private readonly DatabaseSettings _settings = new DatabaseSettings
         {
             Database = "profitabilitaet.db"
         };
 
         [Fact]
-        public async void GetAlleNutzerTest()
+        public async Task GetAlleNutzer_ReturnsNutzer()
         {
             var connection = CreateConnection();
             var nutzer = await connection.GetNutzer(CancellationToken.None);
@@ -19,15 +21,23 @@ namespace Profitabilitaet.Tests
         }
 
         [Fact]
-        public async void GetNutzerTest()
+        public async Task GetNutzer_ReturnsNutzer()
         {
             var connection = CreateConnection();
             var nutzer = await connection.GetNutzer(new NutzerId(100), CancellationToken.None);
             nutzer.Should().NotBeNull();
         }
+        
+        [Fact]
+        public async Task GetNutzer_ReturnsNull()
+        {
+            var connection = CreateConnection();
+            var nutzer = await connection.GetNutzer(new NutzerId(0), CancellationToken.None);
+            nutzer.Should().BeNull();
+        }
 
         [Fact]
-        public async void GetNutzerLoginTest()
+        public async Task GetNutzerLogin_ReturnsNutzer()
         {
             string loginName = "admin";
             string passwort = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918";
@@ -35,9 +45,19 @@ namespace Profitabilitaet.Tests
             var nutzer = await connection.GetNutzer(loginName, passwort, CancellationToken.None);
             nutzer.Should().NotBeNull();
         }
+        
+        [Fact]
+        public async Task GetNutzerLogin_ReturnsNull()
+        {
+            string loginName = "0";
+            string passwort = "00";
+            var connection = CreateConnection();
+            var nutzer = await connection.GetNutzer(loginName, passwort, CancellationToken.None);
+            nutzer.Should().BeNull();
+        }
 
         [Fact]
-        public async void GetAbteilungenTest()
+        public async Task GetAbteilungen_ReturnsAbteilungen()
         {
             var connection = CreateConnection();
             var abteilungen = await connection.GetAbteilungen(CancellationToken.None);
@@ -45,7 +65,7 @@ namespace Profitabilitaet.Tests
         }
 
         [Fact]
-        public async void GetAbteilungTest()
+        public async Task GetAbteilung_ReturnsAbteilung()
         {
             var abteilungsId = new AbteilungsId(1);
             var connection = CreateConnection();
@@ -57,6 +77,15 @@ namespace Profitabilitaet.Tests
             nutzer.Should().NotBeNull();
 
             abteilung.Leiter.Should().Be(nutzer);
+        }
+        
+        [Fact]
+        public async Task GetAbteilung_ReturnsNull()
+        {
+            var abteilungsId = AbteilungsId.Empty;
+            var connection = CreateConnection();
+            var abteilung = await connection.GetAbteilung(abteilungsId, CancellationToken.None);
+            abteilung.Should().BeNull();
         }
 
         // [Theory]
@@ -74,9 +103,9 @@ namespace Profitabilitaet.Tests
         //     Assert.Fail();
         // }
 
-        private SqliteConnection CreateConnection()
+        private DatabaseConnection CreateConnection()
         {
-            return new SqliteConnection(_settings);
+            return SqliteConnection.Create(_settings);
         }
     }
 }

@@ -1,15 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Profitabilitaet.Common.Models;
-using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+using ProfitabilitaetBackend.Config;
 
 namespace Profitabilitaet;
 
@@ -48,7 +43,7 @@ public partial class App : Application
 
         var services = new ServiceCollection();
 
-        services.Configure<Config.DatabaseSettings>(configuration.GetSection(Config.DatabaseSettings.Name));
+        services.Configure<DatabaseSettings>(configuration.GetSection(DatabaseSettings.Name));
 
         // Services
         services.AddSingleton<LoggedInUser>();

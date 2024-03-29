@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProfitabilitaetBackend\ProfitabilitaetBackend.csproj" />
     <ProjectReference Include="..\Profitabilitaet\Profitabilitaet.csproj" />
   </ItemGroup>
 

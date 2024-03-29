@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Runtime.Remoting;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Animation;
+﻿namespace ProfitabilitaetBackend;
 
-namespace Profitabilitaet.Database;
-
-public readonly record struct NutzerId(int Id)
+public readonly record struct NutzerId(int Value)
 {
     public static NutzerId Empty = default;
 }
@@ -33,18 +24,5 @@ public class Nutzer
     public bool HatRolle(Rolle rolle)
     {
         return this.Rolle == rolle;
-    }
-
-    public override bool Equals(object? obj)
-    {
-        if (obj is not Nutzer nutzer)
-            return false;
-
-        return this.Id == nutzer.Id;
-    }
-
-    public override int GetHashCode()
-    {
-        return Id.GetHashCode();
     }
 }

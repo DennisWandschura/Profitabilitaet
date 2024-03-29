@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic;
+using ProfitabilitaetBackend;
 
 namespace Profitabilitaet.Common.Models;
 public class Projekt
@@ -13,7 +8,7 @@ public class Projekt
     public int Id { get; }
     public string Name { get; }
     public string Bezeichnung { get; }
-    public Database.Nutzer? Leiter { get; }
+    public Nutzer? Leiter { get; }
     public decimal Auftragswert { get; }
     public decimal AngezahlterBetrag { get; }
     public DateOnly Beginn { get; }
@@ -21,7 +16,7 @@ public class Projekt
     public bool IstStorniert { get; private set; }
     public List<BuchungArbeitszeit> Buchungen { get; }
 
-    public bool Buchen(Database.Nutzer mitarbeiter, int woche, int jahr, int stunden)
+    public bool Buchen(Nutzer mitarbeiter, int woche, int jahr, int stunden)
     {
         return false;
     }

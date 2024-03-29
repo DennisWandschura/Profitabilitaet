@@ -1,10 +1,7 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using Profitabilitaet.Common.Models;
+﻿using Profitabilitaet.Common.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ProfitabilitaetBackend;
 
 namespace Profitabilitaet.Projekte.ViewModels
 {
@@ -12,7 +9,7 @@ namespace Profitabilitaet.Projekte.ViewModels
     {
         public string Name { get; } = "Projekt A";
         public string Description { get; } = "Eine tolle Beschreibung des Projekts.";
-        public Database.Nutzer? Leiter { get; } = null;
+        public Nutzer? Leiter { get; } = null;
         public decimal Auftragswert { get; } = 1500.0M;
         public decimal AngezahlterBetrag { get; } = 500.95M;
         public DateOnly Beginn { get; } = new DateOnly(2024, 01, 01);

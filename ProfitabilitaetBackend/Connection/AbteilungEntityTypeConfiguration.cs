@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Profitabilitaet.Database;
+namespace ProfitabilitaetBackend.Connection;
 
 public class AbteilungEntityTypeConfiguration : IEntityTypeConfiguration<Abteilung>
 {
@@ -12,7 +11,7 @@ public class AbteilungEntityTypeConfiguration : IEntityTypeConfiguration<Abteilu
             .HasKey(x => x.Id);
         
         modelBuilder.Property(x => x.Id)
-            .HasConversion(x => x.Id, x => new AbteilungsId(x))
+            .HasConversion(x => x.Value, x => new AbteilungsId(x))
             .IsRequired();
 
         modelBuilder.Property("LeiterId");

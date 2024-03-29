@@ -4,13 +4,13 @@ using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.Options;
 using Profitabilitaet.Common.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using ProfitabilitaetBackend.Config;
+using ProfitabilitaetBackend.Connection;
 
 namespace Profitabilitaet.Common.ViewModels
 {
@@ -19,13 +19,13 @@ namespace Profitabilitaet.Common.ViewModels
         public string BenutzerName { get; set; } = string.Empty;
         public PasswordBox PasswordBox { get; set; } = new();
         private readonly LoggedInUser _loggedInUser;
-        private readonly Config.DatabaseSettings _databaseSettings;
+        private readonly DatabaseSettings _databaseSettings;
         [ObservableProperty]
         private bool _canLogin = true;
         [ObservableProperty]
         private string _loginStatusText = string.Empty;
 
-        public LoginViewModel(LoggedInUser loggedInUser, IOptions<Config.DatabaseSettings> databaseSettings)
+        public LoginViewModel(LoggedInUser loggedInUser, IOptions<DatabaseSettings> databaseSettings)
         {
             _loggedInUser = loggedInUser;
             PasswordBox.PasswordChar = '*';
@@ -41,7 +41,7 @@ namespace Profitabilitaet.Common.ViewModels
 
             try
             {
-                var dbConnection = new Database.MySqlConnection(_databaseSettings);
+                var dbConnection = MySqlConnection.Create(_databaseSettings);
                 var dbNutzer = await dbConnection.GetNutzer(BenutzerName, password, CancellationToken.None);
                 if (dbNutzer is not null)
                 {
