@@ -29,7 +29,7 @@ CREATE TABLE projekt(
 	Name VARCHAR(255) NOT NULL,
 	Bezeichnung VARCHAR(255),
 	LeiterId int,
-	Auftragswert decimal(16,2),
+	Auftragswert decimal(16,2) NOT NULL,
 	AngezahlterBetrag decimal(16,2),
 	Beginn date NOT NULL,
 	Ende date NOT NULL,
@@ -37,4 +37,16 @@ CREATE TABLE projekt(
 	UNIQUE(Id),
 	PRIMARY KEY(Id),
     FOREIGN KEY(LeiterId) REFERENCES nutzer(Id)
+);
+CREATE TABLE buchung(
+	ID int NOT NULL AUTO_INCREMENT,
+	Anteil int not null,
+	Jahr int not null,
+	Woche int not null,
+	Mitarbeiter int not null,
+	Projekt int not null,
+	UNIQUE(Id),
+	PRIMARY KEY(Id),
+	FOREIGN KEY (Mitarbeiter) REFERENCES nutzer(Id),
+	FOREIGN KEY (Projekt) REFERENCES projekt(Id)
 );
