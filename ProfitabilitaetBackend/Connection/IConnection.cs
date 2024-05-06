@@ -1,4 +1,6 @@
-﻿namespace ProfitabilitaetBackend.Connection;
+﻿using ProfitabilitaetBackend.Entities;
+
+namespace ProfitabilitaetBackend.Connection;
 
 internal interface IConnection
 {

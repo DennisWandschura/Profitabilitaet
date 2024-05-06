@@ -43,10 +43,10 @@ CREATE TABLE buchung(
 	Anteil int not null,
 	Jahr int not null,
 	Woche int not null,
-	Mitarbeiter int not null,
-	Projekt int not null,
+	MitarbeiterId int not null,
+	ProjektId int not null,
 	UNIQUE(Id),
 	PRIMARY KEY(Id),
-	FOREIGN KEY (Mitarbeiter) REFERENCES nutzer(Id),
-	FOREIGN KEY (Projekt) REFERENCES projekt(Id)
+	FOREIGN KEY (MitarbeiterId) REFERENCES nutzer(Id),
+	FOREIGN KEY (ProjektId) REFERENCES projekt(Id)
 );

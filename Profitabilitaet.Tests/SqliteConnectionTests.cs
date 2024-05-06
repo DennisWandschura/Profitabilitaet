@@ -2,6 +2,7 @@ using FluentAssertions;
 using ProfitabilitaetBackend;
 using ProfitabilitaetBackend.Config;
 using ProfitabilitaetBackend.Connection;
+using ProfitabilitaetBackend.Entities;
 
 namespace Profitabilitaet.Tests
 {

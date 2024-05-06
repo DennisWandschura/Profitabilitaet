@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProfitabilitaetBackend.Config;
+using ProfitabilitaetBackend.Entities;
 
 namespace ProfitabilitaetBackend.Connection;
 

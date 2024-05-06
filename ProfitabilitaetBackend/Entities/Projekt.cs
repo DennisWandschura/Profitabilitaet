@@ -1,4 +1,4 @@
-﻿namespace ProfitabilitaetBackend;
+﻿namespace ProfitabilitaetBackend.Entities;
 
 public readonly record struct ProjektId(int Value)
 {
@@ -16,5 +16,5 @@ public class Projekt
     public DateOnly Beginn { get; private set; }
     public DateOnly Ende { get; private set; }
     public bool IstStorniert { get; private set; }
-   // public List<BuchungArbeitszeit> Buchungen { get; }
+    // public List<BuchungArbeitszeit> Buchungen { get; }
 }

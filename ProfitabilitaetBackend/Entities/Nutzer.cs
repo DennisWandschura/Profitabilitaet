@@ -1,4 +1,4 @@
-﻿namespace ProfitabilitaetBackend;
+﻿namespace ProfitabilitaetBackend.Entities;
 
 public readonly record struct NutzerId(int Value)
 {
@@ -20,9 +20,9 @@ public class Nutzer
     public DateTime Einstellungsdatum { get; private set; }
     public string Loginname { get; private set; }
     public string Passwort { get; private set; }
-    
+
     public bool HatRolle(Rolle rolle)
     {
-        return this.Rolle == rolle;
+        return Rolle == rolle;
     }
 }

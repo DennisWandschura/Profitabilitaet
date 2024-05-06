@@ -1,4 +1,4 @@
-﻿using ProfitabilitaetBackend;
+﻿using ProfitabilitaetBackend.Entities;
 
 namespace Profitabilitaet.Common.Models;
 

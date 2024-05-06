@@ -1,4 +1,4 @@
-﻿namespace ProfitabilitaetBackend;
+﻿namespace ProfitabilitaetBackend.Entities;
 
 public enum Rolle
 {
