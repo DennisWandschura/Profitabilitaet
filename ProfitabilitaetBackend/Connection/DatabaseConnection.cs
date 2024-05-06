@@ -6,29 +6,34 @@ namespace ProfitabilitaetBackend.Connection;
 
 public class DatabaseConnection : DbContext, IConnection
 {
-    private DbSet<Nutzer> _nutzer { get; set; }
-    private DbSet<Abteilung> _abteilungen { get; set; }
-    private DbSet<Projekt> _projekte { get; set; }
+    private readonly DbSet<Nutzer> _nutzer;
+    private readonly DbSet<Abteilung> _abteilungen;
+    private readonly DbSet<Projekt> _projekte;
+    private readonly DbSet<Buchung> _buchungen;
     private readonly DatabaseSettings _settings;
     private readonly Action<DbContextOptionsBuilder, DatabaseSettings> _onConfiguring;
 
     public DatabaseConnection(DatabaseSettings settings, Action<DbContextOptionsBuilder, DatabaseSettings> onConfiguring)
     {
         _settings = settings;
-        _onConfiguring= onConfiguring;
+        _onConfiguring = onConfiguring;
+        _nutzer = Set<Nutzer>();
+        _abteilungen = Set<Abteilung>();
+        _projekte = Set<Projekt>();
+        _buchungen = Set<Buchung>();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         _onConfiguring(optionsBuilder, _settings);
-        //optionsBuilder.UseSqlite($"Data Source={_settings.Database}");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        new NutzerEntityTypeConfiguration().Configure(modelBuilder.Entity<Nutzer>());
-        new AbteilungEntityTypeConfiguration().Configure(modelBuilder.Entity<Abteilung>());
-        new ProjektEntityTypeConfiguration().Configure(modelBuilder.Entity<Projekt>());
+        new NutzerEntityTypeConfiguration().Configure(modelBuilder.Entity<ProfitabilitaetBackend.Entities.Nutzer>());
+        new AbteilungEntityTypeConfiguration().Configure(modelBuilder.Entity<ProfitabilitaetBackend.Entities.Abteilung>());
+        new ProjektEntityTypeConfiguration().Configure(modelBuilder.Entity<ProfitabilitaetBackend.Entities.Projekt>());
+        new BuchungEntityTypeConfiguration().Configure(modelBuilder.Entity<ProfitabilitaetBackend.Entities.Buchung>());
     }
     
     public Task<IReadOnlyList<Nutzer>> GetNutzer(CancellationToken cancellationToken)
@@ -46,14 +51,14 @@ public class DatabaseConnection : DbContext, IConnection
         return _nutzer.Where(x => x.Loginname == loginName && x.Passwort == passwort).FirstOrDefaultAsync(cancellationToken);
     }
 
-    public Task<Projekt?> GetProjekt(int id, CancellationToken cancellationToken)
+    public Task<Projekt?> GetProjekt(ProjektId id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _projekte.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
     }
 
-    public List<Projekt> GetProjekte()
+    public Task<IReadOnlyList<Projekt>> GetProjekte(CancellationToken cancellationToken)
     {
-        return _projekte.ToList();
+        return _projekte.ToReadOnlyListAsync(cancellationToken);
     }
 
     public Task<IReadOnlyList<Abteilung>> GetAbteilungen(CancellationToken cancellationToken)
@@ -66,6 +71,16 @@ public class DatabaseConnection : DbContext, IConnection
         return _abteilungen.Where(x => x.Id == id)
             .Include(x => x.Leiter)
             .FirstOrDefaultAsync(cancellationToken);
+    }
+
+    public Task<IReadOnlyList<Buchung>> GetBuchungen(CancellationToken cancellationToken)
+    {
+        return _buchungen.ToReadOnlyListAsync();
+    }
+
+    public Task<Buchung?> GetBuchung(BuchungId id, CancellationToken cancellationToken)
+    {
+       return _buchungen.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
     }
 }
 

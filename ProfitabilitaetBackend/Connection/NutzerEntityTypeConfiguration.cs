@@ -4,9 +4,9 @@ using ProfitabilitaetBackend.Entities;
 
 namespace ProfitabilitaetBackend.Connection;
 
-public class NutzerEntityTypeConfiguration : IEntityTypeConfiguration<Nutzer>
+public class NutzerEntityTypeConfiguration : IEntityTypeConfiguration<ProfitabilitaetBackend.Entities.Nutzer>
 {
-    public void Configure(EntityTypeBuilder<Nutzer> modelBuilder)
+    public void Configure(EntityTypeBuilder<ProfitabilitaetBackend.Entities.Nutzer> modelBuilder)
     {
         modelBuilder.ToTable("nutzer")
             .HasKey(x => x.Id);

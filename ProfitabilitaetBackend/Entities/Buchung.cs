@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace ProfitabilitaetBackend.Entities
 {
-    internal class Buchung
+    public readonly record struct BuchungId(int Value);
+
+    public class Buchung
     {
-        public int ID { get; set; }
+        public BuchungId Id { get; set; }
         public int Anteil { get; set; }
         public int Jahr { get; set; }
         public int Woche { get; set; }
-        public int MitarbeiterId { get; set; }
-        public int ProjektId { get; set; }
+        public Nutzer Mitarbeiter { get; set; }
+        public Projekt Projekt { get; set; }
     }
 }

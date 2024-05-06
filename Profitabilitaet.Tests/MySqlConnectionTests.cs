@@ -10,14 +10,14 @@ namespace Profitabilitaet.Tests
         private readonly DatabaseSettings _settings = new DatabaseSettings
         {
             Address = "localhost",
-            Port = 3306,
+            Port = 3310,
             User = "Profitabilitaet",
             Password = "Gruppe1",
             Database = "Profitabilitaet"
         };
 
         [Fact]
-        public async void GetAlleNutzerTest()
+        public async void GetNutzer_ReturnsNutzerListe()
         {
             var connection = CreateConnection();
             var nutzer = await connection.GetNutzer(CancellationToken.None);
@@ -25,7 +25,7 @@ namespace Profitabilitaet.Tests
         }
 
         [Fact]
-        public async void GetNutzerTest()
+        public async void GetNutzerViaId_ReturnsSingleNutzer()
         {
             var connection = CreateConnection();
             var nutzer = await connection.GetNutzer(new NutzerId(100), CancellationToken.None);
@@ -33,7 +33,7 @@ namespace Profitabilitaet.Tests
         }
 
         [Fact]
-        public async void GetNutzerLoginTest()
+        public async void GetNutzerViaLoginData_ReturnsSingleUser()
         {
             string loginName = "admin";
             string passwort = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918";
@@ -43,7 +43,7 @@ namespace Profitabilitaet.Tests
         }
 
         [Fact]
-        public async void GetAbteilungenTest()
+        public async void GetAbteilungen_ReturnsAbteilungsList()
         {
             var connection = CreateConnection();
             var abteilungen = await connection.GetAbteilungen(CancellationToken.None);
@@ -51,7 +51,7 @@ namespace Profitabilitaet.Tests
         }
 
         [Fact]
-        public async Task GetAbteilungTest()
+        public async Task GetAbteilungViaId_ReturnsSingleAbteilung()
         {
             var abteilungsId = new AbteilungsId(1);
             var connection = CreateConnection();
@@ -60,16 +60,16 @@ namespace Profitabilitaet.Tests
         }
 
         [Fact]
-        public async Task GetProjekteTest()
+        public async Task GetProjekte_ReturnsProjektList()
         {
             var connection = CreateConnection();
-            var projects = connection.GetProjekte();
+            var projects = await connection.GetProjekte(CancellationToken.None);
             projects.Should().HaveCountGreaterThan(0);
         }
 
         [Theory]
         [InlineData(1, 105)]
-        public async Task AbteilungLeiterTest(int abteilungsId, int leiterId)
+        public async Task GetAbteilung_CompareAbteilungsLeiter_IsEqual(int abteilungsId, int leiterId)
         {
             var nutzerId = new NutzerId(leiterId);
             var connection = CreateConnection();
@@ -80,6 +80,14 @@ namespace Profitabilitaet.Tests
             var abteilung = await connection.GetAbteilung(new AbteilungsId(abteilungsId), CancellationToken.None);
             abteilung.Should().NotBeNull();
             abteilung.Leiter.Should().Be(nutzer);
+        }
+
+        [Fact]
+        public async Task GetBuchungen_ReturnsList()
+        {
+            var connection = CreateConnection();
+            var projects = await connection.GetBuchungen(CancellationToken.None);
+            projects.Should().HaveCountGreaterThan(0);
         }
 
         private DatabaseConnection CreateConnection()
