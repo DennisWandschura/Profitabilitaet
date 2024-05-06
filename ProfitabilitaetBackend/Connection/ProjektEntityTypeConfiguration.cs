@@ -15,7 +15,6 @@ public class ProjektEntityTypeConfiguration : IEntityTypeConfiguration<Projekt>
             .HasConversion(x => x.Value, x => new ProjektId(x))
             .IsRequired();
         
-        modelBuilder.Property(x => x.Name).IsRequired();
         modelBuilder.Property(x => x.Bezeichnung);
         
         modelBuilder.Property("LeiterId");
@@ -24,10 +23,19 @@ public class ProjektEntityTypeConfiguration : IEntityTypeConfiguration<Projekt>
             .HasForeignKey("LeiterId")
             .IsRequired();
         
-        modelBuilder.Property(x => x.Auftragswert);
-        modelBuilder.Property(x => x.AngezahlterBetrag);
-        modelBuilder.Property(x => x.Beginn).IsRequired();
-        modelBuilder.Property(x => x.Ende).IsRequired();
+        modelBuilder.Property(x => x.Auftragswert).IsRequired();
+        modelBuilder.Property(x => x.AngezahlterBetrag).IsRequired();
+
+        modelBuilder.Property(x => x.Beginn)
+            .HasConversion(x => x.ToDateTime(),
+            x => x.ToDateOnly())
+            .IsRequired();
+
+        modelBuilder.Property(x => x.Ende)
+            .HasConversion(x => x.ToDateTime(),
+            x => x.ToDateOnly())
+            .IsRequired();
+
         modelBuilder.Property(x => x.IstStorniert).IsRequired();
     }
 }

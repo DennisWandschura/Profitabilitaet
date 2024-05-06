@@ -9,7 +9,7 @@ internal interface IConnection
 
     public Task<Nutzer?> GetNutzer(string loginName, string passwort, CancellationToken cancellationToken);
 
-    public Task<IReadOnlyList<Projekt>> GetProjekte(CancellationToken cancellationToken);
+    public List<Projekt> GetProjekte();
     public Task<Projekt?> GetProjekt(int id, CancellationToken cancellationToken);
 
     public Task<IReadOnlyList<Abteilung>> GetAbteilungen(CancellationToken cancellationToken);

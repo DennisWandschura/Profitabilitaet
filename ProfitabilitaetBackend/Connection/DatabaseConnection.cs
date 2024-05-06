@@ -8,6 +8,7 @@ public class DatabaseConnection : DbContext, IConnection
 {
     private DbSet<Nutzer> _nutzer { get; set; }
     private DbSet<Abteilung> _abteilungen { get; set; }
+    private DbSet<Projekt> _projekte { get; set; }
     private readonly DatabaseSettings _settings;
     private readonly Action<DbContextOptionsBuilder, DatabaseSettings> _onConfiguring;
 
@@ -19,7 +20,8 @@ public class DatabaseConnection : DbContext, IConnection
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite($"Data Source={_settings.Database}");
+        _onConfiguring(optionsBuilder, _settings);
+        //optionsBuilder.UseSqlite($"Data Source={_settings.Database}");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -49,9 +51,9 @@ public class DatabaseConnection : DbContext, IConnection
         throw new NotImplementedException();
     }
 
-    public Task<IReadOnlyList<Projekt>> GetProjekte(CancellationToken cancellationToken)
+    public List<Projekt> GetProjekte()
     {
-        throw new NotImplementedException();
+        return _projekte.ToList();
     }
 
     public Task<IReadOnlyList<Abteilung>> GetAbteilungen(CancellationToken cancellationToken)

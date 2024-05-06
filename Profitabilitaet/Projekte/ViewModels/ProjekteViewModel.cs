@@ -1,7 +1,7 @@
 ﻿using Profitabilitaet.Common.Models;
 using System;
 using System.Collections.Generic;
-using ProfitabilitaetBackend;
+using ProfitabilitaetBackend.Entities;
 
 namespace Profitabilitaet.Projekte.ViewModels
 {

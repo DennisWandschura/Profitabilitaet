@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Messaging.Messages;
-using ProfitabilitaetBackend;
+using ProfitabilitaetBackend.Entities;
 
 namespace Profitabilitaet.Common.Models;
 

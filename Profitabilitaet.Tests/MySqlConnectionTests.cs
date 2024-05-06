@@ -1,5 +1,5 @@
 using FluentAssertions;
-using ProfitabilitaetBackend;
+using ProfitabilitaetBackend.Entities;
 using ProfitabilitaetBackend.Config;
 using ProfitabilitaetBackend.Connection;
 
@@ -10,7 +10,7 @@ namespace Profitabilitaet.Tests
         private readonly DatabaseSettings _settings = new DatabaseSettings
         {
             Address = "localhost",
-            Port = 3310,
+            Port = 3306,
             User = "Profitabilitaet",
             Password = "Gruppe1",
             Database = "Profitabilitaet"
@@ -59,19 +59,27 @@ namespace Profitabilitaet.Tests
             abteilung.Should().NotBeNull();
         }
 
+        [Fact]
+        public async Task GetProjekteTest()
+        {
+            var connection = CreateConnection();
+            var projects = connection.GetProjekte();
+            projects.Should().HaveCountGreaterThan(0);
+        }
+
         [Theory]
         [InlineData(1, 105)]
-        public void AbteilungLeiterTest(int abteilungsId, int leiterId)
+        public async Task AbteilungLeiterTest(int abteilungsId, int leiterId)
         {
-            Assert.Fail();
-            // var connection = new Profitabilitaet.Database.MySqlConnection(_settings);
-            //
-            // var nutzer = await connection.GetNutzer(leiterId, CancellationToken.None);
-            // nutzer.Should().NotBeNull();
-            //
-            // var abteilung = await connection.GetAbteilung(abteilungsId, CancellationToken.None);
-            // abteilung.Should().NotBeNull();
-            // abteilung.LeiterId.Should().Be(leiterId);
+            var nutzerId = new NutzerId(leiterId);
+            var connection = CreateConnection();
+
+            var nutzer = await connection.GetNutzer(nutzerId, CancellationToken.None);
+            nutzer.Should().NotBeNull();
+
+            var abteilung = await connection.GetAbteilung(new AbteilungsId(abteilungsId), CancellationToken.None);
+            abteilung.Should().NotBeNull();
+            abteilung.Leiter.Should().Be(nutzer);
         }
 
         private DatabaseConnection CreateConnection()

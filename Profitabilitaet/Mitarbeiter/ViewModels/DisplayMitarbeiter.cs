@@ -1,5 +1,5 @@
 ﻿using System;
-using ProfitabilitaetBackend;
+using ProfitabilitaetBackend.Entities;
 
 namespace Profitabilitaet.Mitarbeiter.ViewModels;
 

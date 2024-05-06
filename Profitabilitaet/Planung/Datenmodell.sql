@@ -26,11 +26,10 @@ CREATE TABLE abteilung(
 );
 CREATE TABLE projekt(
 	Id int NOT NULL AUTO_INCREMENT,
-	Name VARCHAR(255) NOT NULL,
 	Bezeichnung VARCHAR(255),
 	LeiterId int,
 	Auftragswert decimal(16,2) NOT NULL,
-	AngezahlterBetrag decimal(16,2),
+	AngezahlterBetrag decimal(16,2) NOT NULL,
 	Beginn date NOT NULL,
 	Ende date NOT NULL,
 	IstStorniert BOOLEAN NOT NULL,
@@ -39,7 +38,7 @@ CREATE TABLE projekt(
     FOREIGN KEY(LeiterId) REFERENCES nutzer(Id)
 );
 CREATE TABLE buchung(
-	ID int NOT NULL AUTO_INCREMENT,
+	Id int NOT NULL AUTO_INCREMENT,
 	Anteil int not null,
 	Jahr int not null,
 	Woche int not null,

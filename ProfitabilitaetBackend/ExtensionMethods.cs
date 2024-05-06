@@ -38,5 +38,10 @@ namespace ProfitabilitaetBackend
             T result;
             return Enum.TryParse<T>(value, true, out result) ? result : throw new ArgumentOutOfRangeException(nameof(value), value, "Enum Wert konnte nicht erkannt werden.");
         }
+
+        public static DateTime ToDateTime(this DateOnly value)
+        {
+            return new DateTime(value.Year, value.Month, value.Day);
+        }
     }
 }
