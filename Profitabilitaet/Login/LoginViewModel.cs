@@ -19,17 +19,17 @@ internal partial class LoginViewModel : ObservableObject
     public string BenutzerName { get; set; } = string.Empty;
     public PasswordBox PasswordBox { get; set; } = new();
     private readonly LoggedInUser _loggedInUser;
-    private readonly DatabaseSettings _databaseSettings;
+    private readonly Common.Connection _connection;
     [ObservableProperty]
     private bool _canLogin = true;
     [ObservableProperty]
     private string _loginStatusText = string.Empty;
 
-    public LoginViewModel(LoggedInUser loggedInUser, IOptions<DatabaseSettings> databaseSettings)
+    public LoginViewModel(LoggedInUser loggedInUser, Common.Connection connection)
     {
         _loggedInUser = loggedInUser;
         PasswordBox.PasswordChar = '*';
-        _databaseSettings = databaseSettings.Value;
+        _connection = connection;
     }
 
     [RelayCommand]
@@ -41,7 +41,7 @@ internal partial class LoginViewModel : ObservableObject
 
         try
         {
-            var dbConnection = MySqlConnection.Create(_databaseSettings);
+            var dbConnection = _connection.Create();
             var dbNutzer = await dbConnection.GetNutzer(BenutzerName, password, CancellationToken.None);
             if (dbNutzer is not null)
             {
@@ -54,7 +54,7 @@ internal partial class LoginViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            LoginStatusText = "Fehler";
+            LoginStatusText = "Fehler: " + ex.Message;
         }
 
         CanLogin = true;

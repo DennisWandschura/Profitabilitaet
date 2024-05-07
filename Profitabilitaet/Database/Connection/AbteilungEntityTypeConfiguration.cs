@@ -15,11 +15,10 @@ public class AbteilungEntityTypeConfiguration : IEntityTypeConfiguration<Entitie
             .IsRequired();
 
         modelBuilder.Property("LeiterId");
-        
+
         modelBuilder.HasOne(x => x.Leiter)
             .WithMany()
-            .HasForeignKey("LeiterId")
-            .IsRequired();
+            .HasForeignKey("LeiterId");
         
         modelBuilder.Property(x => x.Bezeichnung).IsRequired();
         

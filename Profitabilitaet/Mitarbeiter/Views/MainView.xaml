@@ -17,7 +17,20 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="0" ItemsSource="{Binding Mitarbeiter}"/>
+                <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="0" ItemsSource="{Binding Mitarbeiter}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Vorname}"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Nachname}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
                 <Button Content="Neuer Mitarbeiter" Grid.Row="1" Margin="4"/>
             </Grid>
         </Border>

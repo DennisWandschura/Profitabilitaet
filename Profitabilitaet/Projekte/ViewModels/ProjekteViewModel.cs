@@ -2,22 +2,35 @@
 using System;
 using System.Collections.Generic;
 using Profitabilitaet.Database.Entities;
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.Threading.Tasks;
+using Profitabilitaet.Common;
+using System.Threading;
 
 namespace Profitabilitaet.Projekte.ViewModels;
 
-internal class ProjekteViewModel
+internal partial class ProjekteViewModel : ObservableObject
 {
-    public string Name { get; } = "Projekt A";
-    public string Description { get; } = "Eine tolle Beschreibung des Projekts.";
-    public Nutzer? Leiter { get; } = null;
-    public decimal Auftragswert { get; } = 1500.0M;
-    public decimal AngezahlterBetrag { get; } = 500.95M;
-    public DateOnly Beginn { get; } = new DateOnly(2024, 01, 01);
-    public DateOnly Ende { get; } = new DateOnly(2024, 02, 01);
-    public bool IstStorniert { get; set; } = false;
-    public List<BuchungArbeitszeit> Buchungen { get; } = new();
+    [ObservableProperty]
+    Database.Entities.Projekt? _selectedProject;
 
-    public ProjekteViewModel()
+    [ObservableProperty]
+    IReadOnlyList<Database.Entities.Projekt>? _projekte;
+    private readonly Connection _connection;
+
+    public ProjekteViewModel(Common.Connection connection)
     {
+        this._connection = connection;
+        LoadProjects();
+    }
+
+    private async Task LoadProjects()
+    {
+        Projekte = await _connection.Create().GetProjekte(CancellationToken.None);
+    }
+
+    partial void OnSelectedProjectChanged(Database.Entities.Projekt? value)
+    {
+
     }
 }

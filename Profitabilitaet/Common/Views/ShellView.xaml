@@ -8,17 +8,18 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         FontSize="18"
         mc:Ignorable="d"
-        Title="Profitabilitaet" Height="600" Width="800">
+        Title="Profitabilitaet" Height="600" Width="1000">
 
     <Window.DataContext>
         <vmod:ShellViewModel x:Name="MyViewModel"/>
     </Window.DataContext>
 
     <DockPanel>
-        <Menu DockPanel.Dock="Top" FontSize="18">
+        <Menu FontSize="18" DockPanel.Dock="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Exit" Command="{Binding CloseCommand}"/>
             </MenuItem>
+            <MenuItem Header="Logout"/>
         </Menu>
 
         <ContentControl Content="{Binding CurrentView}"/>

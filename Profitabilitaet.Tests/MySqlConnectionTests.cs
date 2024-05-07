@@ -68,17 +68,28 @@ namespace Profitabilitaet.Tests
         }
 
         [Theory]
+        [InlineData(77)]
+        public async Task GetProjektTest(int projId)
+        {
+            var connection = CreateConnection();
+
+            var project = await connection.GetProjekt(new ProjektId(projId),CancellationToken.None);
+            project.Should().NotBeNull();
+            project.Leiter.Should().NotBeNull();
+        }
+
+        [Theory]
         [InlineData(1, 105)]
         public async Task AbteilungLeiterTest(int abteilungsId, int leiterId)
         {
-            var nutzerId = new NutzerId(leiterId);
             var connection = CreateConnection();
-
-            var nutzer = await connection.GetNutzer(nutzerId, CancellationToken.None);
-            nutzer.Should().NotBeNull();
 
             var abteilung = await connection.GetAbteilung(new AbteilungsId(abteilungsId), CancellationToken.None);
             abteilung.Should().NotBeNull();
+            abteilung.Leiter.Should().NotBeNull();
+
+            var nutzer = await connection.GetNutzer(new NutzerId(leiterId), CancellationToken.None);
+            nutzer.Should().NotBeNull();
             abteilung.Leiter.Should().Be(nutzer);
         }
 

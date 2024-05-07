@@ -58,17 +58,19 @@ public class DatabaseConnection : DbContext, IConnection
 
     public Task<Projekt?> GetProjekt(ProjektId id, CancellationToken cancellationToken)
     {
-        return _projekte.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
+        return _projekte.Where(x => x.Id == id)
+            .Include(x => x.Leiter)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 
     public Task<IReadOnlyList<Projekt>> GetProjekte(CancellationToken cancellationToken)
     {
-        return _projekte.ToReadOnlyListAsync(cancellationToken);
+        return _projekte.Include(x => x.Leiter).ToReadOnlyListAsync(cancellationToken);
     }
 
     public Task<IReadOnlyList<Abteilung>> GetAbteilungen(CancellationToken cancellationToken)
     {
-        return _abteilungen.ToReadOnlyListAsync();
+        return _abteilungen.Include(x => x.Leiter).ToReadOnlyListAsync();
     }
 
     public Task<Abteilung?> GetAbteilung(AbteilungsId id, CancellationToken cancellationToken)

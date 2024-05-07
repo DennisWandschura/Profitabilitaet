@@ -6,15 +6,10 @@
              xmlns:vm="clr-namespace:Profitabilitaet.Projekte.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
-    <UserControl.DataContext>
-        <vm:ProjekteViewModel/>
-    </UserControl.DataContext>
     <DockPanel>
         <Border BorderThickness="1" BorderBrush="Black" Margin="2">
-            <ListView DockPanel.Dock="Left" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <ListViewItem Content="Projekt A"/>
-                <ListViewItem Content="Projekt B"/>
-            </ListView>
+            <ListView DockPanel.Dock="Left" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectedItem="{Binding SelectedProject}"
+                      ItemsSource="{Binding Projekte}" DisplayMemberPath="Bezeichnung" MaxWidth="200"/>
         </Border>
 
         <Border BorderThickness="1" BorderBrush="Black" Margin="2">
@@ -23,7 +18,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontSize="20" Text="{Binding Name}" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="0" FontSize="20" Text="{Binding SelectedProject.Bezeichnung}" HorizontalAlignment="Center"/>
 
                 <Grid Margin="4" Grid.Row="1" >
                     <Grid.RowDefinitions>
@@ -44,24 +39,21 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Column="0" Grid.Row="0" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Bezeichnung:"/>
-                            <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Projektleiter:"/>
-                            <TextBlock Grid.Column="0" Grid.Row="2" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Auftragswert:"/>
-                            <TextBlock Grid.Column="0" Grid.Row="3" Margin="0,0,4,0" HorizontalAlignment="Right" Text="AngezahlterBetrag:"/>
-                            <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Beginn:"/>
-                            <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Ende:"/>
-                            <TextBlock Grid.Column="0" Grid.Row="6" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Ist Storniert:"/>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Projektleiter:"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Auftragswert:"/>
+                            <TextBlock Grid.Column="0" Grid.Row="2" Margin="0,0,4,0" HorizontalAlignment="Right" Text="AngezahlterBetrag:"/>
+                            <TextBlock Grid.Column="0" Grid.Row="3" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Beginn:"/>
+                            <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Ende:"/>
+                            <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Ist Storniert:"/>
 
-                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Description}"/>
-                            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Leiter}"/>
-                            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Auftragswert}"/>
-                            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding AngezahlterBetrag}"/>
-                            <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Beginn}"/>
-                            <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Ende}"/>
-                            <CheckBox Grid.Column="1" Grid.Row="6" IsChecked="{Binding IstStorniert}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding SelectedProject.Leiter}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding SelectedProject.Auftragswert}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding SelectedProject.AngezahlterBetrag}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding SelectedProject.Beginn}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding SelectedProject.Ende}"/>
+                            <CheckBox Grid.Column="1" Grid.Row="5" IsChecked="{Binding SelectedProject.IstStorniert}"/>
                         </Grid>
                     </Border>
 

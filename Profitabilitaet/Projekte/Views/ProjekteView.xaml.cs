@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Windows.Controls;
 
 namespace Profitabilitaet.Projekte.Views
 {
@@ -10,6 +11,7 @@ namespace Profitabilitaet.Projekte.Views
         public ProjekteView()
         {
             InitializeComponent();
+            DataContext = App.Current.Services.GetService<ViewModels.ProjekteViewModel>();
         }
     }
 }

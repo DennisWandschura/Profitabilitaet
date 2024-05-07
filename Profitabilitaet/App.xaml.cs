@@ -47,10 +47,12 @@ public partial class App : Application
 
         // Services
         services.AddSingleton<LoggedInUser>();
+        services.AddSingleton<Common.Connection>();
 
         // Viewmodels
-        services.AddTransient<Mitarbeiter.ViewModels.MainView>();
+        services.AddTransient<Mitarbeiter.ViewModels.MainViewViewModel>();
         services.AddTransient<Common.ViewModels.LoginViewModel>();
+        services.AddTransient<Projekte.ViewModels.ProjekteViewModel>();
 
         return services.BuildServiceProvider();
     }

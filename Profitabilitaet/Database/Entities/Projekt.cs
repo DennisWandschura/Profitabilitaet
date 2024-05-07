@@ -16,6 +16,6 @@ public class Projekt
     public decimal AngezahlterBetrag { get; private set; }
     public DateOnly Beginn { get; private set; }
     public DateOnly Ende { get; private set; }
-    public bool IstStorniert { get; private set; }
+    public bool IstStorniert { get; set; }
     // public List<BuchungArbeitszeit> Buchungen { get; }
 }
