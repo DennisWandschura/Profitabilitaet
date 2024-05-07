@@ -1,4 +1,6 @@
-﻿namespace ProfitabilitaetBackend.Entities;
+﻿using System;
+
+namespace Profitabilitaet.Database.Entities;
 
 public readonly record struct NutzerId(int Value)
 {

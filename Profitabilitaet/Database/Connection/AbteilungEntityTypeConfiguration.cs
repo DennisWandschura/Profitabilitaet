@@ -1,18 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProfitabilitaetBackend.Entities;
 
-namespace ProfitabilitaetBackend.Connection;
+namespace Profitabilitaet.Database.Connection;
 
-public class AbteilungEntityTypeConfiguration : IEntityTypeConfiguration<ProfitabilitaetBackend.Entities.Abteilung>
+public class AbteilungEntityTypeConfiguration : IEntityTypeConfiguration<Entities.Abteilung>
 {
-    public void Configure(EntityTypeBuilder<ProfitabilitaetBackend.Entities.Abteilung> modelBuilder)
+    public void Configure(EntityTypeBuilder<Entities.Abteilung> modelBuilder)
     {
         modelBuilder.ToTable("abteilung")
             .HasKey(x => x.Id);
         
         modelBuilder.Property(x => x.Id)
-            .HasConversion(x => x.Value, x => new AbteilungsId(x))
+            .HasConversion(x => x.Value, x => new Entities.AbteilungsId(x))
             .IsRequired();
 
         modelBuilder.Property("LeiterId");

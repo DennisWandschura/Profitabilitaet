@@ -1,4 +1,4 @@
-﻿namespace ProfitabilitaetBackend.Entities;
+﻿namespace Profitabilitaet.Database.Entities;
 
 public enum Geschlecht
 {

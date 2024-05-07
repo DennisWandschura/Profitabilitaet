@@ -1,8 +1,8 @@
 using FluentAssertions;
-using ProfitabilitaetBackend;
-using ProfitabilitaetBackend.Config;
-using ProfitabilitaetBackend.Connection;
-using ProfitabilitaetBackend.Entities;
+using Profitabilitaet;
+using Profitabilitaet.Config;
+using Profitabilitaet.Database.Connection;
+using Profitabilitaet.Database.Entities;
 
 namespace Profitabilitaet.Tests
 {

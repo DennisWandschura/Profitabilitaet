@@ -4,7 +4,7 @@ using Profitabilitaet.Common.Models;
 using System;
 using System.IO;
 using System.Windows;
-using ProfitabilitaetBackend.Config;
+using Profitabilitaet.Config;
 
 namespace Profitabilitaet;
 

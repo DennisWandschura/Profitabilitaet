@@ -1,8 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProfitabilitaetBackend.Config;
-using ProfitabilitaetBackend.Entities;
+using Profitabilitaet.Config;
+using Profitabilitaet.Database.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace ProfitabilitaetBackend.Connection;
+namespace Profitabilitaet.Database.Connection;
 
 public class DatabaseConnection : DbContext, IConnection
 {
@@ -30,10 +35,10 @@ public class DatabaseConnection : DbContext, IConnection
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        new NutzerEntityTypeConfiguration().Configure(modelBuilder.Entity<ProfitabilitaetBackend.Entities.Nutzer>());
-        new AbteilungEntityTypeConfiguration().Configure(modelBuilder.Entity<ProfitabilitaetBackend.Entities.Abteilung>());
-        new ProjektEntityTypeConfiguration().Configure(modelBuilder.Entity<ProfitabilitaetBackend.Entities.Projekt>());
-        new BuchungEntityTypeConfiguration().Configure(modelBuilder.Entity<ProfitabilitaetBackend.Entities.Buchung>());
+        new NutzerEntityTypeConfiguration().Configure(modelBuilder.Entity<Nutzer>());
+        new AbteilungEntityTypeConfiguration().Configure(modelBuilder.Entity<Abteilung>());
+        new ProjektEntityTypeConfiguration().Configure(modelBuilder.Entity<Projekt>());
+        new BuchungEntityTypeConfiguration().Configure(modelBuilder.Entity<Buchung>());
     }
     
     public Task<IReadOnlyList<Nutzer>> GetNutzer(CancellationToken cancellationToken)

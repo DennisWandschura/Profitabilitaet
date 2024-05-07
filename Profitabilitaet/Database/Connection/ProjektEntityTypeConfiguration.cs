@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProfitabilitaetBackend.Entities;
+using Profitabilitaet.Database.Entities;
 
-namespace ProfitabilitaetBackend.Connection;
+namespace Profitabilitaet.Database.Connection;
 
-public class ProjektEntityTypeConfiguration : IEntityTypeConfiguration<ProfitabilitaetBackend.Entities.Projekt>
+public class ProjektEntityTypeConfiguration : IEntityTypeConfiguration<Projekt>
 {
-    public void Configure(EntityTypeBuilder<ProfitabilitaetBackend.Entities.Projekt> modelBuilder)
+    public void Configure(EntityTypeBuilder<Projekt> modelBuilder)
     {
         modelBuilder.ToTable("projekt")
             .HasKey(x => x.Id);

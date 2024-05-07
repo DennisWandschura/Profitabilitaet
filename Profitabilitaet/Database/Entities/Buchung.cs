@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProfitabilitaetBackend.Entities
+namespace Profitabilitaet.Database.Entities
 {
     public readonly record struct BuchungId(int Value);
 

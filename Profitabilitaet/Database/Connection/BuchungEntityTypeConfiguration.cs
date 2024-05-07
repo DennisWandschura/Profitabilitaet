@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProfitabilitaetBackend.Entities;
+using Profitabilitaet.Database.Entities;
 
-namespace ProfitabilitaetBackend.Connection;
+namespace Profitabilitaet.Database.Connection;
 
-public class BuchungEntityTypeConfiguration : IEntityTypeConfiguration<ProfitabilitaetBackend.Entities.Buchung>
+public class BuchungEntityTypeConfiguration : IEntityTypeConfiguration<Buchung>
 {
-    public void Configure(EntityTypeBuilder<ProfitabilitaetBackend.Entities.Buchung> modelBuilder)
+    public void Configure(EntityTypeBuilder<Buchung> modelBuilder)
     {
         modelBuilder.ToTable("buchung")
             .HasKey(x => x.Id);

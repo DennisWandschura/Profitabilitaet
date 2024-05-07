@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProfitabilitaetBackend.Config;
+using Profitabilitaet.Config;
 
-namespace ProfitabilitaetBackend.Connection
+namespace Profitabilitaet.Database.Connection
 {
     public static class SqliteConnection
     {

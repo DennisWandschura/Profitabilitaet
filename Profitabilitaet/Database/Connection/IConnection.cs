@@ -1,6 +1,9 @@
-﻿using ProfitabilitaetBackend.Entities;
+﻿using Profitabilitaet.Database.Entities;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace ProfitabilitaetBackend.Connection;
+namespace Profitabilitaet.Database.Connection;
 
 internal interface IConnection
 {

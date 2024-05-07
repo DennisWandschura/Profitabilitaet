@@ -1,4 +1,4 @@
-﻿namespace ProfitabilitaetBackend.Entities;
+﻿namespace Profitabilitaet.Database.Entities;
 
 public readonly record struct AbteilungsId(int Value)
 {

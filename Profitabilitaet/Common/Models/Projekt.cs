@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ProfitabilitaetBackend.Entities;
+using Profitabilitaet.Database.Entities;
 
 namespace Profitabilitaet.Common.Models;
 public class Projekt
