@@ -45,6 +45,7 @@ internal partial class LoginViewModel : ObservableObject
             var dbNutzer = await dbConnection.GetNutzer(BenutzerName, password, CancellationToken.None);
             if (dbNutzer is not null)
             {
+                _loggedInUser.Nutzer = dbNutzer;
                 WeakReferenceMessenger.Default.Send(new LoggedInUserChangedMessage(dbNutzer));
             }
             else

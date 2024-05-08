@@ -10,21 +10,18 @@ public readonly record struct NutzerId(int Value)
 public class Nutzer
 {
     public NutzerId Id { get; private set; }
-    public Rolle Rolle { get; private set; }
-    public string Vorname { get; private set; }
-    public string Nachname { get; private set; }
-    public string Plz { get; private set; }
-    public string Ort { get; private set; }
-    public string Strasse { get; private set; }
-    public int Hausnummer { get; private set; }
-    public Geschlecht Geschlecht { get; private set; }
-    public string Telefonnummer { get; private set; }
-    public DateTime Einstellungsdatum { get; private set; }
-    public string Loginname { get; private set; }
-    public string Passwort { get; private set; }
+    public Rolle Rolle { get; set; }
+    public string Vorname { get; set; }
+    public string Nachname { get; set; }
+    public string Plz { get; set; }
+    public string Ort { get; set; }
+    public string Strasse { get; set; }
+    public int Hausnummer { get; set; }
+    public Geschlecht Geschlecht { get; set; }
+    public string Telefonnummer { get; set; }
+    public DateTime Einstellungsdatum { get; set; }
+    public string Loginname { get; set; }
+    public string Passwort { get; set; }
 
-    public bool HatRolle(Rolle rolle)
-    {
-        return Rolle == rolle;
-    }
+    public bool IsAdmin { get => Rolle == Rolle.ADMIN; }
 }

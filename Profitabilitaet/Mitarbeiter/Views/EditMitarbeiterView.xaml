@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Profitabilitaet.Mitarbeiter.Views.DisplayMitarbeiter"
+﻿<UserControl x:Class="Profitabilitaet.Mitarbeiter.Views.EditMitarbeiterView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -36,16 +36,20 @@
             <TextBlock Grid.Column="0" Grid.Row="8" Text="Einstellungsdatum:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
             <TextBlock Grid.Column="0" Grid.Row="9" Text="Rolle:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
 
-            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding SelectedUser.Nachname}"/>
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding SelectedUser.Vorname}"/>
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding SelectedUser.Geschlecht}"/>
-            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding SelectedUser.Strasse}"/>
-            <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding SelectedUser.Hausnummer}"/>
-            <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding SelectedUser.Plz}"/>
-            <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding SelectedUser.Ort}"/>
-            <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding SelectedUser.Telefonnummer}"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedUser.Nachname}"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedUser.Vorname}"/>
+            <ComboBox Grid.Column="1" Grid.Row="2" SelectedValue="{Binding SelectedUser.Geschlecht}" ItemsSource="{Binding Geschlechter}"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedUser.Strasse}"/>
+            
+            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SelectedUser.Hausnummer}"/>
+            
+            <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding SelectedUser.Plz}"/>
+            <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding SelectedUser.Ort}"/>
+            <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding SelectedUser.Telefonnummer}"/>
             <TextBlock Grid.Column="1" Grid.Row="8" Text="{Binding SelectedUser.Einstellungsdatum}"/>
-            <TextBlock Grid.Column="1" Grid.Row="9" Text="{Binding SelectedUser.Rolle}"/>
+            
+            <ComboBox Grid.Column="1" Grid.Row="9" SelectedValue="{Binding SelectedUser.Rolle}" ItemsSource="{Binding Rollen}"/>
+            
         </Grid>
     </Border>
 </UserControl>

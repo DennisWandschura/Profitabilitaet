@@ -17,17 +17,15 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="0" ItemsSource="{Binding Mitarbeiter}">
+                <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="0" 
+                          ItemsSource="{Binding Mitarbeiter}" SelectedItem="{Binding SelectedUser}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding Vorname}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding Nachname}"/>
-                            </Grid>
+                            <TextBlock>
+                                <Run>"{Binding Vorname}"</Run>
+                                <Run>" "</Run>
+                                <Run>"{Binding Nachname}"</Run>
+                            </TextBlock>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -35,7 +33,10 @@
             </Grid>
         </Border>
 
-        <local:DisplayMitarbeiter/>
+        <Grid>
+            <local:DisplayMitarbeiter Visibility="{Binding DisplayViewVisibility}"/>
+            <local:EditMitarbeiterView Visibility="{Binding EditViewVisibility}"/>
+        </Grid>
 
     </DockPanel>
 </UserControl>
