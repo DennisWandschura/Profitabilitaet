@@ -87,7 +87,10 @@ public class DatabaseConnection : DbContext, IConnection
 
     public Task<Buchung?> GetBuchung(BuchungId id, CancellationToken cancellationToken)
     {
-       return _buchungen.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
+       return _buchungen.Where(x => x.Id == id)
+            .Include(x => x.Mitarbeiter)
+            .Include(x => x.Projekt)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 }
 
