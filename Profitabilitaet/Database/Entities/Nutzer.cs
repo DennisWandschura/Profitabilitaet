@@ -24,4 +24,6 @@ public class Nutzer
     public string Passwort { get; set; }
 
     public bool IsAdmin { get => Rolle == Rolle.ADMIN; }
+
+    public string DisplayName => $"{Vorname} {Nachname}";
 }

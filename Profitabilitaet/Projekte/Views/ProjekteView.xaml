@@ -4,13 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:Profitabilitaet.Projekte.ViewModels"
+              d:DataContext="{d:DesignInstance {x:Type vm:ProjekteViewModel} }"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
     <DockPanel>
-        <Border BorderThickness="1" BorderBrush="Black" Margin="2">
-            <ListView DockPanel.Dock="Left" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectedItem="{Binding SelectedProject}"
+        <Border BorderThickness="1" BorderBrush="Black" Margin="2" DockPanel.Dock="Left" >
+            <ListView ScrollViewer.VerticalScrollBarVisibility="Visible" SelectedItem="{Binding SelectedProject}"
                       ItemsSource="{Binding Projekte}" DisplayMemberPath="Bezeichnung" MaxWidth="200"/>
         </Border>
+
+        <Grid DockPanel.Dock="Top" HorizontalAlignment="Right">
+            <Button Content="Bearbeiten"  Command="{Binding EditCommand}" Visibility="{Binding EditButtonVisibility}"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Speichern" Command="{Binding SaveCommand}" Visibility="{Binding SaveButtonVisibility}"/>
+                <Button Grid.Column="1" Content="Abbrechen" Command="{Binding CancelCommand}" Visibility="{Binding SaveButtonVisibility}"/>
+            </Grid>
+
+        </Grid>
 
         <Border BorderThickness="1" BorderBrush="Black" Margin="2">
             <Grid>
@@ -18,7 +33,11 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontSize="20" Text="{Binding SelectedProject.Bezeichnung}" HorizontalAlignment="Center"/>
+                
+                <TextBlock Grid.Row="0" FontSize="20" Text="{Binding SelectedProject.Bezeichnung}" HorizontalAlignment="Center"
+                           Visibility="{Binding ViewControlsNutzerVisibility}"/>
+                <TextBox Grid.Row="0" FontSize="20" Text="{Binding SelectedProject.Bezeichnung}" HorizontalAlignment="Center"
+                         Visibility="{Binding EditControlsNutzerVisibility}"/>
 
                 <Grid Margin="4" Grid.Row="1" >
                     <Grid.RowDefinitions>
@@ -48,12 +67,21 @@
                             <TextBlock Grid.Column="0" Grid.Row="4" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Ende:"/>
                             <TextBlock Grid.Column="0" Grid.Row="5" Margin="0,0,4,0" HorizontalAlignment="Right" Text="Ist Storniert:"/>
 
-                            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding SelectedProject.Leiter}"/>
-                            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding SelectedProject.Auftragswert}"/>
-                            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding SelectedProject.AngezahlterBetrag}"/>
-                            <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding SelectedProject.Beginn}"/>
-                            <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding SelectedProject.Ende}"/>
-                            <CheckBox Grid.Column="1" Grid.Row="5" IsChecked="{Binding SelectedProject.IstStorniert}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Visibility="{Binding ViewControlsAdminVisibility}" Text="{Binding SelectedProject.Leiter.DisplayName}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1" Visibility="{Binding ViewControlsAdminVisibility}" Text="{Binding SelectedProject.Auftragswert}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="2" Visibility="{Binding ViewControlsNutzerVisibility}" Text="{Binding SelectedProject.AngezahlterBetrag}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="3" Visibility="{Binding ViewControlsAdminVisibility}" Text="{Binding SelectedProject.Beginn}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="4" Visibility="{Binding ViewControlsAdminVisibility}" Text="{Binding SelectedProject.Ende}"/>
+
+                            <ComboBox Grid.Column="1" Grid.Row="0" Visibility="{Binding EditControlsAdminVisibility}" DisplayMemberPath="DisplayName"
+                                      SelectedItem="{Binding SelectedProject.Leiter}" ItemsSource="{Binding Mitarbeiter}"/>
+                            <TextBox Grid.Column="1" Grid.Row="1" Visibility="{Binding EditControlsAdminVisibility}" Text="{Binding SelectedProject.Auftragswert}"/>
+                            <TextBox Grid.Column="1" Grid.Row="2" Visibility="{Binding EditControlsNutzerVisibility}" Text="{Binding SelectedProject.AngezahlterBetrag}"/>
+                            <TextBox Grid.Column="1" Grid.Row="3" Visibility="{Binding EditControlsAdminVisibility}" Text="{Binding SelectedProject.Beginn}"/>
+                            <TextBox Grid.Column="1" Grid.Row="4" Visibility="{Binding EditControlsAdminVisibility}" Text="{Binding SelectedProject.Ende}"/>
+
+                            <CheckBox Grid.Column="1" Grid.Row="5" IsChecked="{Binding SelectedProject.IstStorniert}" IsEnabled="False"/>
+                            
                         </Grid>
                     </Border>
 

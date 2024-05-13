@@ -10,16 +10,12 @@
         mc:Ignorable="d"
         Title="Profitabilitaet" Height="600" Width="1000">
 
-    <Window.DataContext>
-        <vmod:ShellViewModel x:Name="MyViewModel"/>
-    </Window.DataContext>
-
     <DockPanel>
         <Menu FontSize="18" DockPanel.Dock="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Exit" Command="{Binding CloseCommand}"/>
             </MenuItem>
-            <MenuItem Header="Logout"/>
+            <MenuItem Header="Logout" Visibility="{Binding LogoutVisibility}" Command="{Binding LogoutCommand}"/>
         </Menu>
 
         <ContentControl Content="{Binding CurrentView}"/>

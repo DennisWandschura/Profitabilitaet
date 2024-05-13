@@ -9,13 +9,13 @@ public readonly record struct ProjektId(int Value)
 
 public class Projekt
 {
-    public ProjektId Id { get; private set; }
-    public string Bezeichnung { get; private set; }
-    public Nutzer? Leiter { get; private set; }
-    public decimal Auftragswert { get; private set; }
-    public decimal AngezahlterBetrag { get; private set; }
-    public DateOnly Beginn { get; private set; }
-    public DateOnly Ende { get; private set; }
+    public ProjektId Id { get; set; }
+    public string Bezeichnung { get; set; }
+    public Nutzer? Leiter { get; set; }
+    public decimal Auftragswert { get; set; }
+    public decimal AngezahlterBetrag { get; set; }
+    public DateOnly Beginn { get; set; }
+    public DateOnly Ende { get; set; }
     public bool IstStorniert { get; set; }
     // public List<BuchungArbeitszeit> Buchungen { get; }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
 
 namespace Profitabilitaet.Common.Views
 {
@@ -10,11 +11,14 @@ namespace Profitabilitaet.Common.Views
         public ShellView()
         {
             InitializeComponent();
+            var viewModel = App.Current.Services.GetService<ViewModels.ShellViewModel>();
 
-            MyViewModel.CloseAction += () =>
+            viewModel.CloseAction += () =>
                 {
                     this.Close();
                 };
+
+            DataContext = viewModel;
         }
     }
 }

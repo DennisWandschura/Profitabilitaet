@@ -50,6 +50,7 @@ public partial class App : Application
         services.AddSingleton<Common.Connection>();
 
         // Viewmodels
+        services.AddTransient<Common.ViewModels.ShellViewModel>();
         services.AddTransient<Mitarbeiter.ViewModels.MainViewViewModel>();
         services.AddTransient<Common.ViewModels.LoginViewModel>();
         services.AddTransient<Projekte.ViewModels.ProjekteViewModel>();

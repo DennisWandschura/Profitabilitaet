@@ -1,3 +1,3 @@
 					Nutzer		Projekt
-Nutzer				Read		Read/Write Bezeichnung,AngezahlterBetrag
+Nutzer				Read		Read + Write Bezeichnung,AngezahlterBetrag
 Abteilungsleiter	Read/Write	Read/Write

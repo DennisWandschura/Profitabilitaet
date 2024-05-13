@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Profitabilitaet.Common.Models;
 using Profitabilitaet.Database.Connection;
 using Profitabilitaet.Database.Entities;
@@ -18,11 +19,18 @@ internal partial class MainViewViewModel : ObservableObject
     [ObservableProperty]
     private Nutzer? _selectedUser;
 
-    private LoggedInUser _loggedInUser;
+    private readonly LoggedInUser _loggedInUser;
     private readonly Common.Connection _connection;
 
-    public Visibility EditViewVisibility { get; init; }
-    public Visibility DisplayViewVisibility { get; init; }
+    public Visibility EditVisibility { get; init; }
+    [ObservableProperty]
+    private Visibility _editButtonVisibility;
+    [ObservableProperty]
+    private Visibility _saveButtonVisibility;
+    [ObservableProperty]
+    private Visibility _editControlsVisibility;
+    [ObservableProperty]
+    private Visibility _viewControlsVisibility;
     public Geschlecht[] Geschlechter { get; } = [Geschlecht.Maennlich, Geschlecht.Weiblich, Geschlecht.Divers];
     public Rolle[] Rollen { get; } = [Rolle.NUTZER, Rolle.ABTEILUNGSLEITER, Rolle.ADMIN];
 
@@ -31,8 +39,11 @@ internal partial class MainViewViewModel : ObservableObject
         _loggedInUser = loggedInUser;
         _connection = connection;
 
-        EditViewVisibility = GetVisibilityEditView(_loggedInUser.Rolle);
-        DisplayViewVisibility = GetVisibilityDisplayView(_loggedInUser.Rolle);
+        EditVisibility = GetVisibilityEditView(_loggedInUser.Rolle);
+        EditButtonVisibility = Visibility.Visible;
+        SaveButtonVisibility = Visibility.Hidden;
+        EditControlsVisibility = Visibility.Hidden;
+        ViewControlsVisibility = Visibility.Visible;
 
         LoadUsers();
     }
@@ -61,7 +72,34 @@ internal partial class MainViewViewModel : ObservableObject
 
     private async Task LoadUsers()
     {
-        var connection =_connection.Create();
+        using var connection =_connection.Create();
         Mitarbeiter = await connection.GetNutzer(CancellationToken.None);
+    }
+
+    [RelayCommand]
+    private void OnEdit()
+    {
+        EditControlsVisibility = Visibility.Visible;
+        ViewControlsVisibility = Visibility.Hidden;
+
+        EditButtonVisibility = Visibility.Hidden;
+        SaveButtonVisibility = Visibility.Visible;
+    }
+
+    [RelayCommand]
+    private void OnSave()
+    {
+        EditControlsVisibility = Visibility.Hidden;
+        ViewControlsVisibility = Visibility.Visible;
+
+        EditButtonVisibility = Visibility.Visible;
+        SaveButtonVisibility = Visibility.Hidden;
+
+        if (SelectedUser is not null)
+        {
+            using var connection = _connection.Create();
+            connection.Update(SelectedUser);
+            connection.SaveChanges();
+        }
     }
 }

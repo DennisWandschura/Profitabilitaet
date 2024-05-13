@@ -13,7 +13,7 @@ namespace Profitabilitaet.Common
     {
         private readonly DatabaseSettings _databaseSettings = databaseSettings.Value;
 
-        public IConnection Create()
+        public DatabaseConnection Create()
         {
             return MySqlConnection.Create(_databaseSettings);
         }
