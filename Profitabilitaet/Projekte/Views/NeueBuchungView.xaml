@@ -11,7 +11,7 @@
         Name="window"
         Title="Neue Buchung" Height="450" Width="500" FontSize="20">
     <Window.Resources>
-        <ResourceDictionary Source="../Dictionary.xaml"/>
+        <ResourceDictionary Source="../../Dictionary.xaml"/>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Close"
