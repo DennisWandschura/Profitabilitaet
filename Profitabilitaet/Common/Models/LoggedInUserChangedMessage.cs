@@ -1,11 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.Messaging.Messages;
-using Profitabilitaet.Database.Entities;
 
 namespace Profitabilitaet.Common.Models;
 
-public class LoggedInUserChangedMessage : ValueChangedMessage<Nutzer>
+public class LoggedInUserChangedMessage : ValueChangedMessage<Database.Entities.Nutzer>
 {
-    public LoggedInUserChangedMessage(Nutzer user) : base(user)
+    public LoggedInUserChangedMessage(Database.Entities.Nutzer user) : base(user)
     {
     }
 }

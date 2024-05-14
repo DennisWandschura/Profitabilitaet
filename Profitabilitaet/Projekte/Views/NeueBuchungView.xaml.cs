@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Profitabilitaet.Projekte
+namespace Profitabilitaet.Projekte.Views
 {
     /// <summary>
     /// Interaktionslogik für NeueBuchungView.xaml
@@ -23,7 +23,7 @@ namespace Profitabilitaet.Projekte
         public NeueBuchungView(Projekt projekt, Common.Connection connection)
         {
             InitializeComponent();
-            DataContext = new NeueBuchungViewModel(projekt, connection);
+            DataContext = new ViewModels.NeueBuchungViewModel(projekt, connection);
         }
 
         private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)

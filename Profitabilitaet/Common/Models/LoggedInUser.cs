@@ -6,7 +6,7 @@ namespace Profitabilitaet.Common.Models
 {
     internal class LoggedInUser
     {
-        public Nutzer? Nutzer 
+        public Database.Entities.Nutzer? Nutzer 
         {
             get => _nutzer;
             set
@@ -16,7 +16,7 @@ namespace Profitabilitaet.Common.Models
             }
         }
         public Rolle Rolle { get => Nutzer.Rolle; }
-        private Nutzer? _nutzer;
+        private Database.Entities.Nutzer? _nutzer;
 
     }
 }

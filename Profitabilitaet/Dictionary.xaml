@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="BackgroundColorSpeichern" Color="#FFB4FFB4"/>
+    <SolidColorBrush x:Key="BackgroundColorAbbruch" Color="#FFFF9191"/>
+
+</ResourceDictionary>

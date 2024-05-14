@@ -11,9 +11,9 @@ using CommunityToolkit.Mvvm.Input;
 using Profitabilitaet.Database;
 using Profitabilitaet.Database.Entities;
 
-namespace Profitabilitaet.Projekte;
+namespace Profitabilitaet.Projekte.ViewModels;
 
-public partial class NeueBuchungViewModel : ObservableObject
+internal partial class NeueBuchungViewModel : ObservableObject
 {
     public Database.Entities.Projekt Projekt { get; init; }
 

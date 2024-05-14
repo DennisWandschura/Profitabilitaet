@@ -144,7 +144,7 @@ internal partial class ProjekteViewModel : ObservableObject
             return;
         }
 
-        var neueBuchungView = new NeueBuchungView(SelectedProject, _connection);
+        var neueBuchungView = new Views.NeueBuchungView(SelectedProject, _connection);
         neueBuchungView.Topmost = true;
         neueBuchungView.ShowDialog();
     }
