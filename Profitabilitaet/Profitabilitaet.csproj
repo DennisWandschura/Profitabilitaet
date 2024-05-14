@@ -9,6 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Mitarbeiter\Models\**" />
+    <Compile Remove="Projekte\Models\**" />
+    <EmbeddedResource Remove="Mitarbeiter\Models\**" />
+    <EmbeddedResource Remove="Projekte\Models\**" />
+    <None Remove="Mitarbeiter\Models\**" />
+    <None Remove="Projekte\Models\**" />
+    <Page Remove="Mitarbeiter\Models\**" />
+    <Page Remove="Projekte\Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="appsettings.json" />
   </ItemGroup>
 
@@ -29,11 +40,6 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Mitarbeiter\Models\" />
-    <Folder Include="Projekte\Models\" />
   </ItemGroup>
 
   <ItemGroup>

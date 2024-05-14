@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Profitabilitaet.Common
 {
-    internal class Connection(IOptions<DatabaseSettings> databaseSettings)
+    public class Connection(IOptions<DatabaseSettings> databaseSettings)
     {
         private readonly DatabaseSettings _databaseSettings = databaseSettings.Value;
 

@@ -19,5 +19,7 @@ internal interface IConnection
     public Task<Abteilung?> GetAbteilung(AbteilungsId id, CancellationToken cancellationToken);
 
     public Task<IReadOnlyList<Buchung>> GetBuchungen(CancellationToken cancellationToken);
+    public Task<IReadOnlyList<Buchung>> GetBuchungen(ProjektId projektId, CancellationToken cancellationToken);
+    public Task<IReadOnlyList<Buchung>> GetBuchungen(NutzerId nutzerId, CancellationToken cancellationToken);
     public Task<Buchung?> GetBuchung(BuchungId id, CancellationToken cancellationToken);
 }

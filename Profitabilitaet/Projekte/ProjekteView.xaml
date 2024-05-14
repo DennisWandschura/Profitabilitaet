@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:Profitabilitaet.Projekte.ViewModels"
-              d:DataContext="{d:DesignInstance {x:Type vm:ProjekteViewModel} }"
+             d:DataContext="{d:DesignInstance {x:Type vm:ProjekteViewModel} }"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
     <DockPanel>
@@ -13,16 +13,16 @@
                       ItemsSource="{Binding Projekte}" DisplayMemberPath="Bezeichnung" MaxWidth="200"/>
         </Border>
 
-        <Grid DockPanel.Dock="Top" HorizontalAlignment="Right">
-            <Button Content="Bearbeiten"  Command="{Binding EditCommand}" Visibility="{Binding EditButtonVisibility}"/>
+        <Grid DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="0,2">
+            <Button Content="Bearbeiten"  Command="{Binding EditCommand}" Visibility="{Binding EditButtonVisibility}" Margin="2,0"/>
 
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="Speichern" Command="{Binding SaveCommand}" Visibility="{Binding SaveButtonVisibility}"/>
-                <Button Grid.Column="1" Content="Abbrechen" Command="{Binding CancelCommand}" Visibility="{Binding SaveButtonVisibility}"/>
+                <Button Grid.Column="0" Content="Speichern" Command="{Binding SaveCommand}" Visibility="{Binding SaveButtonVisibility}" Margin="2,0"/>
+                <Button Grid.Column="1" Content="Abbrechen" Command="{Binding CancelCommand}" Visibility="{Binding SaveButtonVisibility}" Margin="2,0"/>
             </Grid>
 
         </Grid>
@@ -80,7 +80,7 @@
                             <TextBox Grid.Column="1" Grid.Row="3" Visibility="{Binding EditControlsAdminVisibility}" Text="{Binding SelectedProject.Beginn}"/>
                             <TextBox Grid.Column="1" Grid.Row="4" Visibility="{Binding EditControlsAdminVisibility}" Text="{Binding SelectedProject.Ende}"/>
 
-                            <CheckBox Grid.Column="1" Grid.Row="5" IsChecked="{Binding SelectedProject.IstStorniert}" IsEnabled="False"/>
+                            <CheckBox Grid.Column="1" Grid.Row="5" IsChecked="{Binding SelectedProject.IstStorniert}" IsEnabled="{Binding CanEditIstStorniert}"/>
                             
                         </Grid>
                     </Border>
@@ -93,11 +93,21 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Buchungen:" Grid.Row="0"/>
-                            <ListView Grid.Row="1">
-                                <ListViewItem Content="Mitarbeiter C, 01, 2024, 20"/>
-                                <ListViewItem Content="Mitarbeiter D, 01, 2024, 40"/>
+                            <ListView Grid.Row="1" ItemsSource="{Binding Buchungen}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <Run Text="{Binding Mitarbeiter.DisplayName, Mode=OneWay, StringFormat={}{0}:}"/>
+                                            <Run Text="{Binding Anteil, Mode=OneWay, StringFormat={}{0}%}"/>
+                                            <Run Text="Jahr:"/>
+                                            <Run Text="{Binding Jahr, Mode=OneWay}"/>
+                                            <Run Text="Woche:"/>
+                                            <Run Text="{Binding Woche, Mode=OneWay}"/>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
                             </ListView>
-                            <Button Content="Neue Buchung" Grid.Row="2" HorizontalAlignment="Left" Margin="4"/>
+                            <Button Content="Neue Buchung" Grid.Row="2" HorizontalAlignment="Left" Margin="4" Command="{Binding NeueBuchungCommand}"/>
                         </Grid>
                     </Border>
 

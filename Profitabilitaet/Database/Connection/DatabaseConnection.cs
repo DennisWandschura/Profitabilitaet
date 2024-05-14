@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Profitabilitaet.Common.Models;
 using Profitabilitaet.Config;
 using Profitabilitaet.Database.Entities;
 using System;
@@ -13,7 +14,7 @@ public class DatabaseConnection : DbContext, IConnection
 {
     private readonly DbSet<Nutzer> _nutzer;
     private readonly DbSet<Abteilung> _abteilungen;
-    private readonly DbSet<Projekt> _projekte;
+    private readonly DbSet<Entities.Projekt> _projekte;
     private readonly DbSet<Buchung> _buchungen;
     private readonly DatabaseSettings _settings;
     private readonly Action<DbContextOptionsBuilder, DatabaseSettings> _onConfiguring;
@@ -24,7 +25,7 @@ public class DatabaseConnection : DbContext, IConnection
         _onConfiguring = onConfiguring;
         _nutzer = Set<Nutzer>();
         _abteilungen = Set<Abteilung>();
-        _projekte = Set<Projekt>();
+        _projekte = Set<Entities.Projekt>();
         _buchungen = Set<Buchung>();
     }
 
@@ -37,7 +38,7 @@ public class DatabaseConnection : DbContext, IConnection
     {
         new NutzerEntityTypeConfiguration().Configure(modelBuilder.Entity<Nutzer>());
         new AbteilungEntityTypeConfiguration().Configure(modelBuilder.Entity<Abteilung>());
-        new ProjektEntityTypeConfiguration().Configure(modelBuilder.Entity<Projekt>());
+        new ProjektEntityTypeConfiguration().Configure(modelBuilder.Entity<Entities.Projekt>());
         new BuchungEntityTypeConfiguration().Configure(modelBuilder.Entity<Buchung>());
     }
     
@@ -56,14 +57,14 @@ public class DatabaseConnection : DbContext, IConnection
         return _nutzer.Where(x => x.Loginname == loginName && x.Passwort == passwort).FirstOrDefaultAsync(cancellationToken);
     }
 
-    public Task<Projekt?> GetProjekt(ProjektId id, CancellationToken cancellationToken)
+    public Task<Entities.Projekt?> GetProjekt(ProjektId id, CancellationToken cancellationToken)
     {
         return _projekte.Where(x => x.Id == id)
             .Include(x => x.Leiter)
             .FirstOrDefaultAsync(cancellationToken);
     }
 
-    public Task<IReadOnlyList<Projekt>> GetProjekte(CancellationToken cancellationToken)
+    public Task<IReadOnlyList<Entities.Projekt>> GetProjekte(CancellationToken cancellationToken)
     {
         return _projekte.Include(x => x.Leiter).ToReadOnlyListAsync(cancellationToken);
     }
@@ -83,6 +84,22 @@ public class DatabaseConnection : DbContext, IConnection
     public Task<IReadOnlyList<Buchung>> GetBuchungen(CancellationToken cancellationToken)
     {
         return _buchungen.ToReadOnlyListAsync();
+    }
+
+    public Task<IReadOnlyList<Buchung>> GetBuchungen(ProjektId projektId, CancellationToken cancellationToken)
+    {
+        return _buchungen.FromSql($"SELECT * FROM buchung WHERE ProjektId={projektId.Value}")
+            .Include(x => x.Mitarbeiter)
+            .Include(x => x.Projekt)
+            .ToReadOnlyListAsync(cancellationToken);
+    }
+
+    public Task<IReadOnlyList<Buchung>> GetBuchungen(NutzerId nutzerId, CancellationToken cancellationToken)
+    {
+        return _buchungen.FromSql($"SELECT * FROM buchung WHERE NutzerId={nutzerId.Value}")
+           .Include(x => x.Mitarbeiter)
+           .Include(x => x.Projekt)
+           .ToReadOnlyListAsync(cancellationToken);
     }
 
     public Task<Buchung?> GetBuchung(BuchungId id, CancellationToken cancellationToken)

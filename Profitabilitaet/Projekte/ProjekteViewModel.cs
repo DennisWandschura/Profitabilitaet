@@ -8,6 +8,7 @@ using Profitabilitaet.Common;
 using System.Threading;
 using System.Windows;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 
 namespace Profitabilitaet.Projekte.ViewModels;
 
@@ -35,6 +36,11 @@ internal partial class ProjekteViewModel : ObservableObject
     private Visibility _viewControlsAdminVisibility;
     [ObservableProperty]
     private IReadOnlyList<Nutzer>? _mitarbeiter;
+    [ObservableProperty]
+    private bool _canEditIstStorniert = false;
+
+    [ObservableProperty]
+    private ObservableCollection<Buchung>? _buchungen;
 
     public ProjekteViewModel(Connection connection, LoggedInUser loggedInUser)
     {
@@ -62,7 +68,17 @@ internal partial class ProjekteViewModel : ObservableObject
 
     partial void OnSelectedProjectChanged(Database.Entities.Projekt? value)
     {
+        //Select * From buchung Where ProjektId = value.Id;
 
+        GetBuchungen(value);
+    }
+
+    private async Task GetBuchungen(Database.Entities.Projekt? value)
+    {
+        using var connection = _connection.Create();
+        var buchungen = await connection.GetBuchungen(value.Id, CancellationToken.None);
+
+        Buchungen = new ObservableCollection<Buchung>(buchungen);
     }
 
     [RelayCommand]
@@ -96,6 +112,7 @@ internal partial class ProjekteViewModel : ObservableObject
         {
             EditControlsAdminVisibility = Visibility.Visible;
             ViewControlsAdminVisibility = Visibility.Hidden;
+            CanEditIstStorniert = true;
         }
 
         EditControlsNutzerVisibility = Visibility.Visible;
@@ -115,5 +132,20 @@ internal partial class ProjekteViewModel : ObservableObject
 
         EditButtonVisibility = Visibility.Visible;
         SaveButtonVisibility = Visibility.Hidden;
+
+        CanEditIstStorniert = false;
+    }
+
+    [RelayCommand]
+    private void OnNeueBuchung()
+    {
+        if(SelectedProject is null)
+        {
+            return;
+        }
+
+        var neueBuchungView = new NeueBuchungView(SelectedProject, _connection);
+        neueBuchungView.Topmost = true;
+        neueBuchungView.ShowDialog();
     }
 }
