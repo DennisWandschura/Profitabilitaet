@@ -28,6 +28,7 @@ namespace Profitabilitaet.Projekte.Views
 
         private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
+            DialogResult = false;
             this.Close();
         }
     }

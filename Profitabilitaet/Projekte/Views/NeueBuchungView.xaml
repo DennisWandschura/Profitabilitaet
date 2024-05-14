@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Profitabilitaet.Projekte.Views"
         xmlns:vm="clr-namespace:Profitabilitaet.Projekte.ViewModels"
         d:DataContext="{d:DesignInstance {x:Type vm:NeueBuchungViewModel} }"
+        DialogResult="{Binding DialogResult}"
         mc:Ignorable="d"
         Name="window"
         Title="Neue Buchung" Height="450" Width="500" FontSize="20">

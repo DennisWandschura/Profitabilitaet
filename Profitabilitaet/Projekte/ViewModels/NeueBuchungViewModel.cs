@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -32,6 +33,7 @@ internal partial class NeueBuchungViewModel : ObservableObject
 
     private readonly Common.Connection _connection;
     private IReadOnlyList<Buchung>? _nutzerBuchungen;
+    public bool DialogResult { get; set; }
 
     public NeueBuchungViewModel(Projekt projekt, Common.Connection connection)
     {
@@ -60,6 +62,19 @@ internal partial class NeueBuchungViewModel : ObservableObject
 
     [RelayCommand]
     private void OnSpeichern()
+    {
+        if(!IsBuchungValid())
+        {
+            MessageBox.Show("Text");
+            DialogResult = false;
+        }
+        else
+        {
+            DialogResult = true;
+        }
+    }
+
+    private bool IsBuchungValid()
     {
 
     }
