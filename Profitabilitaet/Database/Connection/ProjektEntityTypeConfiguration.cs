@@ -37,5 +37,8 @@ public class ProjektEntityTypeConfiguration : IEntityTypeConfiguration<Projekt>
             .IsRequired();
 
         modelBuilder.Property(x => x.IstStorniert).IsRequired();
+
+        modelBuilder.HasMany(x => x.Buchungen)
+            .WithOne();
     }
 }

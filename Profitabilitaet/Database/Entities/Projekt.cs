@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Profitabilitaet.Database.Entities;
 
@@ -17,5 +19,8 @@ public class Projekt
     public DateOnly Beginn { get; set; }
     public DateOnly Ende { get; set; }
     public bool IstStorniert { get; set; }
-    // public List<BuchungArbeitszeit> Buchungen { get; }
+
+    public List<Buchung> Buchungen { get; set; }
+
+    public decimal Profitabilitaet => Auftragswert / Buchungen.Sum(x => x.Anteil);
 }

@@ -20,14 +20,12 @@ public class BuchungEntityTypeConfiguration : IEntityTypeConfiguration<Buchung>
         modelBuilder.Property(x => x.Woche).IsRequired();
 
         modelBuilder.Property("MitarbeiterId");
-
         modelBuilder.HasOne(x => x.Mitarbeiter)
             .WithMany()
             .HasForeignKey("MitarbeiterId")
             .IsRequired();
 
         modelBuilder.Property("ProjektId");
-
         modelBuilder.HasOne(x => x.Projekt)
             .WithMany()
             .HasForeignKey("ProjektId")
