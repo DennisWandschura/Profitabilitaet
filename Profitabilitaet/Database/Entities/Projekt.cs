@@ -22,5 +22,8 @@ public class Projekt
 
     public List<Buchung> Buchungen { get; set; }
 
-    public decimal Profitabilitaet => Auftragswert / Buchungen.Sum(x => x.Anteil);
+    public decimal Profitabilitaet => 
+        Buchungen.Count == 0 ?
+        Auftragswert : 
+        Auftragswert / Buchungen.Sum(x => x.Anteil);
 }

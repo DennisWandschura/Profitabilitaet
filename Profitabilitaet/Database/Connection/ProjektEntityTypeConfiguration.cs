@@ -39,6 +39,8 @@ public class ProjektEntityTypeConfiguration : IEntityTypeConfiguration<Projekt>
         modelBuilder.Property(x => x.IstStorniert).IsRequired();
 
         modelBuilder.HasMany(x => x.Buchungen)
-            .WithOne();
+            .WithOne(y => y.Projekt)
+            .HasForeignKey("ProjektId");
+
     }
 }

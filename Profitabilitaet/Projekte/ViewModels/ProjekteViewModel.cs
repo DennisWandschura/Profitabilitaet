@@ -39,9 +39,8 @@ internal partial class ProjekteViewModel : ObservableObject
     private IReadOnlyList<Nutzer>? _mitarbeiter;
     [ObservableProperty]
     private bool _canEditIstStorniert = false;
-
     [ObservableProperty]
-    private ObservableCollection<Buchung>? _buchungen;
+    private Visibility _projectDetailsVisibility;
 
     public ProjekteViewModel(Connection connection, LoggedInUser loggedInUser)
     {
@@ -54,32 +53,26 @@ internal partial class ProjekteViewModel : ObservableObject
         ViewControlsAdminVisibility = Visibility.Visible;
         ViewControlsNutzerVisibility = Visibility.Visible;
 
-        EditButtonVisibility = Visibility.Visible;
+        EditButtonVisibility = Visibility.Hidden;
         SaveButtonVisibility = Visibility.Hidden;
+
+        ProjectDetailsVisibility = Visibility.Hidden;
 
         LoadData();
     }
 
     private async Task LoadData()
     {
-        using var connection = _connection.Create();
-        Mitarbeiter = await connection.GetNutzer(CancellationToken.None);
-        Projekte = await connection.GetProjekte(CancellationToken.None);
-    }
-
-    partial void OnSelectedProjectChanged(Database.Entities.Projekt? value)
-    {
-        //Select * From buchung Where ProjektId = value.Id;
-
-        GetBuchungen(value);
-    }
-
-    private async Task GetBuchungen(Database.Entities.Projekt? value)
-    {
-        using var connection = _connection.Create();
-        var buchungen = await connection.GetBuchungen(value.Id, CancellationToken.None);
-
-        Buchungen = new ObservableCollection<Buchung>(buchungen);
+        try
+        {
+            using var connection = _connection.Create();
+            Mitarbeiter = await connection.GetNutzer(CancellationToken.None);
+            Projekte = await connection.GetProjekte(CancellationToken.None);
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Fehler!");
+        }
     }
 
     [RelayCommand]
@@ -104,6 +97,12 @@ internal partial class ProjekteViewModel : ObservableObject
     [RelayCommand]
     private void OnCancel()
     {
+        SetViewVisibilities();
+    }
+
+    partial void OnSelectedProjectChanged(Projekt? value)
+    {
+        ProjectDetailsVisibility = value is null ? Visibility.Hidden : Visibility.Visible;
         SetViewVisibilities();
     }
 
@@ -151,9 +150,19 @@ internal partial class ProjekteViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void OnAuswertung()
+    private async Task OnAuswertung()
     {
-        var auswertung = new Auswertung("./auswertung.xlxs", _projekte);
-        auswertung.CreateAsync();
+        if (Projekte is null)
+            return;
+
+        try
+        {
+            var auswertung = new Auswertung("./auswertung.xlsx", Projekte);
+            await auswertung.CreateAsync();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Fehler!");
+        }
     }
 }

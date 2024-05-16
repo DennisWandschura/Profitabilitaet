@@ -65,6 +65,7 @@ namespace Profitabilitaet.Tests
             var connection = CreateConnection();
             var projects = await connection.GetProjekte(CancellationToken.None);
             projects.Should().HaveCountGreaterThan(0);
+            projects[0].Buchungen.Should().NotBeNullOrEmpty();
         }
 
         [Theory]
@@ -76,6 +77,7 @@ namespace Profitabilitaet.Tests
             var project = await connection.GetProjekt(new ProjektId(projId),CancellationToken.None);
             project.Should().NotBeNull();
             project.Leiter.Should().NotBeNull();
+            project.Buchungen.Should().NotBeNullOrEmpty();
         }
 
         [Theory]

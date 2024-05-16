@@ -61,12 +61,16 @@ public class DatabaseConnection : DbContext, IConnection
     {
         return _projekte.Where(x => x.Id == id)
             .Include(x => x.Leiter)
+            .Include(x => x.Buchungen)
             .FirstOrDefaultAsync(cancellationToken);
     }
 
     public Task<IReadOnlyList<Entities.Projekt>> GetProjekte(CancellationToken cancellationToken)
     {
-        return _projekte.Include(x => x.Leiter).ToReadOnlyListAsync(cancellationToken);
+        return _projekte
+            .Include(x => x.Leiter)
+            .Include(x => x.Buchungen)
+            .ToReadOnlyListAsync(cancellationToken);
     }
 
     public Task<IReadOnlyList<Abteilung>> GetAbteilungen(CancellationToken cancellationToken)
@@ -83,7 +87,10 @@ public class DatabaseConnection : DbContext, IConnection
 
     public Task<IReadOnlyList<Buchung>> GetBuchungen(CancellationToken cancellationToken)
     {
-        return _buchungen.ToReadOnlyListAsync();
+        return _buchungen
+            .Include(x => x.Mitarbeiter)
+            .Include(x => x.Projekt)
+            .ToReadOnlyListAsync();
     }
 
     public Task<IReadOnlyList<Buchung>> GetBuchungen(ProjektId projektId, CancellationToken cancellationToken)

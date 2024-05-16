@@ -27,7 +27,7 @@ public class BuchungEntityTypeConfiguration : IEntityTypeConfiguration<Buchung>
 
         modelBuilder.Property("ProjektId");
         modelBuilder.HasOne(x => x.Projekt)
-            .WithMany()
+            .WithMany(y => y.Buchungen)
             .HasForeignKey("ProjektId")
             .IsRequired();
     }

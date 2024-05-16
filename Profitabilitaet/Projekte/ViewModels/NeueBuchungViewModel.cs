@@ -77,5 +77,6 @@ internal partial class NeueBuchungViewModel : ObservableObject
     private bool IsBuchungValid()
     {
         //Der Arbeitszeitanteil beträgt mindestens eine, maximal 40 Arbeitsstunden pro Woche
+        return false;
     }
 }

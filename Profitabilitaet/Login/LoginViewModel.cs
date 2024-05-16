@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using Profitabilitaet.Config;
 using Profitabilitaet.Database.Connection;
+using System.Windows;
 
 namespace Profitabilitaet.Common.ViewModels;
 
@@ -54,7 +55,8 @@ internal partial class LoginViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            LoginStatusText = "Fehler: " + ex.Message;
+            LoginStatusText = string.Empty;
+            MessageBox.Show("Fehler: " + ex.Message);
         }
 
         CanLogin = true;
