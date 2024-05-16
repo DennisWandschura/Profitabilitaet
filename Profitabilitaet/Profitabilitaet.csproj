@@ -10,13 +10,9 @@
 
   <ItemGroup>
     <Compile Remove="Mitarbeiter\Models\**" />
-    <Compile Remove="Projekte\Models\**" />
     <EmbeddedResource Remove="Mitarbeiter\Models\**" />
-    <EmbeddedResource Remove="Projekte\Models\**" />
     <None Remove="Mitarbeiter\Models\**" />
-    <None Remove="Projekte\Models\**" />
     <Page Remove="Mitarbeiter\Models\**" />
-    <Page Remove="Projekte\Models\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +27,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="3.0.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />

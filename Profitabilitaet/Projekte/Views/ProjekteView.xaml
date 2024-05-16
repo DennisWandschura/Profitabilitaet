@@ -16,10 +16,12 @@
                       ItemsSource="{Binding Projekte}" DisplayMemberPath="Bezeichnung" MaxWidth="200"/>
         </Border>
 
-        <Grid DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="0,2">
-            <Button Content="Bearbeiten"  Command="{Binding EditCommand}" VerticalAlignment="Center" Visibility="{Binding EditButtonVisibility}" Margin="2,0"/>
+        <Grid DockPanel.Dock="Top" Margin="0,2">
+            <Button Content="Auswertung"  Command="{Binding AuswertungCommand}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2,0"/>
 
-            <Grid  Visibility="{Binding SaveButtonVisibility}">
+            <Button Content="Bearbeiten"  Command="{Binding EditCommand}" VerticalAlignment="Center" HorizontalAlignment="Right"  Visibility="{Binding EditButtonVisibility}" Margin="2,0"/>
+
+            <Grid  Visibility="{Binding SaveButtonVisibility}" HorizontalAlignment="Right" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>

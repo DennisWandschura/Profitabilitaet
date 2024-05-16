@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using Profitabilitaet.Projekte.Models;
 
 namespace Profitabilitaet.Projekte.ViewModels;
 
@@ -147,5 +148,12 @@ internal partial class ProjekteViewModel : ObservableObject
         var neueBuchungView = new Views.NeueBuchungView(SelectedProject, _connection);
         neueBuchungView.Topmost = true;
         neueBuchungView.ShowDialog();
+    }
+
+    [RelayCommand]
+    private void OnAuswertung()
+    {
+        var auswertung = new Auswertung("./auswertung.xlxs", _projekte);
+        auswertung.CreateAsync();
     }
 }

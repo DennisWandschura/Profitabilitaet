@@ -76,6 +76,6 @@ internal partial class NeueBuchungViewModel : ObservableObject
 
     private bool IsBuchungValid()
     {
-
+        return false;
     }
 }
