@@ -47,7 +47,7 @@ public partial class App : Application
 
         // Services
         services.AddSingleton<LoggedInUser>();
-        services.AddSingleton<Common.Connection>();
+        services.AddSingleton(Common.Connection.Create);
 
         // Viewmodels
         services.AddTransient<Common.ViewModels.ShellViewModel>();

@@ -20,13 +20,13 @@ internal partial class LoginViewModel : ObservableObject
     public string BenutzerName { get; set; } = string.Empty;
     public PasswordBox PasswordBox { get; set; } = new();
     private readonly LoggedInUser _loggedInUser;
-    private readonly Common.Connection _connection;
+    private readonly DatabaseConnection _connection;
     [ObservableProperty]
     private bool _canLogin = true;
     [ObservableProperty]
     private string _loginStatusText = string.Empty;
 
-    public LoginViewModel(LoggedInUser loggedInUser, Common.Connection connection)
+    public LoginViewModel(LoggedInUser loggedInUser, DatabaseConnection connection)
     {
         _loggedInUser = loggedInUser;
         PasswordBox.PasswordChar = '*';
@@ -42,8 +42,7 @@ internal partial class LoginViewModel : ObservableObject
 
         try
         {
-            var dbConnection = _connection.Create();
-            var dbNutzer = await dbConnection.GetNutzer(BenutzerName, password, CancellationToken.None);
+            var dbNutzer = await _connection.GetNutzer(BenutzerName, password, CancellationToken.None);
             if (dbNutzer is not null)
             {
                 _loggedInUser.Nutzer = dbNutzer;

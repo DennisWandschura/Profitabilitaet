@@ -101,18 +101,14 @@
                             </Grid.RowDefinitions>
                             <TextBlock Text="Buchungen:" Grid.Row="0" VerticalAlignment="Center" Margin="2"/>
                             <ListView Grid.Row="1" ItemsSource="{Binding SelectedProject.Buchungen}">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock>
-                                            <Run Text="{Binding Mitarbeiter.DisplayName, Mode=OneWay, StringFormat={}{0}:}"/>
-                                            <Run Text="{Binding Anteil, Mode=OneWay, StringFormat={}{0}%}"/>
-                                            <Run Text="Jahr:"/>
-                                            <Run Text="{Binding Jahr, Mode=OneWay}"/>
-                                            <Run Text="Woche:"/>
-                                            <Run Text="{Binding Woche, Mode=OneWay}"/>
-                                        </TextBlock>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Mitarbeiter.DisplayName}" />
+                                        <GridViewColumn Header="Jahr" Width="80" DisplayMemberBinding="{Binding Jahr}" />
+                                        <GridViewColumn Header="Woche" Width="80" DisplayMemberBinding="{Binding Woche}"/>
+                                        <GridViewColumn Header="Anteil" Width="80" DisplayMemberBinding="{Binding Anteil}" />
+                                    </GridView>
+                                </ListView.View>
                             </ListView>
                             <Button Content="Neue Buchung" Grid.Row="2" HorizontalAlignment="Left" Margin="4" Command="{Binding NeueBuchungCommand}" Padding="2"/>
                         </Grid>

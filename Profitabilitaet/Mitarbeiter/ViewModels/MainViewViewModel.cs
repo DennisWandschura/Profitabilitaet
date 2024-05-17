@@ -20,7 +20,7 @@ internal partial class MainViewViewModel : ObservableObject
     private Nutzer? _selectedUser;
 
     private readonly LoggedInUser _loggedInUser;
-    private readonly Common.Connection _connection;
+    private readonly DatabaseConnection _connection;
 
     public Visibility EditVisibility { get; init; }
     [ObservableProperty]
@@ -34,7 +34,7 @@ internal partial class MainViewViewModel : ObservableObject
     public Geschlecht[] Geschlechter { get; } = [Geschlecht.Maennlich, Geschlecht.Weiblich, Geschlecht.Divers];
     public Rolle[] Rollen { get; } = [Rolle.NUTZER, Rolle.ABTEILUNGSLEITER, Rolle.ADMIN];
 
-    public MainViewViewModel(LoggedInUser loggedInUser, Common.Connection connection)
+    public MainViewViewModel(LoggedInUser loggedInUser, DatabaseConnection connection)
     {
         _loggedInUser = loggedInUser;
         _connection = connection;
@@ -72,8 +72,7 @@ internal partial class MainViewViewModel : ObservableObject
 
     private async Task LoadUsers()
     {
-        using var connection =_connection.Create();
-        Mitarbeiter = await connection.GetNutzer(CancellationToken.None);
+        Mitarbeiter = await _connection.GetNutzer(CancellationToken.None);
     }
 
     [RelayCommand]
@@ -97,9 +96,8 @@ internal partial class MainViewViewModel : ObservableObject
 
         if (SelectedUser is not null)
         {
-            using var connection = _connection.Create();
-            connection.Update(SelectedUser);
-            connection.SaveChanges();
+            _connection.Update(SelectedUser);
+            _connection.SaveChanges();
         }
     }
 }

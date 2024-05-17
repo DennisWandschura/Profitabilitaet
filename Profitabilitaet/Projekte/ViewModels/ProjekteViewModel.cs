@@ -10,18 +10,21 @@ using System.Windows;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using Profitabilitaet.Projekte.Models;
+using Profitabilitaet.Database.Connection;
+using System.IO;
 
 namespace Profitabilitaet.Projekte.ViewModels;
 
 internal partial class ProjekteViewModel : ObservableObject
 {
     [ObservableProperty]
-    Database.Entities.Projekt? _selectedProject;
+    Projekt? _selectedProject;
 
     [ObservableProperty]
-    IReadOnlyList<Database.Entities.Projekt>? _projekte;
-    private readonly Connection _connection;
+    IReadOnlyList<Projekt>? _projekte;
+    private readonly DatabaseConnection _connection;
     private readonly LoggedInUser _loggedInUser;
+
     [ObservableProperty]
     private Visibility _editButtonVisibility;
     [ObservableProperty]
@@ -42,7 +45,7 @@ internal partial class ProjekteViewModel : ObservableObject
     [ObservableProperty]
     private Visibility _projectDetailsVisibility;
 
-    public ProjekteViewModel(Connection connection, LoggedInUser loggedInUser)
+    public ProjekteViewModel(DatabaseConnection connection, LoggedInUser loggedInUser)
     {
         _connection = connection;
         _loggedInUser = loggedInUser;
@@ -65,9 +68,8 @@ internal partial class ProjekteViewModel : ObservableObject
     {
         try
         {
-            using var connection = _connection.Create();
-            Mitarbeiter = await connection.GetNutzer(CancellationToken.None);
-            Projekte = await connection.GetProjekte(CancellationToken.None);
+            Mitarbeiter = await _connection.GetNutzer(CancellationToken.None);
+            Projekte = await _connection.GetProjekte(CancellationToken.None);
         }
         catch(Exception ex)
         {
@@ -82,15 +84,14 @@ internal partial class ProjekteViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void OnSave()
+    private async Task OnSave()
     {
         SetViewVisibilities();
 
         if (SelectedProject is not null)
         {
-            using var connection = _connection.Create();
-            connection.Update(SelectedProject);
-            connection.SaveChanges();
+            _connection.Update(SelectedProject);
+            await _connection.SaveChangesAsync();
         }
     }
 
@@ -137,7 +138,7 @@ internal partial class ProjekteViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task OnNeueBuchung()
+    private void OnNeueBuchung()
     {
         if(SelectedProject is null)
         {
@@ -149,12 +150,6 @@ internal partial class ProjekteViewModel : ObservableObject
             Topmost = true
         };
         neueBuchungView.ShowDialog();
-
-        if (neueBuchungView.DialogResult == true)
-        { 
-            using var connection = _connection.Create();
-            SelectedProject.Buchungen = await connection.GetBuchungen(SelectedProject.Id);
-        }
     }
 
     [RelayCommand]
@@ -162,13 +157,18 @@ internal partial class ProjekteViewModel : ObservableObject
     {
         if (Projekte is null)
         {
+            MessageBox.Show("Es sind keine Projekte geladen.", "Fehler beim erstellen der Auswertung!");
             return;
         }
 
         try
         {
-            var auswertung = new Auswertung($"./auswertung_{DateTime.Now:yyyyMMdd}.xlsx", Projekte);
-            await auswertung.CreateAsync();
+            var path = $"./auswertung_{DateTime.Now:yyyyMMdd}.xlsx";
+            path = Path.GetFullPath(path);
+
+            await Auswertung.CreateAsync(path, Projekte);
+
+            MessageBox.Show($"Die Auswertung wurde unter '{path}' gespeicher.", "Auswertung erstellt", MessageBoxButton.OK);
         }
         catch (Exception ex)
         {

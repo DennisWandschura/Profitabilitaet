@@ -11,6 +11,7 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Profitabilitaet.Database;
+using Profitabilitaet.Database.Connection;
 using Profitabilitaet.Database.Entities;
 using Profitabilitaet.Projekte.Views;
 
@@ -35,7 +36,7 @@ internal partial class NeueBuchungViewModel : ObservableObject
     [ObservableProperty]
     private int _woche;
 
-    private readonly Common.Connection _connection;
+    private readonly DatabaseConnection _connection;
     private IReadOnlyList<Buchung>? _nutzerBuchungen;
 
     public int[] Anteile { get; }
@@ -46,7 +47,7 @@ internal partial class NeueBuchungViewModel : ObservableObject
     private readonly int _currentYear;
     private readonly NeueBuchungView _view;
 
-    public NeueBuchungViewModel(Projekt projekt, Common.Connection connection, NeueBuchungView view)
+    public NeueBuchungViewModel(Projekt projekt, DatabaseConnection connection, NeueBuchungView view)
     {
         Projekt = projekt;
         _connection = connection;
@@ -73,8 +74,7 @@ internal partial class NeueBuchungViewModel : ObservableObject
 
     private async Task GetMitarbeiterListe()
     {
-        using var connection = _connection.Create();
-        MitarbeiterListe = await connection.GetNutzer(CancellationToken.None);
+        MitarbeiterListe = await _connection.GetNutzer(CancellationToken.None);
     }
 
     partial void OnSelectedMitarbeiterChanged(Nutzer? value)
@@ -102,8 +102,7 @@ internal partial class NeueBuchungViewModel : ObservableObject
 
     private async Task GetNutzerBuchungen(Nutzer? value)
     {
-        using var connection = _connection.Create();
-        _nutzerBuchungen = await connection.GetBuchungen(value.Id);
+        _nutzerBuchungen = await _connection.GetBuchungen(value.Id);
     }
 
     [RelayCommand]
@@ -137,8 +136,8 @@ internal partial class NeueBuchungViewModel : ObservableObject
                 Woche = this.Woche,
                 Projekt = this.Projekt
             };
-            using var connection = _connection.Create();
-            await connection.AddBuchung(buchung);
+            Projekt.Buchungen.Add(buchung);
+            await _connection.SaveChangesAsync();
 
             _view.DialogResult = true;
             _view.Close();

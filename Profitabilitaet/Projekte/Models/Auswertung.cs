@@ -12,19 +12,16 @@ namespace Profitabilitaet.Projekte.Models
 
     }
 
-    public class Auswertung(string path, IReadOnlyList<Projekt> projekte)
+    public static class Auswertung
     {
-        private readonly string _path = path;
-        private readonly IReadOnlyList<Projekt> _projekte = projekte;
-
-        public Task CreateAsync()
+        public static Task CreateAsync(string path, IReadOnlyList<Projekt> projekte)
         {
-            return Task.Run(() => CreateSpreadsheet(_path, GetProfitabilitaet()));
+            return Task.Run(() => CreateSpreadsheet(path, GetProfitabilitaet(projekte)));
         }
 
-        private IEnumerable<ProjektProfitabilitaet> GetProfitabilitaet()
+        private static IEnumerable<ProjektProfitabilitaet> GetProfitabilitaet(IReadOnlyList<Projekt> projekte)
         {
-            return _projekte.Select(x => new ProjektProfitabilitaet(x.Id.Value, x.Bezeichnung, x.Profitabilitaet)).OrderByDescending(x => x.Profitabilitaet);
+            return projekte.Select(x => new ProjektProfitabilitaet(x.Id.Value, x.Bezeichnung, x.Profitabilitaet)).OrderByDescending(x => x.Profitabilitaet);
         }
 
         private static void CreateSpreadsheet(string path, IEnumerable<ProjektProfitabilitaet> projektProfitabilitaet)

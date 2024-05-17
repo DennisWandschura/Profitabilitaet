@@ -14,7 +14,7 @@ public class DatabaseConnection : DbContext, IConnection
 {
     private readonly DbSet<Nutzer> _nutzer;
     private readonly DbSet<Abteilung> _abteilungen;
-    private readonly DbSet<Entities.Projekt> _projekte;
+    private readonly DbSet<Projekt> _projekte;
     private readonly DbSet<Buchung> _buchungen;
     private readonly DatabaseSettings _settings;
     private readonly Action<DbContextOptionsBuilder, DatabaseSettings> _onConfiguring;
@@ -25,7 +25,7 @@ public class DatabaseConnection : DbContext, IConnection
         _onConfiguring = onConfiguring;
         _nutzer = Set<Nutzer>();
         _abteilungen = Set<Abteilung>();
-        _projekte = Set<Entities.Projekt>();
+        _projekte = Set<Projekt>();
         _buchungen = Set<Buchung>();
     }
 

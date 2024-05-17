@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Profitabilitaet.Common
 {
-    public class Connection(IOptions<DatabaseSettings> databaseSettings)
+    public static class Connection
     {
-        private readonly DatabaseSettings _databaseSettings = databaseSettings.Value;
-
-        public DatabaseConnection Create()
+        public static DatabaseConnection Create(IServiceProvider serviceProvider)
         {
-            return MySqlConnection.Create(_databaseSettings);
+           var databaseSettings = (IOptions<DatabaseSettings>)serviceProvider.GetService(typeof(IOptions<DatabaseSettings>));
+            //IOptions<DatabaseSettings> databaseSettings;
+            return MySqlConnection.Create(databaseSettings.Value);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Profitabilitaet.Database.Entities;
+﻿using Profitabilitaet.Database.Connection;
+using Profitabilitaet.Database.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Profitabilitaet.Projekte.Views
     /// </summary>
     public partial class NeueBuchungView : Window
     {
-        public NeueBuchungView(Projekt projekt, Common.Connection connection)
+        public NeueBuchungView(Projekt projekt, DatabaseConnection connection)
         {
             InitializeComponent();
             DataContext = new ViewModels.NeueBuchungViewModel(projekt, connection, this);

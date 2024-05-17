@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Profitabilitaet.Database.Entities;
@@ -20,7 +21,8 @@ public class Projekt
     public DateOnly Ende { get; set; }
     public bool IstStorniert { get; set; }
 
-    public List<Buchung> Buchungen { get; set; }
+    public ICollection<Buchung> Buchungen { get; private set; } =
+            new ObservableCollection<Buchung>();
 
     public decimal Profitabilitaet => 
         Buchungen.Count == 0 ?
