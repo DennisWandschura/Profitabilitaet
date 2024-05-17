@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -11,11 +12,14 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Profitabilitaet.Database;
 using Profitabilitaet.Database.Entities;
+using Profitabilitaet.Projekte.Views;
 
 namespace Profitabilitaet.Projekte.ViewModels;
 
 internal partial class NeueBuchungViewModel : ObservableObject
 {
+    private const int MaxWochenAnteil = 40;
+
     public Database.Entities.Projekt Projekt { get; init; }
 
     [ObservableProperty]
@@ -33,12 +37,36 @@ internal partial class NeueBuchungViewModel : ObservableObject
 
     private readonly Common.Connection _connection;
     private IReadOnlyList<Buchung>? _nutzerBuchungen;
-    public bool DialogResult { get; set; }
 
-    public NeueBuchungViewModel(Projekt projekt, Common.Connection connection)
+    public int[] Anteile { get; }
+
+    [ObservableProperty]
+    private int[] _wochen;
+    public int[] Jahre { get; }
+    private readonly int _currentYear;
+    private readonly NeueBuchungView _view;
+
+    public NeueBuchungViewModel(Projekt projekt, Common.Connection connection, NeueBuchungView view)
     {
         Projekt = projekt;
         _connection = connection;
+
+        Anteile = Enumerable.Range(1, 100).ToArray();
+        Anteil = 1;
+
+        var today = DateTime.Today;
+        _currentYear = today.Year;
+
+        Jahre = [today.Year, today.Year + 1];
+        Jahr = _currentYear;
+
+        //var currentWeek = GetWeekOfYear(DateTime.Today);
+        //var numberOfWeeks = GetNumberOfWeeks(_currentYear);
+        //var wochen = Enumerable.Range(currentWeek, GetNumberOfWeeks(_currentYear) - currentWeek).ToArray();
+        //Wochen = wochen;
+        //Woche = currentWeek;
+
+        _view = view;
 
         GetMitarbeiterListe();
     }
@@ -54,29 +82,106 @@ internal partial class NeueBuchungViewModel : ObservableObject
         GetNutzerBuchungen(value);
     }
 
-    private async Task GetNutzerBuchungen(Nutzer? value)
+    partial void OnJahrChanged(int value)
     {
-        using var connection = _connection.Create();
-        _nutzerBuchungen = await connection.GetBuchungen(value.Id, CancellationToken.None);
-    }
-
-    [RelayCommand]
-    private void OnSpeichern()
-    {
-        if(!IsBuchungValid())
+        
+        if (value == _currentYear)
         {
-            MessageBox.Show("Text");
-            DialogResult = false;
+            var currentWeek = GetWeekOfYear(DateTime.Today);
+            var wochen = Enumerable.Range(currentWeek, GetNumberOfWeeks(value) - currentWeek).ToArray();
+
+            Wochen = wochen;
+            Woche = currentWeek;
         }
         else
         {
-            DialogResult = true;
+            Wochen = Enumerable.Range(1, GetNumberOfWeeks(value)).ToArray();
+            Woche = 1;
         }
     }
 
-    private bool IsBuchungValid()
+    private async Task GetNutzerBuchungen(Nutzer? value)
+    {
+        using var connection = _connection.Create();
+        _nutzerBuchungen = await connection.GetBuchungen(value.Id);
+    }
+
+    [RelayCommand]
+    private async Task OnSpeichern()
+    {
+        if(SelectedMitarbeiter is null)
+        {
+            MessageBox.Show("Bitte wählen Sie einen Mitarbeiter aus!", "Fehler beim Buchen");
+            return;
+        }
+
+        if (_nutzerBuchungen is null)
+        {
+            MessageBox.Show("Fehler beim Buchen");
+            return;
+        }
+
+        var validationResult = IsBuchungValid();
+        if (!validationResult.Item1)
+        {
+            MessageBox.Show(validationResult.Item2, "Fehler beim Buchen");
+            _view.DialogResult = false;
+        }
+        else
+        {
+            var buchung = new Buchung
+            {
+                Anteil = this.Anteil,
+                Jahr = this.Jahr,
+                Mitarbeiter = SelectedMitarbeiter,
+                Woche = this.Woche,
+                Projekt = this.Projekt
+            };
+            using var connection = _connection.Create();
+            await connection.AddBuchung(buchung);
+
+            _view.DialogResult = true;
+            _view.Close();
+        }
+    }
+
+    private (bool, string) IsBuchungValid()
     {
         //Der Arbeitszeitanteil beträgt mindestens eine, maximal 40 Arbeitsstunden pro Woche
-        return false;
+        var currentAnteil = _nutzerBuchungen.Where(x => x.Jahr == Jahr && x.Woche == Woche).Sum(x => x.Anteil);
+        if(currentAnteil > MaxWochenAnteil)
+        {
+            return (false, $"Mitarbeiter darf nur maximal 40 Stunden arbeiten, mit der aktuellen Buchung wären es aber {currentAnteil}!");
+        }
+
+        return (true, string.Empty);
+    }
+
+    private static int GetWeekOfYear(DateTime date)
+    {
+        // Gets the Calendar instance associated with a CultureInfo.
+        CultureInfo myCI = CultureInfo.CurrentCulture;
+        Calendar myCal = myCI.Calendar;
+
+        // Gets the DTFI properties required by GetWeekOfYear.
+        CalendarWeekRule myCWR = myCI.DateTimeFormat.CalendarWeekRule;
+        DayOfWeek myFirstDOW = myCI.DateTimeFormat.FirstDayOfWeek;
+
+        return myCal.GetWeekOfYear(date, myCWR, myFirstDOW);
+    }
+
+    private static int GetNumberOfWeeks(int year)
+    {
+        // Gets the Calendar instance associated with a CultureInfo.
+        CultureInfo myCI = CultureInfo.CurrentCulture;
+        Calendar myCal = myCI.Calendar;
+
+        // Gets the DTFI properties required by GetWeekOfYear.
+        CalendarWeekRule myCWR = myCI.DateTimeFormat.CalendarWeekRule;
+        DayOfWeek myFirstDOW = myCI.DateTimeFormat.FirstDayOfWeek;
+
+        // Displays the total number of weeks in the current year.
+        DateTime LastDay = new System.DateTime(year, 12, 31);
+        return myCal.GetWeekOfYear(LastDay, myCWR, myFirstDOW) + 1;
     }
 }

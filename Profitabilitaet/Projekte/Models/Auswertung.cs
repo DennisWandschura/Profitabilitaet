@@ -1,22 +1,18 @@
-﻿using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-using DocumentFormat.OpenXml;
-using Profitabilitaet.Database.Entities;
-using System;
+﻿using Profitabilitaet.Database.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace Profitabilitaet.Projekte.Models
 {
-    internal readonly record struct ProjektProfitabilitaet(string Bezeichung, decimal Profitabilitaet)
+    internal readonly record struct ProjektProfitabilitaet(int ProjektId, string Bezeichung, decimal Profitabilitaet)
     {
 
     }
 
-    public class Auswertung(string path, IReadOnlyList<Database.Entities.Projekt> projekte)
+    public class Auswertung(string path, IReadOnlyList<Projekt> projekte)
     {
         private readonly string _path = path;
         private readonly IReadOnlyList<Projekt> _projekte = projekte;
@@ -28,30 +24,37 @@ namespace Profitabilitaet.Projekte.Models
 
         private IEnumerable<ProjektProfitabilitaet> GetProfitabilitaet()
         {
-            return _projekte.Select(x => new ProjektProfitabilitaet(x.Bezeichnung, x.Profitabilitaet)).OrderByDescending(x => x.Profitabilitaet);
+            return _projekte.Select(x => new ProjektProfitabilitaet(x.Id.Value, x.Bezeichnung, x.Profitabilitaet)).OrderByDescending(x => x.Profitabilitaet);
         }
 
         private static void CreateSpreadsheet(string path, IEnumerable<ProjektProfitabilitaet> projektProfitabilitaet)
         {
-            using (var workbook = new XLWorkbook())
-            {
-                var worksheet = workbook.Worksheets.Add("Sample Sheet");
-                worksheet.Cell(1, 1).Value = "Bezeichnung";
-                worksheet.Cell(1, 2).Value = "Profitabilität";
+            using var workbook = new XLWorkbook();
+            var worksheet = workbook.Worksheets.Add("Auswertung");
+            worksheet.Cell(1, 1).Value = "Nummer";
+            worksheet.Cell(1, 2).Value = "Bezeichnung";
+            worksheet.Cell(1, 3).Value = "Profitabilität";
 
-                worksheet.Cell(1, 1).Style.Font.Bold = true;
-                worksheet.Cell(1, 2).Style.Font.Bold = true;
+            worksheet.SetHeaderCellStyle(1);
+            worksheet.SetHeaderCellStyle(2);
+            worksheet.SetHeaderCellStyle(3);
 
-                //worksheet.Row(1).
+            worksheet.Cell(2, 1).InsertData(projektProfitabilitaet);
 
-                worksheet.Cell(2, 1).InsertData(projektProfitabilitaet);
+            worksheet.Columns(3, 3).Style.NumberFormat.SetNumberFormatId(2);
 
-                worksheet.Columns(2,2).Style.NumberFormat.SetNumberFormatId(2);
+            worksheet.Columns().AdjustToContents();
 
-                worksheet.Columns().AdjustToContents();
+            workbook.SaveAs(path);
+        }
+    }
 
-                workbook.SaveAs(path);
-            }
+    public static class WorksheetExtensions
+    {
+        public static void SetHeaderCellStyle(this IXLWorksheet worksheet, int column)
+        {
+            worksheet.Cell(1, column).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+            worksheet.Cell(1, column).Style.Font.Bold = true;
         }
     }
 }

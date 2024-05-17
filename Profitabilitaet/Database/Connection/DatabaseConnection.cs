@@ -93,20 +93,20 @@ public class DatabaseConnection : DbContext, IConnection
             .ToReadOnlyListAsync();
     }
 
-    public Task<IReadOnlyList<Buchung>> GetBuchungen(ProjektId projektId, CancellationToken cancellationToken)
+    public Task<List<Buchung>> GetBuchungen(ProjektId projektId)
     {
         return _buchungen.FromSql($"SELECT * FROM buchung WHERE ProjektId={projektId.Value}")
             .Include(x => x.Mitarbeiter)
             .Include(x => x.Projekt)
-            .ToReadOnlyListAsync(cancellationToken);
+            .ToListAsync();
     }
 
-    public Task<IReadOnlyList<Buchung>> GetBuchungen(NutzerId nutzerId, CancellationToken cancellationToken)
+    public Task<IReadOnlyList<Buchung>> GetBuchungen(NutzerId nutzerId)
     {
-        return _buchungen.FromSql($"SELECT * FROM buchung WHERE NutzerId={nutzerId.Value}")
+        return _buchungen.FromSql($"SELECT * FROM buchung WHERE MitarbeiterId={nutzerId.Value}")
            .Include(x => x.Mitarbeiter)
            .Include(x => x.Projekt)
-           .ToReadOnlyListAsync(cancellationToken);
+           .ToReadOnlyListAsync();
     }
 
     public Task<Buchung?> GetBuchung(BuchungId id, CancellationToken cancellationToken)
@@ -115,6 +115,11 @@ public class DatabaseConnection : DbContext, IConnection
             .Include(x => x.Mitarbeiter)
             .Include(x => x.Projekt)
             .FirstOrDefaultAsync(cancellationToken);
+    }
+
+    public async Task AddBuchung(Buchung buchung)
+    {
+       await _buchungen.AddAsync(buchung);
     }
 }
 

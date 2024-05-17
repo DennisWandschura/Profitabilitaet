@@ -23,7 +23,7 @@ namespace Profitabilitaet.Projekte.Views
         public NeueBuchungView(Projekt projekt, Common.Connection connection)
         {
             InitializeComponent();
-            DataContext = new ViewModels.NeueBuchungViewModel(projekt, connection);
+            DataContext = new ViewModels.NeueBuchungViewModel(projekt, connection, this);
         }
 
         private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)

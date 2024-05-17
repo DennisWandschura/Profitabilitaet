@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Profitabilitaet.Projekte.Views"
         xmlns:vm="clr-namespace:Profitabilitaet.Projekte.ViewModels"
         d:DataContext="{d:DesignInstance {x:Type vm:NeueBuchungViewModel} }"
-        DialogResult="{Binding DialogResult}"
         mc:Ignorable="d"
         Name="window"
         Title="Neue Buchung" Height="450" Width="500" FontSize="20">
@@ -40,9 +39,9 @@
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Anteil:" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"/>
 
         <ComboBox Grid.Column="1" Grid.Row="1" SelectedItem="{Binding SelectedMitarbeiter}" ItemsSource="{Binding MitarbeiterListe}" DisplayMemberPath="DisplayName"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Jahr}"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Woche}"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Anteil}"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" SelectedItem="{Binding Jahr}" ItemsSource="{Binding Jahre}"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="{Binding Woche}" ItemsSource="{Binding Wochen}"/>
+        <ComboBox Grid.Column="1" Grid.Row="4" SelectedItem="{Binding Anteil}" ItemsSource="{Binding Anteile}"/>
 
         <Grid Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Right">
             <Grid.ColumnDefinitions>

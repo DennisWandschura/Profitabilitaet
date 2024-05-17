@@ -137,32 +137,42 @@ internal partial class ProjekteViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void OnNeueBuchung()
+    private async Task OnNeueBuchung()
     {
         if(SelectedProject is null)
         {
             return;
         }
 
-        var neueBuchungView = new Views.NeueBuchungView(SelectedProject, _connection);
-        neueBuchungView.Topmost = true;
+        var neueBuchungView = new Views.NeueBuchungView(SelectedProject, _connection)
+        {
+            Topmost = true
+        };
         neueBuchungView.ShowDialog();
+
+        if (neueBuchungView.DialogResult == true)
+        { 
+            using var connection = _connection.Create();
+            SelectedProject.Buchungen = await connection.GetBuchungen(SelectedProject.Id);
+        }
     }
 
     [RelayCommand]
     private async Task OnAuswertung()
     {
         if (Projekte is null)
+        {
             return;
+        }
 
         try
         {
-            var auswertung = new Auswertung("./auswertung.xlsx", Projekte);
+            var auswertung = new Auswertung($"./auswertung_{DateTime.Now:yyyyMMdd}.xlsx", Projekte);
             await auswertung.CreateAsync();
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Fehler!");
+            MessageBox.Show(ex.Message, "Fehler beim erstellen der Auswertung!");
         }
     }
 }
