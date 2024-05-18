@@ -17,17 +17,19 @@
         </Border>
 
         <Grid DockPanel.Dock="Top" Margin="0,2">
-            <Button Content="Auswertung"  Command="{Binding AuswertungCommand}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2,0"/>
-
-            <Button Content="Bearbeiten"  Command="{Binding EditCommand}" VerticalAlignment="Center" HorizontalAlignment="Right"  Visibility="{Binding EditButtonVisibility}" Margin="2,0"/>
-
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Auswertung" Command="{Binding AuswertungCommand}" Margin="2,0"/>
+                <Button Content="Neues Projekt" Command="{Binding NeuesProjektCommand}" Margin="2,0" Visibility="{Binding NewProjectVisibility}"/>
+                <Button Content="Bearbeiten"  Command="{Binding EditCommand}" VerticalAlignment="Center" HorizontalAlignment="Right"  Visibility="{Binding EditButtonVisibility}" Margin="2,0"/>
+            </StackPanel>
+          
             <Grid Visibility="{Binding SaveButtonVisibility}" HorizontalAlignment="Right" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Content="Speichern" Command="{Binding SaveCommand}" Margin="2,0" VerticalAlignment="Center" Background="{StaticResource BackgroundColorSpeichern}"/>
-                <Button Grid.Column="1" Content="Abbruch" Command="{Binding CancelCommand}" Margin="2,0" VerticalAlignment="Center" Background="{DynamicResource BackgroundColorAbbruch}"/>
+                <Button Grid.Column="1" Content="Abbruch" Command="{Binding CancelCommand}" Margin="2,0" VerticalAlignment="Center" Background="{StaticResource BackgroundColorAbbruch}"/>
             </Grid>
 
         </Grid>

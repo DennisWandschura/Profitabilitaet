@@ -27,13 +27,9 @@ public class ProjektEntityTypeConfiguration : IEntityTypeConfiguration<Projekt>
         modelBuilder.Property(x => x.AngezahlterBetrag).IsRequired();
 
         modelBuilder.Property(x => x.Beginn)
-            .HasConversion(x => x.ToDateTime(),
-            x => x.ToDateOnly())
             .IsRequired();
 
         modelBuilder.Property(x => x.Ende)
-            .HasConversion(x => x.ToDateTime(),
-            x => x.ToDateOnly())
             .IsRequired();
 
         modelBuilder.Property(x => x.IstStorniert).IsRequired();

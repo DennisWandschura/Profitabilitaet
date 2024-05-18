@@ -17,8 +17,8 @@ public class Projekt
     public Nutzer? Leiter { get; set; }
     public decimal Auftragswert { get; set; }
     public decimal AngezahlterBetrag { get; set; }
-    public DateOnly Beginn { get; set; }
-    public DateOnly Ende { get; set; }
+    public DateTime Beginn { get; set; }
+    public DateTime Ende { get; set; }
     public bool IstStorniert { get; set; }
 
     public ICollection<Buchung> Buchungen { get; private set; } =

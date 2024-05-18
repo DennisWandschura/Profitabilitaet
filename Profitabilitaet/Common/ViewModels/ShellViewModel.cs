@@ -31,7 +31,6 @@ internal partial class ShellViewModel : ObservableObject
         {
             LogoutVisibility = Visibility.Visible;
             CurrentView = new Views.MainView();
-
         }
         else
         {

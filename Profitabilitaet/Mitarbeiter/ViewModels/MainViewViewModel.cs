@@ -72,7 +72,7 @@ internal partial class MainViewViewModel : ObservableObject
 
     private async Task LoadUsers()
     {
-        Mitarbeiter = await _connection.GetNutzer(CancellationToken.None);
+        Mitarbeiter = await _connection.GetNutzer();
     }
 
     [RelayCommand]

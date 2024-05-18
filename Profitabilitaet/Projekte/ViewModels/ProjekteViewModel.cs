@@ -12,6 +12,9 @@ using System.Collections.ObjectModel;
 using Profitabilitaet.Projekte.Models;
 using Profitabilitaet.Database.Connection;
 using System.IO;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Profitabilitaet.Projekte.ViewModels;
 
@@ -20,8 +23,9 @@ internal partial class ProjekteViewModel : ObservableObject
     [ObservableProperty]
     Projekt? _selectedProject;
 
-    [ObservableProperty]
-    IReadOnlyList<Projekt>? _projekte;
+    public ObservableCollection<Projekt> Projekte => _connection.Projekte;
+    public ObservableCollection<Nutzer> Mitarbeiter => _connection.Nutzer;
+
     private readonly DatabaseConnection _connection;
     private readonly LoggedInUser _loggedInUser;
 
@@ -39,11 +43,11 @@ internal partial class ProjekteViewModel : ObservableObject
     [ObservableProperty]
     private Visibility _viewControlsAdminVisibility;
     [ObservableProperty]
-    private IReadOnlyList<Nutzer>? _mitarbeiter;
-    [ObservableProperty]
     private bool _canEditIstStorniert = false;
     [ObservableProperty]
     private Visibility _projectDetailsVisibility;
+    [ObservableProperty]
+    private Visibility _newProjectVisibility;
 
     public ProjekteViewModel(DatabaseConnection connection, LoggedInUser loggedInUser)
     {
@@ -61,20 +65,7 @@ internal partial class ProjekteViewModel : ObservableObject
 
         ProjectDetailsVisibility = Visibility.Hidden;
 
-        LoadData();
-    }
-
-    private async Task LoadData()
-    {
-        try
-        {
-            Mitarbeiter = await _connection.GetNutzer(CancellationToken.None);
-            Projekte = await _connection.GetProjekte(CancellationToken.None);
-        }
-        catch(Exception ex)
-        {
-            MessageBox.Show(ex.Message, "Fehler!");
-        }
+        NewProjectVisibility = loggedInUser.Rolle != Rolle.NUTZER ? Visibility.Visible : Visibility.Collapsed;
     }
 
     [RelayCommand]
@@ -166,7 +157,7 @@ internal partial class ProjekteViewModel : ObservableObject
             var path = $"./auswertung_{DateTime.Now:yyyyMMdd}.xlsx";
             path = Path.GetFullPath(path);
 
-            await Auswertung.CreateAsync(path, Projekte);
+            await Auswertung.CreateAsync(path, Projekte.ToList());
 
             MessageBox.Show($"Die Auswertung wurde unter '{path}' gespeicher.", "Auswertung erstellt", MessageBoxButton.OK);
         }
@@ -174,5 +165,16 @@ internal partial class ProjekteViewModel : ObservableObject
         {
             MessageBox.Show(ex.Message, "Fehler beim erstellen der Auswertung!");
         }
+    }
+
+    [RelayCommand]
+    private async Task OnNeuesProjekt()
+    {
+        var nutzerListe =await  _connection.GetNutzer();
+        var neueBuchungView = new Views.NeuesProjektView(nutzerListe, _connection)
+        {
+            Topmost = true
+        };
+        neueBuchungView.ShowDialog();
     }
 }

@@ -30,10 +30,16 @@
         </Border>
 
         <Grid DockPanel.Dock="Top" Visibility="{Binding EditVisibility}" >
-            <Button Content="Bearbeiten" HorizontalAlignment="Right" Command="{Binding EditCommand}" 
+
+            
+                <Button Content="Bearbeiten" HorizontalAlignment="Left" Command="{Binding EditCommand}" 
                     Visibility="{Binding EditButtonVisibility}"/>
-            <Button Content="Speichern" HorizontalAlignment="Right" Command="{Binding SaveCommand}" 
-                    Visibility="{Binding SaveButtonVisibility}"/>
+            
+            <Grid Visibility="{Binding SaveButtonVisibility}">
+                <Button Content="Speichern" HorizontalAlignment="Right" Command="{Binding SaveCommand}" 
+                    />
+            </Grid>
+            
         </Grid>
 
         <Border BorderThickness="1" BorderBrush="Black" Margin="2">

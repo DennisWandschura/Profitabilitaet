@@ -74,7 +74,7 @@ internal partial class NeueBuchungViewModel : ObservableObject
 
     private async Task GetMitarbeiterListe()
     {
-        MitarbeiterListe = await _connection.GetNutzer(CancellationToken.None);
+        MitarbeiterListe = await _connection.GetNutzer();
     }
 
     partial void OnSelectedMitarbeiterChanged(Nutzer? value)

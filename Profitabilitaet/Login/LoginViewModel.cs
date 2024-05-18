@@ -42,9 +42,10 @@ internal partial class LoginViewModel : ObservableObject
 
         try
         {
-            var dbNutzer = await _connection.GetNutzer(BenutzerName, password, CancellationToken.None);
+            var dbNutzer = await _connection.GetNutzer(BenutzerName, password);
             if (dbNutzer is not null)
             {
+                await _connection.OnLogin();
                 _loggedInUser.Nutzer = dbNutzer;
             }
             else
