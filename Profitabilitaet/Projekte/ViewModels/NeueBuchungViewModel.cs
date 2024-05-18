@@ -26,8 +26,7 @@ internal partial class NeueBuchungViewModel : ObservableObject
     [ObservableProperty]
     private Nutzer? _selectedMitarbeiter;
 
-    [ObservableProperty]
-    private IReadOnlyList<Nutzer>? _mitarbeiterListe;
+    public ICollection<Nutzer>? MitarbeiterListe { get; init; }
 
     [ObservableProperty]
     private int _anteil;
@@ -51,6 +50,7 @@ internal partial class NeueBuchungViewModel : ObservableObject
     {
         Projekt = projekt;
         _connection = connection;
+        MitarbeiterListe = connection.Nutzer;
 
         Anteile = Enumerable.Range(1, 100).ToArray();
         Anteil = 1;
@@ -68,13 +68,6 @@ internal partial class NeueBuchungViewModel : ObservableObject
         //Woche = currentWeek;
 
         _view = view;
-
-        GetMitarbeiterListe();
-    }
-
-    private async Task GetMitarbeiterListe()
-    {
-        MitarbeiterListe = await _connection.GetNutzer();
     }
 
     partial void OnSelectedMitarbeiterChanged(Nutzer? value)
@@ -121,9 +114,9 @@ internal partial class NeueBuchungViewModel : ObservableObject
         }
 
         var validationResult = IsBuchungValid();
-        if (!validationResult.Item1)
+        if (validationResult != BuchungValidationResult.Valid)
         {
-            MessageBox.Show(validationResult.Item2, "Fehler beim Buchen");
+            MessageBox.Show(validationResult.ErrorText, "Fehler beim Buchen");
             _view.DialogResult = false;
         }
         else
@@ -144,16 +137,16 @@ internal partial class NeueBuchungViewModel : ObservableObject
         }
     }
 
-    private (bool, string) IsBuchungValid()
+    private BuchungValidationResult IsBuchungValid()
     {
         //Der Arbeitszeitanteil beträgt mindestens eine, maximal 40 Arbeitsstunden pro Woche
         var currentAnteil = _nutzerBuchungen.Where(x => x.Jahr == Jahr && x.Woche == Woche).Sum(x => x.Anteil);
         if(currentAnteil > MaxWochenAnteil)
         {
-            return (false, $"Mitarbeiter darf nur maximal 40 Stunden arbeiten, mit der aktuellen Buchung wären es aber {currentAnteil}!");
+            return BuchungValidationResult.Invalid($"Mitarbeiter darf nur maximal 40 Stunden arbeiten, mit der aktuellen Buchung wären es aber {currentAnteil}!");
         }
 
-        return (true, string.Empty);
+        return BuchungValidationResult.Valid;
     }
 
     private static int GetWeekOfYear(DateTime date)
@@ -183,4 +176,10 @@ internal partial class NeueBuchungViewModel : ObservableObject
         DateTime LastDay = new System.DateTime(year, 12, 31);
         return myCal.GetWeekOfYear(LastDay, myCWR, myFirstDOW) + 1;
     }
+}
+
+internal readonly record struct BuchungValidationResult(bool IsValid, string ErrorText)
+{
+    public static BuchungValidationResult Valid => new BuchungValidationResult(true, string.Empty);
+    public static BuchungValidationResult Invalid(string msg) => new BuchungValidationResult(false, msg);
 }

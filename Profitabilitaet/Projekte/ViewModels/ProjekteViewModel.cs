@@ -23,8 +23,8 @@ internal partial class ProjekteViewModel : ObservableObject
     [ObservableProperty]
     Projekt? _selectedProject;
 
-    public ObservableCollection<Projekt> Projekte => _connection.Projekte;
-    public ObservableCollection<Nutzer> Mitarbeiter => _connection.Nutzer;
+    public ObservableCollection<Projekt>? Projekte => _connection.Projekte;
+    public ObservableCollection<Nutzer>? Mitarbeiter => _connection.Nutzer;
 
     private readonly DatabaseConnection _connection;
     private readonly LoggedInUser _loggedInUser;

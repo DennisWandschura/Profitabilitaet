@@ -13,8 +13,10 @@ namespace Profitabilitaet.Mitarbeiter.ViewModels;
 
 internal partial class MainViewViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private IReadOnlyList<Nutzer>? _mitarbeiter;
+    public Geschlecht[] Geschlechter { get; } = [Geschlecht.Maennlich, Geschlecht.Weiblich, Geschlecht.Divers];
+    public Rolle[] Rollen { get; } = [Rolle.NUTZER, Rolle.ABTEILUNGSLEITER, Rolle.ADMIN];
+
+    public ObservableCollection<Nutzer>? Mitarbeiter { get; init; }
 
     [ObservableProperty]
     private Nutzer? _selectedUser;
@@ -31,8 +33,11 @@ internal partial class MainViewViewModel : ObservableObject
     private Visibility _editControlsVisibility;
     [ObservableProperty]
     private Visibility _viewControlsVisibility;
-    public Geschlecht[] Geschlechter { get; } = [Geschlecht.Maennlich, Geschlecht.Weiblich, Geschlecht.Divers];
-    public Rolle[] Rollen { get; } = [Rolle.NUTZER, Rolle.ABTEILUNGSLEITER, Rolle.ADMIN];
+    [ObservableProperty]
+    private Visibility _newUserButtonVisibility;
+    [ObservableProperty]
+    private Visibility _selectedUserViewVisibility;
+
 
     public MainViewViewModel(LoggedInUser loggedInUser, DatabaseConnection connection)
     {
@@ -44,8 +49,15 @@ internal partial class MainViewViewModel : ObservableObject
         SaveButtonVisibility = Visibility.Hidden;
         EditControlsVisibility = Visibility.Hidden;
         ViewControlsVisibility = Visibility.Visible;
+        SelectedUserViewVisibility = Visibility.Hidden;
 
-        LoadUsers();
+        Mitarbeiter = connection.Nutzer;
+    }
+
+    partial void OnSelectedUserChanged(Nutzer? value)
+    {
+        SelectedUserViewVisibility = value is not null ?
+            Visibility.Visible : Visibility.Hidden;
     }
 
     private Visibility GetVisibilityEditView(Rolle rolle)
@@ -68,11 +80,6 @@ internal partial class MainViewViewModel : ObservableObject
             Rolle.ADMIN => Visibility.Collapsed,
             _ => Visibility.Visible
         };
-    }
-
-    private async Task LoadUsers()
-    {
-        Mitarbeiter = await _connection.GetNutzer();
     }
 
     [RelayCommand]
@@ -99,5 +106,15 @@ internal partial class MainViewViewModel : ObservableObject
             _connection.Update(SelectedUser);
             _connection.SaveChanges();
         }
+    }
+
+    [RelayCommand]
+    private void OnDiscard()
+    {
+    }
+
+    [RelayCommand]
+    private void OnNewUser()
+    {
     }
 }

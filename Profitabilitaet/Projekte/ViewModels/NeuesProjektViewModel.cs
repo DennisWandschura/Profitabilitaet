@@ -32,10 +32,10 @@ internal partial class NeuesProjektViewModel
     }
 
     [RelayCommand]
-    private void OnSpeichern()
+    private async Task OnSpeichern()
     {
         _connection.Projekte.Add(Projekt);
-        _connection.SaveChanges();
+        await _connection.SaveChangesAsync();
 
         _view.DialogResult = true;
         _view.Close();
