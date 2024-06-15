@@ -75,21 +75,19 @@ internal partial class ProjekteViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task OnSave()
+    private Task OnSave()
     {
         SetViewVisibilities();
 
-        if (SelectedProject is not null)
-        {
-            _connection.Update(SelectedProject);
-            await _connection.SaveChangesAsync();
-        }
+        return SelectedProject?.UpdateAsync(_connection) ?? Task.CompletedTask;
     }
 
     [RelayCommand]
-    private void OnCancel()
+    private Task OnCancel()
     {
         SetViewVisibilities();
+
+        return SelectedProject?.CancelAsync(_connection) ?? Task.CompletedTask;
     }
 
     partial void OnSelectedProjectChanged(Projekt? value)

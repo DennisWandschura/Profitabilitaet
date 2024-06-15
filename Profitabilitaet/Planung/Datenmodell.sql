@@ -26,7 +26,7 @@ CREATE TABLE abteilung(
 );
 CREATE TABLE projekt(
 	Id int NOT NULL AUTO_INCREMENT,
-	Bezeichnung VARCHAR(255),
+	Bezeichnung VARCHAR(255) NOT NULL,
 	LeiterId int,
 	Auftragswert decimal(16,2) NOT NULL,
 	AngezahlterBetrag decimal(16,2) NOT NULL,

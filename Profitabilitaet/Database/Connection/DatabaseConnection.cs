@@ -19,7 +19,7 @@ public class DatabaseConnection : DbContext, IConnection
 
     private readonly DbSet<Nutzer> _nutzer;
     private readonly DbSet<Abteilung> _abteilungen;
-    private DbSet<Projekt> _projekte;
+    private readonly DbSet<Projekt> _projekte;
     private readonly DbSet<Buchung> _buchungen;
     private readonly DatabaseSettings _settings;
     private readonly Action<DbContextOptionsBuilder, DatabaseSettings> _onConfiguring;
@@ -32,6 +32,8 @@ public class DatabaseConnection : DbContext, IConnection
         _abteilungen = Set<Abteilung>();
         _projekte = Set<Projekt>();
         _buchungen = Set<Buchung>();
+        
+        
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

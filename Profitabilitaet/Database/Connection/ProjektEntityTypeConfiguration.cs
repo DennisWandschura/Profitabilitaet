@@ -15,13 +15,12 @@ public class ProjektEntityTypeConfiguration : IEntityTypeConfiguration<Projekt>
             .HasConversion(x => x.Value, x => new ProjektId(x))
             .IsRequired();
         
-        modelBuilder.Property(x => x.Bezeichnung);
+        modelBuilder.Property(x => x.Bezeichnung).IsRequired();
 
         modelBuilder.Property("LeiterId");
         modelBuilder.HasOne(x => x.Leiter)
             .WithMany()
-            .HasForeignKey("LeiterId")
-            .IsRequired();
+            .HasForeignKey("LeiterId");
 
         modelBuilder.Property(x => x.Auftragswert).IsRequired();
         modelBuilder.Property(x => x.AngezahlterBetrag).IsRequired();
