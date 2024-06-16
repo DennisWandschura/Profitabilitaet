@@ -85,6 +85,35 @@ internal partial class MainViewViewModel : ObservableObject
     [RelayCommand]
     private void OnEdit()
     {
+        ShowEditControls();
+    }
+
+    [RelayCommand]
+    private async Task OnSave()
+    {
+        HideEditControls();
+
+        if (SelectedUser is not null)
+        {
+            await SelectedUser.UpdateAsync(_connection);
+        }
+    }
+
+    [RelayCommand]
+    private void OnCancel()
+    {
+        HideEditControls();
+        
+        SelectedUser?.Cancel(_connection);
+    }
+
+    [RelayCommand]
+    private void OnNewUser()
+    {
+    }
+    
+    private void ShowEditControls()
+    {
         EditControlsVisibility = Visibility.Visible;
         ViewControlsVisibility = Visibility.Hidden;
 
@@ -92,29 +121,12 @@ internal partial class MainViewViewModel : ObservableObject
         SaveButtonVisibility = Visibility.Visible;
     }
 
-    [RelayCommand]
-    private void OnSave()
+    private void HideEditControls()
     {
         EditControlsVisibility = Visibility.Hidden;
         ViewControlsVisibility = Visibility.Visible;
 
         EditButtonVisibility = Visibility.Visible;
         SaveButtonVisibility = Visibility.Hidden;
-
-        if (SelectedUser is not null)
-        {
-            _connection.Update(SelectedUser);
-            _connection.SaveChanges();
-        }
-    }
-
-    [RelayCommand]
-    private void OnDiscard()
-    {
-    }
-
-    [RelayCommand]
-    private void OnNewUser()
-    {
     }
 }

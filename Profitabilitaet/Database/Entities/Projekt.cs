@@ -17,14 +17,13 @@ public readonly record struct ProjektId(int Value)
 public partial class Projekt : ObservableObject
 {
     public ProjektId Id { get; set; }
-    [ObservableProperty]
-    private string _bezeichnung;
-    public Nutzer? Leiter { get; set; }
-    public decimal Auftragswert { get; set; }
-    public decimal AngezahlterBetrag { get; set; }
-    public DateTime Beginn { get; set; }
-    public DateTime Ende { get; set; }
-    public bool IstStorniert { get; set; }
+    [ObservableProperty] private string _bezeichnung;
+    [ObservableProperty] private Nutzer? _leiter;
+    [ObservableProperty] private decimal _auftragswert;
+    [ObservableProperty] private decimal _angezahlterBetrag;
+    [ObservableProperty] private DateTime _beginn;
+    [ObservableProperty] private DateTime _ende;
+    [ObservableProperty] private bool _istStorniert;
 
     public ICollection<Buchung> Buchungen { get; private set; } =
             new ObservableCollection<Buchung>();

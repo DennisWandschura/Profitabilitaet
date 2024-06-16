@@ -1,19 +1,15 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.Extensions.Options;
-using Profitabilitaet.Common.Models;
-using System;
+﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using Profitabilitaet.Config;
-using Profitabilitaet.Database.Connection;
 using System.Windows;
+using System.Windows.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Profitabilitaet.Common.Models;
+using Profitabilitaet.Database.Connection;
 
-namespace Profitabilitaet.Common.ViewModels;
+namespace Profitabilitaet.Login.ViewModels;
 
 internal partial class LoginViewModel : ObservableObject
 {
@@ -34,7 +30,7 @@ internal partial class LoginViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public async Task OnLogin()
+    private async Task OnLogin()
     {
         CanLogin = false;
         LoginStatusText = "Einloggen...";
@@ -56,13 +52,13 @@ internal partial class LoginViewModel : ObservableObject
         catch (Exception ex)
         {
             LoginStatusText = string.Empty;
-            MessageBox.Show("Fehler: " + ex.Message);
+            MessageBox.Show("Fehler: " + ex.Message, "Fehler beim Einloggen");
         }
 
         CanLogin = true;
     }
 
-    static string Sha256String(string randomString)
+    private static string Sha256String(string randomString)
     {
         using var crypt = SHA256.Create();
         var hash = new System.Text.StringBuilder();

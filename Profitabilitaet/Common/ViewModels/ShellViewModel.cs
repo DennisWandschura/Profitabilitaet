@@ -11,9 +11,11 @@ namespace Profitabilitaet.Common.ViewModels;
 internal partial class ShellViewModel : ObservableObject
 {
     [ObservableProperty]
-    private UserControl _currentView = new Views.LoginView();
+    private UserControl _currentView = new Login.Views.LoginView();
+    
     [ObservableProperty]
     private Visibility _logoutVisibility;
+    
     private readonly LoggedInUser _loggedInUser;
 
     public Action? CloseAction { get; set; }
@@ -35,7 +37,7 @@ internal partial class ShellViewModel : ObservableObject
         else
         {
             LogoutVisibility = Visibility.Hidden;
-            CurrentView = new Views.LoginView();
+            CurrentView = new Login.Views.LoginView();
         }
     }
 

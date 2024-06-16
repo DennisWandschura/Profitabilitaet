@@ -13,6 +13,11 @@
     <EmbeddedResource Remove="Mitarbeiter\Models\**" />
     <None Remove="Mitarbeiter\Models\**" />
     <Page Remove="Mitarbeiter\Models\**" />
+    <Page Update="Login\Views\LoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

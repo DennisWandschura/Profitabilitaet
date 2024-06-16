@@ -5,6 +5,8 @@ using System;
 using System.IO;
 using System.Windows;
 using Profitabilitaet.Config;
+using Profitabilitaet.Login;
+using LoginViewModel = Profitabilitaet.Login.ViewModels.LoginViewModel;
 
 namespace Profitabilitaet;
 
@@ -52,7 +54,7 @@ public partial class App : Application
         // Viewmodels
         services.AddTransient<Common.ViewModels.ShellViewModel>();
         services.AddTransient<Mitarbeiter.ViewModels.MainViewViewModel>();
-        services.AddTransient<Common.ViewModels.LoginViewModel>();
+        services.AddTransient<LoginViewModel>();
         services.AddTransient<Projekte.ViewModels.ProjekteViewModel>();
 
         return services.BuildServiceProvider();

@@ -2,9 +2,9 @@
 
 namespace Profitabilitaet.Common.Models;
 
-public class LoggedInUserChangedMessage : ValueChangedMessage<Database.Entities.Nutzer>
+public class LoggedInUserChangedMessage : ValueChangedMessage<Database.Entities.Nutzer?>
 {
-    public LoggedInUserChangedMessage(Database.Entities.Nutzer user) : base(user)
+    public LoggedInUserChangedMessage(Database.Entities.Nutzer? user) : base(user)
     {
     }
 }

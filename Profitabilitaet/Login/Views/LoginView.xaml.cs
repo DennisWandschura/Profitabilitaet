@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Windows.Controls;
+using Profitabilitaet.Login;
 
-namespace Profitabilitaet.Common.Views;
+namespace Profitabilitaet.Login.Views;
 
 /// <summary>
 /// Interaction logic for LoginView.xaml

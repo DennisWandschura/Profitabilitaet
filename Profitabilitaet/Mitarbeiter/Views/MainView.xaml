@@ -34,7 +34,7 @@
 
             <StackPanel Visibility="{Binding SaveButtonVisibility}" Orientation="Horizontal" HorizontalAlignment="Right" Margin="2">
                 <Button Content="Speichern" Margin="2,0" Command="{Binding SaveCommand}" Background="{StaticResource BackgroundColorSpeichern}"/>
-                <Button Content="Verwerfen" Margin="2,0" Command="{Binding DiscardCommand}" Background="{StaticResource BackgroundColorAbbruch}"/>
+                <Button Content="Verwerfen" Margin="2,0" Command="{Binding CancelCommand}" Background="{StaticResource BackgroundColorAbbruch}"/>
             </StackPanel>
             
         </Grid>
@@ -57,38 +57,38 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="Nachname:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Vorname:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-                <TextBlock Grid.Column="0" Grid.Row="2" Text="Geschlecht:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-                <TextBlock Grid.Column="0" Grid.Row="3" Text="Strasse:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-                <TextBlock Grid.Column="0" Grid.Row="4" Text="Hausnummer:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-                <TextBlock Grid.Column="0" Grid.Row="5" Text="PLZ:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-                <TextBlock Grid.Column="0" Grid.Row="6" Text="Ort:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-                <TextBlock Grid.Column="0" Grid.Row="7" Text="Telefonnummer:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-                <TextBlock Grid.Column="0" Grid.Row="8" Text="Einstellungsdatum:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
-                <TextBlock Grid.Column="0" Grid.Row="9" Text="Rolle:" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+                <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Margin="0,2,4,2" Text="Nachname:"/>
+                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Margin="0,2,4,2" Text="Vorname:"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" Margin="0,2,4,2" Text="Geschlecht:"/>
+                <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" Margin="0,2,4,2" Text="Strasse:" />
+                <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" Margin="0,2,4,2" Text="Hausnummer:"/>
+                <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" Margin="0,2,4,2" Text="PLZ:"/>
+                <TextBlock Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" Margin="0,2,4,2" Text="Ort:"/>
+                <TextBlock Grid.Column="0" Grid.Row="7" HorizontalAlignment="Right" Margin="0,2,4,2" Text="Telefonnummer:"/>
+                <TextBlock Grid.Column="0" Grid.Row="8" HorizontalAlignment="Right" Margin="0,2,4,2" Text="Einstellungsdatum:"/>
+                <TextBlock Grid.Column="0" Grid.Row="9" HorizontalAlignment="Right" Margin="0,2,4,2" Text="Rolle:"/>
 
-                <TextBlock Grid.Column="1" Grid.Row="0" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Nachname}"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Vorname}"/>
-                <TextBlock Grid.Column="1" Grid.Row="2" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Geschlecht}"/>
-                <TextBlock Grid.Column="1" Grid.Row="3" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Strasse}"/>
-                <TextBlock Grid.Column="1" Grid.Row="4" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Hausnummer}"/>
-                <TextBlock Grid.Column="1" Grid.Row="5" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Plz}"/>
-                <TextBlock Grid.Column="1" Grid.Row="6" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Ort}"/>
-                <TextBlock Grid.Column="1" Grid.Row="7" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Telefonnummer}"/>
-                <TextBlock Grid.Column="1" Grid.Row="8" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Einstellungsdatum}"/>
-                <TextBlock Grid.Column="1" Grid.Row="9" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Rolle}"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Margin="0, 2" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Nachname}"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0, 2" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Vorname}"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Margin="0, 2" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Geschlecht}"/>
+                <TextBlock Grid.Column="1" Grid.Row="3" Margin="0, 2" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Strasse}"/>
+                <TextBlock Grid.Column="1" Grid.Row="4" Margin="0, 2" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Hausnummer}"/>
+                <TextBlock Grid.Column="1" Grid.Row="5" Margin="0, 2" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Plz}"/>
+                <TextBlock Grid.Column="1" Grid.Row="6" Margin="0, 2" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Ort}"/>
+                <TextBlock Grid.Column="1" Grid.Row="7" Margin="0, 2" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Telefonnummer}"/>
+                <TextBlock Grid.Column="1" Grid.Row="8" Margin="0, 2" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Einstellungsdatum}"/>
+                <TextBlock Grid.Column="1" Grid.Row="9" Margin="0, 2" Visibility="{Binding ViewControlsVisibility}" Text="{Binding SelectedUser.Rolle}"/>
 
-                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedUser.Nachname}" Visibility="{Binding EditControlsVisibility}"/>
-                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedUser.Vorname}" Visibility="{Binding EditControlsVisibility}"/>
-                <ComboBox Grid.Column="1" Grid.Row="2" SelectedValue="{Binding SelectedUser.Geschlecht}" ItemsSource="{Binding Geschlechter}" Visibility="{Binding EditControlsVisibility}"/>
-                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedUser.Strasse}" Visibility="{Binding EditControlsVisibility}"/>
-                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SelectedUser.Hausnummer}" Visibility="{Binding EditControlsVisibility}"/>
-                <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding SelectedUser.Plz}" Visibility="{Binding EditControlsVisibility}"/>
-                <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding SelectedUser.Ort}" Visibility="{Binding EditControlsVisibility}"/>
-                <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding SelectedUser.Telefonnummer}" Visibility="{Binding EditControlsVisibility}"/>
-                <TextBlock Grid.Column="1" Grid.Row="8" Text="{Binding SelectedUser.Einstellungsdatum}" Visibility="{Binding EditControlsVisibility}"/>
-                <ComboBox Grid.Column="1" Grid.Row="9" SelectedValue="{Binding SelectedUser.Rolle}" ItemsSource="{Binding Rollen}" Visibility="{Binding EditControlsVisibility}"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Margin="0, 2" Text="{Binding SelectedUser.Nachname}" Visibility="{Binding EditControlsVisibility}"/>
+                <TextBox Grid.Column="1" Grid.Row="1" Margin="0, 2" Text="{Binding SelectedUser.Vorname}" Visibility="{Binding EditControlsVisibility}"/>
+                <ComboBox Grid.Column="1" Grid.Row="2" Margin="0, 2" SelectedValue="{Binding SelectedUser.Geschlecht}" ItemsSource="{Binding Geschlechter}" Visibility="{Binding EditControlsVisibility}"/>
+                <TextBox Grid.Column="1" Grid.Row="3" Margin="0, 2" Text="{Binding SelectedUser.Strasse}" Visibility="{Binding EditControlsVisibility}"/>
+                <TextBox Grid.Column="1" Grid.Row="4" Margin="0, 2" Text="{Binding SelectedUser.Hausnummer}" Visibility="{Binding EditControlsVisibility}"/>
+                <TextBox Grid.Column="1" Grid.Row="5" Margin="0, 2" Text="{Binding SelectedUser.Plz}" Visibility="{Binding EditControlsVisibility}"/>
+                <TextBox Grid.Column="1" Grid.Row="6" Margin="0, 2" Text="{Binding SelectedUser.Ort}" Visibility="{Binding EditControlsVisibility}"/>
+                <TextBox Grid.Column="1" Grid.Row="7" Margin="0, 2" Text="{Binding SelectedUser.Telefonnummer}" Visibility="{Binding EditControlsVisibility}"/>
+                <TextBlock Grid.Column="1" Grid.Row="8" Margin="0, 2" Text="{Binding SelectedUser.Einstellungsdatum}" Visibility="{Binding EditControlsVisibility}"/>
+                <ComboBox Grid.Column="1" Grid.Row="9" Margin="0, 2" SelectedValue="{Binding SelectedUser.Rolle}" ItemsSource="{Binding Rollen}" Visibility="{Binding EditControlsVisibility}"/>
 
             </Grid>
         </Border>
