@@ -1,7 +1,7 @@
 ﻿INSERT INTO nutzer(Id, Nachname, Vorname, Strasse, Plz, Ort, Hausnummer, Geschlecht, Telefonnummer, Einstellungsdatum, Passwort, Loginname, Rolle)
 VALUES
 (1,"AdminNutzer","AdminNutzer","AdminNutzer","50259","Pulheim","88","Maennlich","02238/980021","1998-06-01","8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","adminnutzer","NUTZER"),
-(2,"AdminAbteilungsleiter","AdminAbteilungsleiter","AdminAbteilungsleiter","50259","Pulheim","88","Maennlich","02238/980021","1998-06-01","8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","adminabteilungsleiter",ABTEILUNGSLEITER),
+(2,"AdminAbteilungsleiter","AdminAbteilungsleiter","AdminAbteilungsleiter","50259","Pulheim","88","Maennlich","02238/980021","1998-06-01","8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918","adminabteilungsleiter","ABTEILUNGSLEITER"),
 (100,"Meier","Inge","Amselweg ","53101","Bonn","11","Weiblich","0228/124578","1995-01-01","543cba5512dcb33a48230f89920754412b03431f853d5afbed88ab6f485cfda6","IngeMeier","NUTZER"),
 (101,"Schneider","Ute","Hauptstr. ","50012","Köln","17","Weiblich","0221/215211","1999-01-04","543cba5512dcb33a48230f89920754412b03431f853d5afbed88ab6f485cfda6","UteSchneider","NUTZER"),
 (105,"Berg","Karin","Am Funkturm ","65203","Wiesbaden","156","Weiblich","0611/928792","1995-09-01","543cba5512dcb33a48230f89920754412b03431f853d5afbed88ab6f485cfda6","KarinBerg","NUTZER"),
