@@ -87,7 +87,7 @@
                 <TextBox Grid.Column="1" Grid.Row="5" Margin="0, 2" Text="{Binding SelectedUser.Plz}" Visibility="{Binding EditControlsVisibility}"/>
                 <TextBox Grid.Column="1" Grid.Row="6" Margin="0, 2" Text="{Binding SelectedUser.Ort}" Visibility="{Binding EditControlsVisibility}"/>
                 <TextBox Grid.Column="1" Grid.Row="7" Margin="0, 2" Text="{Binding SelectedUser.Telefonnummer}" Visibility="{Binding EditControlsVisibility}"/>
-                <TextBlock Grid.Column="1" Grid.Row="8" Margin="0, 2" Text="{Binding SelectedUser.Einstellungsdatum}" Visibility="{Binding EditControlsVisibility}"/>
+                <DatePicker Grid.Column="1" Grid.Row="8" Margin="0, 2" SelectedDate="{Binding SelectedUser.Einstellungsdatum}" Visibility="{Binding EditControlsVisibility}"/>
                 <ComboBox Grid.Column="1" Grid.Row="9" Margin="0, 2" SelectedValue="{Binding SelectedUser.Rolle}" ItemsSource="{Binding Rollen}" Visibility="{Binding EditControlsVisibility}"/>
 
             </Grid>

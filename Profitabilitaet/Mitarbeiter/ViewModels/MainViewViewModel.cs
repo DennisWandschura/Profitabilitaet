@@ -110,12 +110,7 @@ internal partial class MainViewViewModel : ObservableObject
     [RelayCommand]
     private void OnNewUser()
     {
-        if (SelectedUser is null)
-        {
-            return;
-        }
-
-        var newUserView = new Views.CreateMitarbeiter()
+        var newUserView = new Views.CreateMitarbeiterView(_connection)
         {
             Topmost = true
         };
