@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices.JavaScript;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -55,7 +56,7 @@ internal partial class NeuesProjektViewModel : ObservableObject, IDataErrorInfo
     {
         if (!HasValidData())
         {
-            MessageBox.Show($"Die Projektdaten sind nicht alle korrekt.", "Falsche Projektdaten", MessageBoxButton.OK);
+            MessageBox.Show($"Die Projektdaten sind nicht alle korrekt.\n{GetInvalidFieldsString()}", "Falsche Projektdaten", MessageBoxButton.OK);
             return;
         }
         
@@ -114,4 +115,28 @@ internal partial class NeuesProjektViewModel : ObservableObject, IDataErrorInfo
         }
     }
     #endregion
+    
+    private string GetInvalidFieldsString()
+    {
+        List<string> fields = [];
+
+        if (Beginn > _ende)
+        {
+            fields.Add("Ende des Projekts muss am gleichen Tag oder nach Beginn sein!");
+        }
+        if (Auftragswert < 0.0m)
+        {
+            fields.Add("Der Auftragswert muss größer als 0 sein!");
+        }
+        if (AngezahlterBetrag < 0.0m)
+        {
+            fields.Add( "Der AngezahlterBetrag darf nicht negativ sein!");
+        }
+        if (AngezahlterBetrag > Auftragswert)
+        {
+            fields.Add( "Der AngezahlterBetrag darf größer als der Auftragswert sein!");
+        }
+
+        return fields.Count == 0 ? string.Empty : (new StringBuilder()).AppendJoin('\n', fields).ToString();
+    }
 }

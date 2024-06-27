@@ -32,7 +32,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -52,8 +52,10 @@
         <TextBlock Grid.Column="0" Grid.Row="10" HorizontalAlignment="Right" Margin="2,2,4,2" Text="Loginname:"/>
         <TextBlock Grid.Column="0" Grid.Row="11" HorizontalAlignment="Right" Margin="2,2,4,2" Text="Passwort:"/>
         
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="2, 2" Text="{Binding Mitarbeiter.Nachname}"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="2, 2" Text="{Binding Mitarbeiter.Vorname}"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Margin="2, 2" Text="{Binding Nachname,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="2, 2" Text="{Binding Vorname, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
         <ComboBox Grid.Column="1" Grid.Row="2" Margin="2, 2" SelectedValue="{Binding Mitarbeiter.Geschlecht}" ItemsSource="{Binding Geschlechter}"/>
         <TextBox Grid.Column="1" Grid.Row="3" Margin="2, 2" Text="{Binding Mitarbeiter.Strasse}"/>
         <TextBox Grid.Column="1" Grid.Row="4" Margin="2, 2" Text="{Binding Mitarbeiter.Hausnummer}"/>
@@ -62,8 +64,10 @@
         <TextBox Grid.Column="1" Grid.Row="7" Margin="2, 2" Text="{Binding Mitarbeiter.Telefonnummer}"/>
         <DatePicker Grid.Column="1" Grid.Row="8" Margin="2, 2" SelectedDate="{Binding Mitarbeiter.Einstellungsdatum}"/>
         <ComboBox Grid.Column="1" Grid.Row="9" Margin="2, 2" SelectedValue="{Binding Mitarbeiter.Rolle}" ItemsSource="{Binding Rollen}"/> 
-        <TextBox Grid.Column="1" Grid.Row="10" Margin="2, 2" Text="{Binding Mitarbeiter.Loginname}"/>
-        <TextBox Grid.Column="1" Grid.Row="11" Margin="2, 2" Text="{Binding Mitarbeiter.Passwort}"/>
+        <TextBox Grid.Column="1" Grid.Row="10" Margin="2, 2" Text="{Binding Loginname, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+        <TextBox Grid.Column="1" Grid.Row="11" Margin="2, 2" Text="{Binding Passwort, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                 ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
         
         <Grid Grid.Row="12" Grid.Column="1" HorizontalAlignment="Right">
             <Grid.ColumnDefinitions>
